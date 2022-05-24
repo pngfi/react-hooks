@@ -6,7 +6,15 @@
   </a>
 </div>
 
-## Link
+## Installation
+
+```
+yarn add @pngfi/react-hooks
+// or
+npm i @pngfi/react-hooks --save
+```
+
+## Usage
 
 - [How to claim rewards](#how-to-claim-rewards)
 
