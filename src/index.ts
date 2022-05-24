@@ -5,6 +5,11 @@ export * from './hooks/useAnchorProvider';
 export * from './hooks/usePngfiConfig';
 export * from './hooks/useToken';
 
+/**
+ * coingecko api
+ */
+export * from './hooks/useCoingecko';
+
 
 export * from './hooks/index';
 export * from './hooks/useJsonRPC';
