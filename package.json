@@ -1,6 +1,6 @@
 {
   "name": "@xweb3/react-hooks",
-  "version": "0.3.12",
+  "version": "0.3.13",
   "description": "react hooks for pngfi.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",

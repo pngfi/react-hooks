@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.13](https://github.com/xweb3/react-hooks/compare/v0.3.12...v0.3.13) (2022-05-24)
+
+
+### Features
+
+* 🎸 add useToken ([c7d4077](https://github.com/xweb3/react-hooks/commit/c7d4077efc228566e9e4544b9d0a1f3eb168c5d1))
+
 ### [0.3.12](https://github.com/xweb3/react-hooks/compare/v0.3.11...v0.3.12) (2022-05-24)
 
 
