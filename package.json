@@ -1,6 +1,6 @@
 {
   "name": "@pngfi/react-hooks",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "react hooks for pngfi.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "rm -rf ./dist && yarn doc && rollup -c",
     "start": "rollup -c -w",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run c",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prepare": "husky install",
     "publish": "npm publish --access public",
