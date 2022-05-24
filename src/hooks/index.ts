@@ -8,7 +8,6 @@ import {
   poolsApi,
   pricesApi,
   stakingApi,
-  tokensApi,
   userVestingApi,
   distributorEpochsApi,
   merkleRewardsDistributorApi,
@@ -16,15 +15,13 @@ import {
 } from "../common/pngfi-api";
 import {
   MerkleRewardsDistributor, IResponse, IRewards,
-  IMarket, IPoolInfo, IBondingInfo, IStakingInfo, ITokenInfo
+  IMarket, IPoolInfo, IBondingInfo, IStakingInfo
 } from "../types";
 import { usePngfiConfig } from "./usePngfiConfig";
 
 export const useBonding = (): IResponse<IBondingInfo[]> => useFetcher(bondingApi);
 
 export const useStaking = (): IResponse<IStakingInfo[]> => useFetcher(stakingApi);
-
-export const useTokens = (): IResponse<ITokenInfo[]> => useFetcher(tokensApi);
 
 export const usePools = (): IResponse<IPoolInfo[]> => useFetcher(poolsApi);
 

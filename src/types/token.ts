@@ -9,7 +9,7 @@ export declare interface IExtensions {
   coingeckoId?: string;
 }
 
-export declare interface ITokenInfo {
+export declare type ITokenInfo = {
   chainId?: number;
   decimals: number | undefined;
   logoURI: string;

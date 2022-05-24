@@ -6,7 +6,7 @@
   </a>
 </div>
 
-## [Docs](https://react-hooks-tan.vercel.app/)
+## [Docs Link](https://react-hooks-tan.vercel.app/)
 
 ## Installation
 

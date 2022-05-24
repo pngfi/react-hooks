@@ -1,6 +1,6 @@
 {
-  "name": "@pngfi/react-hooks",
-  "version": "0.3.11",
+  "name": "@xweb3/react-hooks",
+  "version": "0.3.10",
   "description": "react hooks for pngfi.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
@@ -24,7 +24,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pngfi/react-hooks.git"
+    "url": "git+https://github.com/xweb3/react-hooks.git"
   },
   "keywords": [
     "pngfi",
@@ -78,7 +78,8 @@
     "@solana/spl-token": "0.1.8",
     "@solana/wallet-adapter-react": "^0.15.5",
     "@solana/web3.js": "^1.42.0",
-    "decimal.js": "^10.3.1"
+    "decimal.js": "^10.3.1",
+    "query-string": "^7.1.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.0",
@@ -100,7 +101,6 @@
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "axios": "^0.27.2",
-    "jsbi": "^4.3.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^28.1.0",
     "babel-runtime": "^6.26.0",
@@ -109,6 +109,7 @@
     "git-cz": "^4.8.0",
     "husky": "^7.0.1",
     "jest": "^27",
+    "jsbi": "^4.3.0",
     "lint-staged": ">=10",
     "prettier": "^2.3.2",
     "prop-types": "^15.7.2",
