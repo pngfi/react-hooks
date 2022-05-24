@@ -1,5 +1,10 @@
 # [@pngfi/react-hooks](https://npmjs.com/package/@pngfi/react-hooks)
 
+<div align="center">
+  <a href="https://www.npmjs.com/package/@pngfi/react-hooks">
+    <img src="https://img.shields.io/npm/v/@pngfi/react-hooks.svg?style=flat-square">
+  </a>
+</div>
 
 ## Link
 
