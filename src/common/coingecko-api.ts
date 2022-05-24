@@ -26,10 +26,8 @@ export const defaultSimplePriceOptions = {
 }
 /**
  * Get the current price of any cryptocurrencies in any other supported currencies that you need.
- * @param options 
- * @returns 
  */
-export const simplePriceApi = (options: ISimplePrice = defaultSimplePriceOptions) => `${baseApi}/simple/price?${qs.stringify(options)}`
+export const simplePriceApi = (options: ISimplePrice = defaultSimplePriceOptions) => options.ids ? `${baseApi}/simple/price?${qs.stringify(options)}` : null;
 export const simplePrice = async (options: ISimplePrice = defaultSimplePriceOptions) => {
   return await fetcher(`${simplePriceApi(options)}`);
 }
