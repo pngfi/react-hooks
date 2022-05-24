@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.3.0 (2022-05-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* 🧨 react hooks for pngfi.
+
+### Features
+
+* 🎸 react hooks for pngfi ([3f6b606](https://github.com/pngfi/react-hooks/commit/3f6b606448d67f6d5f8c6fc69ba9dba77a6c6fc8))
+
 ## [0.3.0](https://github.com/pngfi/react-hooks/compare/v0.2.7...v0.3.0) (2022-05-24)
 
 
