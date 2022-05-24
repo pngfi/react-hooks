@@ -14,7 +14,7 @@ import { IResponse } from "../../types/response";
  * const { data, loading, error } = useMerkleRewards(publicKey.toString());
  * ```
  */
-export const useMerkleRewards = (user: string): IResponse<IMerkleRewards> => useFetcher(merkleRewardsApi(user));
+export const useMerkleRewards = (user: string): IResponse<IMerkleRewards[]> => useFetcher(merkleRewardsApi(user));
 
 
 /**
@@ -29,7 +29,7 @@ export const useMerkleRewards = (user: string): IResponse<IMerkleRewards> => use
  * const { data, loading, error } = useDistributors(publicKey.toString());
  * ```
  */
-export const useDistributors = (user: string): IResponse<IMerkleDistributorItem> => useFetcher(distributorsApi(user));
+export const useDistributors = (user: string): IResponse<IMerkleDistributorItem[]> => useFetcher(distributorsApi(user));
 
 /**
  * Insert distributor

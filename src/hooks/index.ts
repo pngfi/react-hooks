@@ -20,15 +20,15 @@ import {
 } from "../types";
 import { usePngfiConfig } from "./usePngfiConfig";
 
-export const useBonding = (): IResponse<IBondingInfo> => useFetcher(bondingApi);
+export const useBonding = (): IResponse<IBondingInfo[]> => useFetcher(bondingApi);
 
-export const useStaking = (): IResponse<IStakingInfo> => useFetcher(stakingApi);
+export const useStaking = (): IResponse<IStakingInfo[]> => useFetcher(stakingApi);
 
-export const useTokens = (): IResponse<ITokenInfo> => useFetcher(tokensApi);
+export const useTokens = (): IResponse<ITokenInfo[]> => useFetcher(tokensApi);
 
-export const usePools = (): IResponse<IPoolInfo> => useFetcher(poolsApi);
+export const usePools = (): IResponse<IPoolInfo[]> => useFetcher(poolsApi);
 
-export const useMarkets = (): IResponse<IMarket> => useFetcher(marketsApi);
+export const useMarkets = (): IResponse<IMarket[]> => useFetcher(marketsApi);
 
 export const usePrices = (ids: string[]): IResponse<Record<string, number>[]> => useFetcher(pricesApi(ids));
 
@@ -40,7 +40,7 @@ export const useUserVesting = (owner: string, vestConfig: string) =>
 export const useDistributorEpochs = (distributor: string): IResponse<string[]> =>
   useFetcher(distributorEpochsApi(distributor));
 
-export const useMerkleRewardsDistributor = (distributor: string): IResponse<IMerkleRewards[]> =>
+export const useMerkleRewardsDistributor = (distributor: string): IResponse<IMerkleRewards> =>
   useFetcher(merkleRewardsDistributorApi(distributor));
 
 export const useDistributorRewardsEpoch = (
