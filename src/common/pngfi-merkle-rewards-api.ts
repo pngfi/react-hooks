@@ -39,7 +39,7 @@ export const getDistributorRewardsEpoch = async (distributor: string, epoch: str
 
 // Insert Distributor
 // POST /merkleRewards
-// https://github.com/pngfi/png-api-workers/blob/main/merkle-rewards-api.md
+// https://github.com/xweb3/png-api-workers/blob/main/merkle-rewards-api.md
 export const distributorMerkleRewardsApi = `${baseApi()}/merkleRewards`;
 export const postDistributorMerkleRewards = async (options: IMerkleRewardsInsertRequest) => {
   return await fetcher(distributorMerkleRewardsApi, {

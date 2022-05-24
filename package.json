@@ -1,7 +1,7 @@
 {
-  "name": "@pngfi/react-hooks",
+  "name": "@xweb3/react-hooks",
   "version": "0.3.3",
-  "description": "react hooks for pngfi.",
+  "description": "react hooks for xweb3.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -24,10 +24,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pngfi/react-hooks.git"
+    "url": "git+https://github.com/xweb3/react-hooks.git"
   },
   "keywords": [
-    "pngfi",
+    "xweb3",
     "png",
     "react hooks",
     "crypto",
@@ -47,7 +47,7 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/pngfi/react-hooks/issues"
+    "url": "https://github.com/xweb3/react-hooks/issues"
   },
   "jest": {
     "transform": {

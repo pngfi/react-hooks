@@ -49,7 +49,7 @@ export const useDistributorRewardsEpoch = (
 ): IResponse<IRewards[]> => useFetcher(distributorRewardsEpochApi(distributor, epoch));
 
 /**
- * get userPublicKey of PngfiProvider config
+ * get userPublicKey of Xweb3Provider config
  * 
  * @returns {PublicKey} userPublicKey
  * 

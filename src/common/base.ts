@@ -8,11 +8,11 @@ export const apiUrl = {
 }
 
 /**
- * pngfi base api
+ * xweb3 base api
  */
 export const baseApi = (key: IApiCluster = 'mainnet-beta') => {
-  const pngfiApi = typeof window !== 'undefined' ? window.localStorage.getItem('pngfiApi') : null
-  return pngfiApi || apiUrl[key];
+  const xweb3Api = typeof window !== 'undefined' ? window.localStorage.getItem('xweb3Api') : null
+  return xweb3Api || apiUrl[key];
 }
 
 /**

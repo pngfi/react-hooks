@@ -31,7 +31,7 @@ export interface IRewardsResponse {
    * 
    * @example
    * ```ts
-   * import { useRewards } from '@pngfi/react-hooks';
+   * import { useRewards } from '@xweb3/react-hooks';
    * const { claimRewards } = useRewards();
    * const claimTx = await claimRewards(provider, publicKey, {
    *   distributor: data.distributor,

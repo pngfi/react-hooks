@@ -9,12 +9,12 @@ export * from './hooks/index';
 export * from './hooks/useJsonRPC';
 
 /**
- * pngfi Types
+ * xweb3 Types
  */
 export * from './types';
 
 /**
- * pngfi api and fetch data function
+ * xweb3 api and fetch data function
  */
 // export * from './common/pngfi-api';
 // export * from './common/pngfi-merkle-rewards-api';
