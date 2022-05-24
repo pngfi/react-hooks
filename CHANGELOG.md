@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.14](https://github.com/xweb3/react-hooks/compare/v0.3.13...v0.3.14) (2022-05-24)
+
+
+### Features
+
+* 🎸 add coingecko api ([b0fb348](https://github.com/xweb3/react-hooks/commit/b0fb348090642593bbad0eae838609948c91f768))
+
 ### [0.3.13](https://github.com/xweb3/react-hooks/compare/v0.3.12...v0.3.13) (2022-05-24)
 
 
