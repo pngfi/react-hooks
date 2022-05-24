@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.12](https://github.com/xweb3/react-hooks/compare/v0.3.11...v0.3.12) (2022-05-24)
+
+
+### Features
+
+* 🎸 add useToken and coingecko ([cd17e3c](https://github.com/xweb3/react-hooks/commit/cd17e3ce9b1fe5b38cf2e1833792369d66616612))
+
 ### [0.3.11](https://github.com/pngfi/react-hooks/compare/v0.3.10...v0.3.11) (2022-05-24)
 
 
