@@ -15,7 +15,7 @@
     "prepare": "husky install",
     "publish": "npm publish --access public",
     "c": "npm run build && git add . && git-cz",
-    "r": "standard-version && git push origin HEAD && npm run publish",
+    "r": "standard-version && git push up HEAD && npm run publish",
     "doc": "npx typedoc --excludePrivate --includeVersion --out docs/ src/index.{ts,tsx}",
     "test": "jest"
   },

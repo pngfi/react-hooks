@@ -90,29 +90,20 @@ export declare interface IMerkleDistributorItem {
   proof: string[];
 };
 
-export type IDistributorType = {
-  updatedAt: number;
-  createdAt: number;
+export declare type IDistributorResponse = {
   title: string;
-  tokenHolder: string;
+  projectID: string;
+  epochID: string;
+  address: string;
+  base: string;
+  owner: string;
   tokenMint: string;
+  tokenHolder: string;
   totalAmount: string;
-  distributor: string;
-}
-
-// export declare interface IMerkleRewards2 {
-//   amount: string;
-//   dest: string;
-//   distributor: string;
-//   index: number;
-//   merkleRoot: string;
-//   mint: string;
-//   proof: string[]; // hex array
-//   title: string;
-//   tokenHolder: string;
-//   unclaimed: string;
-//   updatedAt: number;
-// };
+  createdAt: number;
+  updatedAt: number;
+  beneficiaries: string[];
+};
 
 export declare type IMerkleDistributorInfo = IMerkleDistributorItem & {
   token: ITokenInfo;
