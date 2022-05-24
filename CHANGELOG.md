@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.7](https://github.com/pngfi/react-hooks/compare/v0.3.6...v0.3.7) (2022-05-24)
+
+
+### Bug Fixes
+
+* type error ([3c273fc](https://github.com/pngfi/react-hooks/commit/3c273fcd11cd960d26196b1e705520f5e02ae963))
+
 ### [0.3.6](https://github.com/pngfi/react-hooks/compare/v0.3.5...v0.3.6) (2022-05-24)
 
 
