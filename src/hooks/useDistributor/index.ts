@@ -1,20 +1,20 @@
 import { useFetcher } from "../../common/fetcher";
 import { distributorMerkleRewardsApi, distributorsApi, merkleRewardsApi } from "../../common/pngfi-merkle-rewards-api";
-import { IDistributorResponse, IMerkleRewards, IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse } from "../../types/distributor";
+import { IDistributorResponse, IMerkleRewardsResponse, IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse } from "../../types/distributor";
 import { IResponse } from "../../types/response";
 
 /**
  * List of distributor rewards
  * 
  * @param options 
- * @returns IResponse<IMerkleRewards>
+ * @returns IResponse<IMerkleRewardsResponse>
  * 
  * @example
  * ```typescript
  * const { data, loading, error } = useMerkleRewards(publicKey.toString());
  * ```
  */
-export const useMerkleRewards = (user: string): IResponse<IMerkleRewards[]> => useFetcher(merkleRewardsApi(user));
+export const useMerkleRewards = (user: string): IResponse<IMerkleRewardsResponse[]> => useFetcher(merkleRewardsApi(user));
 
 
 /**

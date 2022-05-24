@@ -2,7 +2,20 @@ import Decimal from 'decimal.js';
 
 import { ITokenInfo } from "./token";
 
-export interface IMerkleRewards {
+export interface IMerkleRewardsResponse {
+  distributor: string;
+  dest: string;
+  proof: string[],
+  index: number;
+  amount: string;
+  unclaimed: string;
+  merkleRoot: string;
+  title: string;
+  mint: string;
+  tokenHolder: string;
+  updatedAt: number;
+}
+export interface MerkleRewardsDistributor {
   epochID: string;
   merkleRoot: string;
   base: string;
