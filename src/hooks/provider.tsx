@@ -17,9 +17,9 @@ export declare type IProviderOptionsValue =
       })
   | undefined;
 
-export declare interface IXweb3Provider {
+export declare interface IPngfiProvider {
   cluster: Cluster;
-  xweb3Api?: string;
+  pngfiApi?: string;
   distributorApi?: string;
   rpcpoolApi?: string;
   userPublicKey?: PublicKey | undefined;
@@ -28,25 +28,25 @@ export declare interface IXweb3Provider {
 }
 
 /**
- * global config provider for Xweb3 api
+ * global config provider for Pngfi api
  * 
- * @param {IXweb3Provider} params
+ * @param {IPngfiProvider} params
  * @returns
  *
  * @example
  * ```jsx
  * const { publicKey } = useWallet();
  * 
- * <Xweb3Provider
+ * <PngfiProvider
  *  cluster='mainnet-beta'
  *  userPublicKey={publicKey}>
  *  {children}
- * </Xweb3Provider>
+ * </PngfiProvider>
  * ```
  */
-export const Xweb3Provider = ({
+export const PngfiProvider = ({
   cluster = "mainnet-beta",
-  xweb3Api,
+  pngfiApi,
   distributorApi,
   rpcpoolApi,
   userPublicKey,
@@ -54,9 +54,9 @@ export const Xweb3Provider = ({
   options = {
     fetcher,
   },
-}: IXweb3Provider) => {
+}: IPngfiProvider) => {
   if (typeof window !== "undefined") {
-    window.localStorage.setItem("xweb3Api", (xweb3Api || "") as string);
+    window.localStorage.setItem("pngfiApi", (pngfiApi || "") as string);
     window.localStorage.setItem("distributorApi", (distributorApi || "") as string);
     window.localStorage.setItem("rpcpoolApi", (rpcpoolApi || "") as string);
   }
@@ -69,7 +69,7 @@ export const Xweb3Provider = ({
           ...(options?.fallback || {}),
           // connection,
           cluster,
-          xweb3Api: xweb3Api || baseApi(cluster),
+          pngfiApi: pngfiApi || baseApi(cluster),
           distributorApi,
           rpcpoolApi,
           userPublicKey,

@@ -6,7 +6,7 @@
 import {
   useMerkleRewards,
   useUserPublicKey
-} from "@xweb3/react-hooks";
+} from "@pngfi/react-hooks";
 const userPublicKey = useUserPublicKey() || ''
 const { data = [] } = useMerkleRewards(userPublicKey.toString());
 ```
@@ -21,7 +21,7 @@ import {
   useAnchorProvider,
   useRewards,
   useUserPublicKey
-} from "@xweb3/react-hooks";
+} from "@pngfi/react-hooks";
 
 const { connection } = useConnection();
 const { wallet, connected } = useWallet();

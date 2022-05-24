@@ -1,14 +1,14 @@
 /**
- * global configs for @xweb3/react-hooks
+ * global configs for @pngfi/react-hooks
  * 
- * @returns IXweb3Provider
+ * @returns IPngfiProvider
  * 
  * @example
  * ```ts
 const {
   fallback: {
     cluster,
-    xweb3Api,
+    pngfiApi,
     userPublicKey
     //...
   }
