@@ -19,6 +19,7 @@ npm i @pngfi/react-hooks --save
 ## Usage
 
 - [How to claim rewards](#how-to-claim-rewards)
+- [How to create distributors](#how-to-create-distributors)
 
 ## Api Host
 
@@ -175,4 +176,5 @@ const { data, error, loading } = useUserVesting(owner, vestConfig);
 ### [[useRewards]]
 
 [[include:How-to-claim-rewards.md]]
+[[include:How-to-create-distributor.md]]
 
