@@ -11,6 +11,7 @@ import {
 } from '@saberhq/solana-contrib';
 import { Keypair, PublicKey, PublicKeyInitData, SystemProgram, Transaction } from '@solana/web3.js';
 import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
+import Decimal from 'decimal.js';
 
 import { distributorProgramIdl, PNG_DISTRIBUTOR_PROGRAM_ID } from '../../config/distributor';
 import { deriveAssociatedTokenAddress, resolveOrCreateAssociatedTokenAddress } from '../../helpers/ata';
@@ -18,6 +19,7 @@ import { TransactionBuilder } from '../../helpers/transactionBuilder';
 import { IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse, ITokenInfo } from '../../types';
 import { distributorMerkleRewardsApi } from '../../common/pngfi-api';
 import fetcher from '../../common/fetcher';
+import { DecimalUtil } from '../../helpers/decimal';
 
 export interface IRewardsInfo {
   proof: string[];
@@ -53,8 +55,7 @@ export interface IRewardsResponse {
   /**
    * Insert distributor
    * 
-   * @param options 
-   * @returns IResponse<IMerkleRewardsInsertResponse>
+   * @param {IInsertDistributor} options 
    * 
    * @example
    * ```typescript
@@ -71,7 +72,30 @@ export interface IRewardsResponse {
    * });
    * ```
    */
-  insertDistributor: (options: IInsertDistributor) => Promise<TransactionEnvelope>
+  insertDistributor: (options: IInsertDistributor) => Promise<TransactionEnvelope>,
+
+  /**
+   * only insert distributor data 
+   * 
+   * @param {IMerkleRewardsInsertRequest} options 
+   * 
+   * @example
+   * ```typescript
+   * const  = insertDistributorMerkleRewards({
+   *    "title": "coinId-Airdrop-22-05-21",
+   *    "base": "xxAfjgadh9yWRogsXJ1wXQBMKj36ostXMn8LpS1zQp1W",
+   *    "projectID": "coinId",
+   *    "epochID": 134662756,
+   *    "adminAuth": "x39AvmSeyFFbxuKWJhSG53rTK9bQ69Sv9nZ8e6zCCPw1",
+   *    "mint": "x6VYF5jXq6rfq4QRgGMG6co7b1Ev1Lj7KSbHBxfQ9e1L",
+   *    "rewards": [{
+   *        "dest": "x39AvmSeyFFbxuKWJhSG53rTK9bQ69Sv9nZ8e6zCCPw1",
+   *        "amount": "10000000"
+   *    }]
+   * });
+   * ```
+   */
+  insertDistributorMerkleRewards: (options: IMerkleRewardsInsertRequest) => Promise<IMerkleRewardsInsertResponse>,
   // claimOne: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
   // claimCommon: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
 }
@@ -201,13 +225,19 @@ const insertDistributor = async (options: IInsertDistributor) => {
   const baseKP = Keypair.generate();
   const { absoluteSlot } = await provider.connection.getEpochInfo();
   const { tx } =  await insertDistributorMerkleRewards({
-    "title": title,
-    "base": baseKP.publicKey.toString(),
-    "projectID": token.symbol,
-    "epochID": Number(absoluteSlot || 0),
-    "adminAuth": adminAuth?.toString() || '',
-    "mint": token.mint,
-    rewards
+    title: title,
+    base: baseKP.publicKey.toString(),
+    projectID: token.symbol,
+    epochID: Number(absoluteSlot || 0),
+    adminAuth: adminAuth?.toString() || '',
+    mint: token.mint,
+    rewards: rewards.map(({
+      dest,
+      amount
+    }) => ({
+      dest,
+      amount: DecimalUtil.toU64(new Decimal(amount), token.decimals).toString()
+    }))
   });
 
   const trans = Transaction.from(Buffer.from(tx, 'hex'));
@@ -226,6 +256,7 @@ export const useRewards = (): IRewardsResponse => {
     // claimOne,
     // claimCommon,
     claimRewards,
-    insertDistributor
+    insertDistributor,
+    insertDistributorMerkleRewards
   } as IRewardsResponse
 };
