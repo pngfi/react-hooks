@@ -48,7 +48,31 @@ export interface IRewardsResponse {
    * });
    *```
    */
-  claimRewards: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
+  claimRewards: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>;
+
+  /**
+   * Insert distributor
+   * 
+   * @param options 
+   * @returns IResponse<IMerkleRewardsInsertResponse>
+   * 
+   * @example
+   * ```typescript
+   * const { data, loading, error } = insertDistributorMerkleRewards({
+   *   "title": "coinId-Airdrop-22-05-21",
+   *   "base": "xxAfjgadh9yWRogsXJ1wXQBMKj36ostXMn8LpS1zQp1W",
+   *   "projectID": "coinId",
+   *   "epochID": 134662756,
+   *   "adminAuth": "x39AvmSeyFFbxuKWJhSG53rTK9bQ69Sv9nZ8e6zCCPw1",
+   *   "mint": "x6VYF5jXq6rfq4QRgGMG6co7b1Ev1Lj7KSbHBxfQ9e1L",
+   *   "rewards": [{
+   *     "dest": "x39AvmSeyFFbxuKWJhSG53rTK9bQ69Sv9nZ8e6zCCPw1",
+   *     "amount": "10000000000000"
+   *   }]
+   * });
+   * ```
+   */
+  insertDistributorMerkleRewards: (options: IMerkleRewardsInsertRequest) => IResponse<IMerkleRewardsInsertResponse>
   // claimOne: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
   // claimCommon: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
 }
@@ -152,29 +176,6 @@ const claimRewards = async (provider: Provider, owner: PublicKey, info: IRewards
   }
 };
 
-
-/**
- * Insert distributor
- * 
- * @param options 
- * @returns IResponse<IMerkleRewardsInsertResponse>
- * 
- * @example
- * ```typescript
- * const { data, loading, error } = insertDistributorMerkleRewards({
- *   "title": "coinId-Airdrop-22-05-21",
- *   "base": "xxAfjgadh9yWRogsXJ1wXQBMKj36ostXMn8LpS1zQp1W",
- *   "projectID": "coinId",
- *   "epochID": 134662756,
- *   "adminAuth": "x39AvmSeyFFbxuKWJhSG53rTK9bQ69Sv9nZ8e6zCCPw1",
- *   "mint": "x6VYF5jXq6rfq4QRgGMG6co7b1Ev1Lj7KSbHBxfQ9e1L",
- *   "rewards": [{
- *     "dest": "x39AvmSeyFFbxuKWJhSG53rTK9bQ69Sv9nZ8e6zCCPw1",
- *     "amount": "10000000000000"
- *   }]
- * });
- * ```
- */
 const insertDistributorMerkleRewards = (options: IMerkleRewardsInsertRequest): IResponse<IMerkleRewardsInsertResponse> => {
   return useFetcher(distributorMerkleRewardsApi, {
     method: 'POST',
