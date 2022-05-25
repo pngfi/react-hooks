@@ -2,6 +2,7 @@ import {
   TOKEN_PROGRAM_ID, 
   u64
 } from '@solana/spl-token';
+import Decimal from 'decimal.js';
 import {
   Idl, Program, BN
 } from '@project-serum/anchor';
@@ -11,7 +12,6 @@ import {
 } from '@saberhq/solana-contrib';
 import { Keypair, PublicKey, PublicKeyInitData, SystemProgram, Transaction } from '@solana/web3.js';
 import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
-import Decimal from 'decimal.js';
 
 import { distributorProgramIdl, PNG_DISTRIBUTOR_PROGRAM_ID } from '../../config/distributor';
 import { deriveAssociatedTokenAddress, resolveOrCreateAssociatedTokenAddress } from '../../helpers/ata';
@@ -243,11 +243,10 @@ const insertDistributor = async (options: IInsertDistributor) => {
   const trans = Transaction.from(Buffer.from(tx, 'hex'));
 
   const txe = new TransactionEnvelope(
-    provider as any,
+    provider as Provider,
     trans.instructions,
     [baseKP]
   );
-  // await txe.confirm()
   return txe as TransactionEnvelope;
 }
 
