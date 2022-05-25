@@ -9,13 +9,13 @@ import {
   Provider,
   TransactionEnvelope
 } from '@saberhq/solana-contrib';
-import { PublicKey, PublicKeyInitData, SystemProgram } from '@solana/web3.js';
+import { Keypair, PublicKey, PublicKeyInitData, SystemProgram, Transaction } from '@solana/web3.js';
 import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
 
 import { distributorProgramIdl, PNG_DISTRIBUTOR_PROGRAM_ID } from '../../config/distributor';
 import { deriveAssociatedTokenAddress, resolveOrCreateAssociatedTokenAddress } from '../../helpers/ata';
 import { TransactionBuilder } from '../../helpers/transactionBuilder';
-import { IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse } from '../../types';
+import { IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse, ITokenInfo } from '../../types';
 import { distributorMerkleRewardsApi } from '../../common/pngfi-api';
 import fetcher from '../../common/fetcher';
 
@@ -58,21 +58,20 @@ export interface IRewardsResponse {
    * 
    * @example
    * ```typescript
-   * const { data, loading, error } = insertDistributorMerkleRewards({
+   * const  = insertDistributor({
+   *  provider,
+   *  adminAuth,
+   *  data: {
    *   "title": "coinId-Airdrop-22-05-21",
-   *   "base": "xxAfjgadh9yWRogsXJ1wXQBMKj36ostXMn8LpS1zQp1W",
-   *   "projectID": "coinId",
-   *   "epochID": 134662756,
-   *   "adminAuth": "x39AvmSeyFFbxuKWJhSG53rTK9bQ69Sv9nZ8e6zCCPw1",
-   *   "mint": "x6VYF5jXq6rfq4QRgGMG6co7b1Ev1Lj7KSbHBxfQ9e1L",
    *   "rewards": [{
    *     "dest": "x39AvmSeyFFbxuKWJhSG53rTK9bQ69Sv9nZ8e6zCCPw1",
    *     "amount": "10000000000000"
    *   }]
+   *  }
    * });
    * ```
    */
-  insertDistributorMerkleRewards: (options: IMerkleRewardsInsertRequest) => Promise<IMerkleRewardsInsertResponse>
+  insertDistributor: (options: IInsertDistributor) => Promise<TransactionEnvelope>
   // claimOne: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
   // claimCommon: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
 }
@@ -177,10 +176,49 @@ const claimRewards = async (provider: Provider, owner: PublicKey, info: IRewards
 };
 
 const insertDistributorMerkleRewards = async (options: IMerkleRewardsInsertRequest): Promise<IMerkleRewardsInsertResponse> => {
-  return await fetcher(distributorMerkleRewardsApi, {
+  return  await fetcher(distributorMerkleRewardsApi, {
     method: 'POST',
     data: options,
   });
+}
+
+export interface IInsertDistributor {
+  provider: Provider,
+  adminAuth: PublicKey,
+  data: {
+    title: string,
+    token: ITokenInfo,
+    rewards: {
+      dest: string;
+      amount: string;
+    }[]
+  }
+}
+
+const insertDistributor = async (options: IInsertDistributor) => {
+  const { provider, adminAuth, data } = options
+  const { title, token, rewards } = data;
+  const baseKP = Keypair.generate();
+  const { absoluteSlot } = await provider.connection.getEpochInfo();
+  const { tx } =  await insertDistributorMerkleRewards({
+    "title": title,
+    "base": baseKP.publicKey.toString(),
+    "projectID": token.symbol,
+    "epochID": Number(absoluteSlot || 0),
+    "adminAuth": adminAuth?.toString() || '',
+    "mint": token.mint,
+    rewards
+  });
+
+  const trans = Transaction.from(Buffer.from(tx, 'hex'));
+
+  const txe = new TransactionEnvelope(
+    provider as any,
+    trans.instructions,
+    [baseKP]
+  );
+  // await txe.confirm()
+  return txe as TransactionEnvelope;
 }
 
 export const useRewards = (): IRewardsResponse => {
@@ -188,6 +226,6 @@ export const useRewards = (): IRewardsResponse => {
     // claimOne,
     // claimCommon,
     claimRewards,
-    insertDistributorMerkleRewards
+    insertDistributor
   } as IRewardsResponse
 };
