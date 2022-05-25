@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.27](https://github.com/pngfi/react-hooks/compare/v0.3.26...v0.3.27) (2022-05-25)
+
+
+### Features
+
+* 🎸 add insertDistributor for distributor ([850a5c3](https://github.com/pngfi/react-hooks/commit/850a5c3caff89d43300468aace27c2ee5469bf04))
+
+
+### Bug Fixes
+
+* pngfi ([5456456](https://github.com/pngfi/react-hooks/commit/54564567277b6640c1628cfaa88c4b31230e6eaa))
+
 ### [0.3.26](https://github.com/pngfi/react-hooks/compare/v0.3.25...v0.3.26) (2022-05-25)
 
 
