@@ -2,85 +2,85 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.3.26](https://github.com/xweb3/react-hooks/compare/v0.3.25...v0.3.26) (2022-05-25)
+### [0.3.26](https://github.com/pngfi/react-hooks/compare/v0.3.25...v0.3.26) (2022-05-25)
 
 
 ### Features
 
-* 🎸 update distributor ([f516441](https://github.com/xweb3/react-hooks/commit/f516441bb53418117358c85c2274038ca672ba60))
+* 🎸 update distributor ([f516441](https://github.com/pngfi/react-hooks/commit/f516441bb53418117358c85c2274038ca672ba60))
 
-### [0.3.25](https://github.com/xweb3/react-hooks/compare/v0.3.24...v0.3.25) (2022-05-25)
+### [0.3.25](https://github.com/pngfi/react-hooks/compare/v0.3.24...v0.3.25) (2022-05-25)
 
-### [0.3.24](https://github.com/xweb3/react-hooks/compare/v0.3.23...v0.3.24) (2022-05-25)
-
-
-### Features
-
-* 🎸 update insertDistributor ([b542dd8](https://github.com/xweb3/react-hooks/commit/b542dd8c5b33d87d9572f6556f8557f0e2ab43fb))
-
-### [0.3.23](https://github.com/xweb3/react-hooks/compare/v0.3.22...v0.3.23) (2022-05-25)
-
-### [0.3.22](https://github.com/xweb3/react-hooks/compare/v0.3.21...v0.3.22) (2022-05-25)
-
-### [0.3.21](https://github.com/xweb3/react-hooks/compare/v0.3.20...v0.3.21) (2022-05-25)
+### [0.3.24](https://github.com/pngfi/react-hooks/compare/v0.3.23...v0.3.24) (2022-05-25)
 
 
 ### Features
 
-* 🎸 add insertDistributor ([13be9b0](https://github.com/xweb3/react-hooks/commit/13be9b0861fc09f172b1a99b4d9178413a6212c8))
+* 🎸 update insertDistributor ([b542dd8](https://github.com/pngfi/react-hooks/commit/b542dd8c5b33d87d9572f6556f8557f0e2ab43fb))
 
-### [0.3.20](https://github.com/xweb3/react-hooks/compare/v0.3.19...v0.3.20) (2022-05-25)
+### [0.3.23](https://github.com/pngfi/react-hooks/compare/v0.3.22...v0.3.23) (2022-05-25)
+
+### [0.3.22](https://github.com/pngfi/react-hooks/compare/v0.3.21...v0.3.22) (2022-05-25)
+
+### [0.3.21](https://github.com/pngfi/react-hooks/compare/v0.3.20...v0.3.21) (2022-05-25)
+
+
+### Features
+
+* 🎸 add insertDistributor ([13be9b0](https://github.com/pngfi/react-hooks/commit/13be9b0861fc09f172b1a99b4d9178413a6212c8))
+
+### [0.3.20](https://github.com/pngfi/react-hooks/compare/v0.3.19...v0.3.20) (2022-05-25)
 
 
 ### Bug Fixes
 
-* 🐛 Promise<IMerkleRewardsInsertResponse> ([61d2798](https://github.com/xweb3/react-hooks/commit/61d27984f03df1ebd8e8b4bfabbcc98da1e689ea))
+* 🐛 Promise<IMerkleRewardsInsertResponse> ([61d2798](https://github.com/pngfi/react-hooks/commit/61d27984f03df1ebd8e8b4bfabbcc98da1e689ea))
 
-### [0.3.19](https://github.com/xweb3/react-hooks/compare/v0.3.18...v0.3.19) (2022-05-25)
-
-
-### Bug Fixes
-
-* 🐛 insertDistributorMerkleRewards type response ([b9f8e7f](https://github.com/xweb3/react-hooks/commit/b9f8e7f2d5495d01b6e06c52559a605ceced856a))
-
-### [0.3.18](https://github.com/xweb3/react-hooks/compare/v0.3.17...v0.3.18) (2022-05-25)
-
-### [0.3.17](https://github.com/xweb3/react-hooks/compare/v0.3.16...v0.3.17) (2022-05-25)
+### [0.3.19](https://github.com/pngfi/react-hooks/compare/v0.3.18...v0.3.19) (2022-05-25)
 
 
 ### Bug Fixes
 
-* 🐛 insertDistributorMerkleRewards function ([af6b4c6](https://github.com/xweb3/react-hooks/commit/af6b4c6129aa6b8dff7ea81779d75184650eeab4))
+* 🐛 insertDistributorMerkleRewards type response ([b9f8e7f](https://github.com/pngfi/react-hooks/commit/b9f8e7f2d5495d01b6e06c52559a605ceced856a))
 
-### [0.3.16](https://github.com/xweb3/react-hooks/compare/v0.3.15...v0.3.16) (2022-05-24)
+### [0.3.18](https://github.com/pngfi/react-hooks/compare/v0.3.17...v0.3.18) (2022-05-25)
+
+### [0.3.17](https://github.com/pngfi/react-hooks/compare/v0.3.16...v0.3.17) (2022-05-25)
 
 
 ### Bug Fixes
 
-* 🐛 simple price coingecko ([f87d9f9](https://github.com/xweb3/react-hooks/commit/f87d9f9cd89fa3cdb2f958dcdfadf56714b4b335))
+* 🐛 insertDistributorMerkleRewards function ([af6b4c6](https://github.com/pngfi/react-hooks/commit/af6b4c6129aa6b8dff7ea81779d75184650eeab4))
 
-### [0.3.15](https://github.com/xweb3/react-hooks/compare/v0.3.14...v0.3.15) (2022-05-24)
-
-### [0.3.14](https://github.com/xweb3/react-hooks/compare/v0.3.13...v0.3.14) (2022-05-24)
+### [0.3.16](https://github.com/pngfi/react-hooks/compare/v0.3.15...v0.3.16) (2022-05-24)
 
 
-### Features
+### Bug Fixes
 
-* 🎸 add coingecko api ([b0fb348](https://github.com/xweb3/react-hooks/commit/b0fb348090642593bbad0eae838609948c91f768))
+* 🐛 simple price coingecko ([f87d9f9](https://github.com/pngfi/react-hooks/commit/f87d9f9cd89fa3cdb2f958dcdfadf56714b4b335))
 
-### [0.3.13](https://github.com/xweb3/react-hooks/compare/v0.3.12...v0.3.13) (2022-05-24)
+### [0.3.15](https://github.com/pngfi/react-hooks/compare/v0.3.14...v0.3.15) (2022-05-24)
 
-
-### Features
-
-* 🎸 add useToken ([c7d4077](https://github.com/xweb3/react-hooks/commit/c7d4077efc228566e9e4544b9d0a1f3eb168c5d1))
-
-### [0.3.12](https://github.com/xweb3/react-hooks/compare/v0.3.11...v0.3.12) (2022-05-24)
+### [0.3.14](https://github.com/pngfi/react-hooks/compare/v0.3.13...v0.3.14) (2022-05-24)
 
 
 ### Features
 
-* 🎸 add useToken and coingecko ([cd17e3c](https://github.com/xweb3/react-hooks/commit/cd17e3ce9b1fe5b38cf2e1833792369d66616612))
+* 🎸 add coingecko api ([b0fb348](https://github.com/pngfi/react-hooks/commit/b0fb348090642593bbad0eae838609948c91f768))
+
+### [0.3.13](https://github.com/pngfi/react-hooks/compare/v0.3.12...v0.3.13) (2022-05-24)
+
+
+### Features
+
+* 🎸 add useToken ([c7d4077](https://github.com/pngfi/react-hooks/commit/c7d4077efc228566e9e4544b9d0a1f3eb168c5d1))
+
+### [0.3.12](https://github.com/pngfi/react-hooks/compare/v0.3.11...v0.3.12) (2022-05-24)
+
+
+### Features
+
+* 🎸 add useToken and coingecko ([cd17e3c](https://github.com/pngfi/react-hooks/commit/cd17e3ce9b1fe5b38cf2e1833792369d66616612))
 
 ### [0.3.11](https://github.com/pngfi/react-hooks/compare/v0.3.10...v0.3.11) (2022-05-24)
 
