@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.17](https://github.com/xweb3/react-hooks/compare/v0.3.16...v0.3.17) (2022-05-25)
+
+
+### Bug Fixes
+
+* 🐛 insertDistributorMerkleRewards function ([af6b4c6](https://github.com/xweb3/react-hooks/commit/af6b4c6129aa6b8dff7ea81779d75184650eeab4))
+
 ### [0.3.16](https://github.com/xweb3/react-hooks/compare/v0.3.15...v0.3.16) (2022-05-24)
 
 
