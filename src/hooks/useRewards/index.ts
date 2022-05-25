@@ -15,9 +15,9 @@ import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
 import { distributorProgramIdl, PNG_DISTRIBUTOR_PROGRAM_ID } from '../../config/distributor';
 import { deriveAssociatedTokenAddress, resolveOrCreateAssociatedTokenAddress } from '../../helpers/ata';
 import { TransactionBuilder } from '../../helpers/transactionBuilder';
-import { IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse, IResponse } from '../../types';
+import { IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse } from '../../types';
 import { distributorMerkleRewardsApi } from '../../common/pngfi-api';
-import { useFetcher } from '../../common/fetcher';
+import fetcher from '../../common/fetcher';
 
 export interface IRewardsInfo {
   proof: string[];
@@ -72,7 +72,7 @@ export interface IRewardsResponse {
    * });
    * ```
    */
-  insertDistributorMerkleRewards: (options: IMerkleRewardsInsertRequest) => IResponse<IMerkleRewardsInsertResponse>
+  insertDistributorMerkleRewards: (options: IMerkleRewardsInsertRequest) => Promise<IMerkleRewardsInsertResponse>
   // claimOne: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
   // claimCommon: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
 }
@@ -176,8 +176,8 @@ const claimRewards = async (provider: Provider, owner: PublicKey, info: IRewards
   }
 };
 
-const insertDistributorMerkleRewards = (options: IMerkleRewardsInsertRequest): IResponse<IMerkleRewardsInsertResponse> => {
-  return useFetcher(distributorMerkleRewardsApi, {
+const insertDistributorMerkleRewards = async (options: IMerkleRewardsInsertRequest): Promise<IMerkleRewardsInsertResponse> => {
+  return await fetcher(distributorMerkleRewardsApi, {
     method: 'POST',
     data: options,
   });
