@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.30](https://github.com/pngfi/react-hooks/compare/v0.3.29...v0.3.30) (2022-05-26)
+
+
+### Features
+
+* 🎸 add distributor & rewards confirm ([f8e79f5](https://github.com/pngfi/react-hooks/commit/f8e79f56f782db29184be6eed149e2400bad1eaa))
+
 ### [0.3.29](https://github.com/pngfi/react-hooks/compare/v0.3.28...v0.3.29) (2022-05-26)
 
 ### [0.3.28](https://github.com/pngfi/react-hooks/compare/v0.3.27...v0.3.28) (2022-05-25)
