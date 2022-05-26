@@ -5,15 +5,16 @@
  * 
  * @example
  * ```ts
-const {
-  fallback: {
-    cluster,
-    pngfiApi,
-    userPublicKey
-    //...
-  }
-  //...
-} = usePngfiConfig()
+ * const {
+ *   fallback: {
+ *     connection,
+ *     cluster,
+ *     pngfiApi,
+ *     userPublicKey
+ *    //...
+ *   }
+ * //...
+ * } = usePngfiConfig()
  * ```
  */
 export { useSWRConfig as usePngfiConfig } from 'swr';

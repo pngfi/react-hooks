@@ -1,6 +1,7 @@
 import React from "react";
 import { SWRConfig } from "swr";
 import { Cluster, PublicKey } from "@solana/web3.js";
+// import { Wallet } from "@solana/wallet-adapter-react";
 import {
   BareFetcher,
   PublicConfiguration,
@@ -18,6 +19,8 @@ export declare type IProviderOptionsValue =
   | undefined;
 
 export declare interface IPngfiProvider {
+  // connection: Connection;
+  // wallet: Wallet;
   cluster: Cluster;
   pngfiApi?: string;
   distributorApi?: string;
@@ -35,16 +38,18 @@ export declare interface IPngfiProvider {
  *
  * @example
  * ```jsx
- * const { publicKey } = useWallet();
+ * const wallet = useWallet();
  * 
  * <PngfiProvider
  *  cluster='mainnet-beta'
- *  userPublicKey={publicKey}>
+ *  userPublicKey={wallet.publicKey}>
  *  {children}
  * </PngfiProvider>
  * ```
  */
 export const PngfiProvider = ({
+  // connection,
+  // wallet,
   cluster = "mainnet-beta",
   pngfiApi,
   distributorApi,
@@ -68,6 +73,7 @@ export const PngfiProvider = ({
         fallback: {
           ...(options?.fallback || {}),
           // connection,
+          // wallet,
           cluster,
           pngfiApi: pngfiApi || baseApi(cluster),
           distributorApi,

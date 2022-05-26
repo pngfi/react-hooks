@@ -72,16 +72,6 @@ const provider = useAnchorProvider()
 
 ## Distributors
 
-### [[useInsertDistributorMerkleRewards]]
-
-```ts
-const { data, error, loading }: {
-  data: IMerkleRewardsInsertResponse,
-  error: IError,
-  loading: boolean
-} = useInsertDistributorMerkleRewards(options: IMerkleRewardsInsertRequest);
-```
-
 ### [[useDistributors]]
 
 ```ts

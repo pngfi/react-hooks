@@ -23,7 +23,6 @@ export const useMerkleRewards = (user: string): IResponse<IMerkleRewardsResponse
  * @param options 
  * @returns IResponse<IDistributorResponse>
  * 
- *
  * @example
  * ```typescript
  * const { data, loading, error } = useDistributors(publicKey.toString());
