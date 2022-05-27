@@ -1,9 +1,29 @@
 import { useFetcher } from '../../common/fetcher';
-import { tokensApi } from '../../common/pngfi-api';
+import { pricesApi, tokensApi } from '../../common/pngfi-api';
 import { IResponse } from '../../types';
 import { ITokenInfo } from '../../types/token';
 
 export const useTokens = (): IResponse<ITokenInfo[]> => useFetcher(tokensApi);
+
+export const useTokensPriceByMints = (mints: string[]) => {
+  const { data = [] } = useFetcher(tokensApi);
+  const mintTokens = data.filter((v: ITokenInfo) => mints.includes(v.mint));
+  return useFetcher(pricesApi(mintTokens.map((v: { symbol: string; }) => v.symbol)))
+};
+
+export const useTokensPriceBySymbols = (symbols: string[]) => {
+  return useFetcher(pricesApi(symbols))
+};
+
+export const useTokensByMints = (mints: string[]) => {
+  const { data = [] } = useFetcher(tokensApi);
+  return data.filter((v: ITokenInfo) => mints.includes(v.mint));
+};
+
+export const useTokensBySymbols = (symbols: string[]) => {
+  const { data = [] } = useFetcher(tokensApi);
+  return data.filter((v: ITokenInfo) => symbols.includes(v.symbol));
+};
 
 export const useTokenByMint = (mint: string) => {
   const { data = [] } = useFetcher(tokensApi);

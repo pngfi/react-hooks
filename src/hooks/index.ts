@@ -27,7 +27,7 @@ export const usePools = (): IResponse<IPoolInfo[]> => useFetcher(poolsApi);
 
 export const useMarkets = (): IResponse<IMarket[]> => useFetcher(marketsApi);
 
-export const usePrices = (ids: string[]): IResponse<Record<string, number>[]> => useFetcher(pricesApi(ids));
+export const usePrices = (symbols: string[]): IResponse<Record<string, number>[]> => useFetcher(pricesApi(symbols));
 
 export const useBalances = (user: string | null) => useFetcher(balancesApi(user));
 

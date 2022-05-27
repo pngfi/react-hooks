@@ -18,9 +18,9 @@ export const getMarkets = async () => {
   return await fetcher(marketsApi);
 }
 
-export const pricesApi = (ids: string[]) => ids ? `${baseApi()}/prices/${ids.join(',')}` : null
-export const getPrices = async (ids: string[]) => {
-  return await fetcher(pricesApi(ids));
+export const pricesApi = (symbols: string[]) => symbols ? `${baseApi()}/prices/${symbols.join(',')}` : null
+export const getPrices = async (symbols: string[]) => {
+  return await fetcher(pricesApi(symbols));
 }
 
 export const bondingApi = `${baseApi()}/bonding`
