@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.41](https://github.com/xweb3/react-hooks/compare/v0.3.40...v0.3.41) (2022-05-27)
+
+
+### Features
+
+* 🎸 fix price url when symbols is empty ([9805484](https://github.com/xweb3/react-hooks/commit/9805484860897529e18aac793ce59d38e7544ac0))
+
 ### [0.3.40](https://github.com/xweb3/react-hooks/compare/v0.3.39...v0.3.40) (2022-05-27)
 
 
