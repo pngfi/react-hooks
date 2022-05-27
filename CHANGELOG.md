@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.31](https://github.com/xweb3/react-hooks/compare/v0.3.30...v0.3.31) (2022-05-27)
+
+
+### Features
+
+* 🎸 add useTokenByDefault ([0ef51af](https://github.com/xweb3/react-hooks/commit/0ef51af188baa64a5de3c760efe21dcba1c8d9d2))
+
 ### [0.3.30](https://github.com/pngfi/react-hooks/compare/v0.3.29...v0.3.30) (2022-05-26)
 
 
