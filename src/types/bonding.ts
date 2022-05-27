@@ -15,7 +15,6 @@ export declare interface IBondingConfig {
     address: PublicKey;
 };
 export declare interface IBondingInfo {
-    depositAmount: string;
     initDebt: null;
     initSupply: string;
     onlyBonding: boolean;
@@ -24,6 +23,7 @@ export declare interface IBondingInfo {
     stakingPubkey: PublicKey;
     payoutHolder: PublicKey;
     bondingSupply: u64; // 
+    depositAmount: u64;
     depositHolder: PublicKey;
     depositHolderAmount: u64; // 
     depositTokenMint: PublicKey;
