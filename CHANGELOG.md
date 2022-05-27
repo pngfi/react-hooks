@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.48](https://github.com/xweb3/react-hooks/compare/v0.3.47...v0.3.48) (2022-05-27)
+
+
+### Bug Fixes
+
+* 🐛 IRewardsInfo type ([a2613b2](https://github.com/xweb3/react-hooks/commit/a2613b286253410d14992d6d725c9bffa43c5973))
+
 ### [0.3.47](https://github.com/xweb3/react-hooks/compare/v0.3.46...v0.3.47) (2022-05-27)
 
 ### [0.3.46](https://github.com/xweb3/react-hooks/compare/v0.3.45...v0.3.46) (2022-05-27)
