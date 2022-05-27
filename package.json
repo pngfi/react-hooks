@@ -1,6 +1,6 @@
 {
   "name": "@pngfi/react-hooks",
-  "version": "0.3.42",
+  "version": "0.3.43",
   "description": "react hooks for pngfi.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
