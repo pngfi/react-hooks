@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.42](https://github.com/pngfi/react-hooks/compare/v0.3.41...v0.3.42) (2022-05-27)
+
+
+### Features
+
+* 🎸 publish version ([13a5e36](https://github.com/pngfi/react-hooks/commit/13a5e36797a289790f97fbebc980f95159b18397))
+
 ### [0.3.41](https://github.com/xweb3/react-hooks/compare/v0.3.40...v0.3.41) (2022-05-27)
 
 
