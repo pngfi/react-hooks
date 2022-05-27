@@ -17,7 +17,7 @@ export const useTokenBySymbol = (symbol: string) => {
 
 export const useTokenByDefault = (filter: Record<keyof ITokenInfo, any>) => {
   const { data = [] } = useFetcher(tokensApi);
-  return data.filter((val: ITokenInfo) => Object.keys(filter).map(v => filter[v] === val[v]).every(v => v))[0];
+  return data.filter((val: ITokenInfo) => Object.keys(filter).map(v => filter[v] !== val[v]).every(v => v))[0];
 } 
 
 export const useToken = (filter: Record<keyof ITokenInfo, any>) => {
