@@ -1,7 +1,7 @@
 {
-  "name": "@pngfi/react-hooks",
+  "name": "@xweb3/react-hooks",
   "version": "0.3.30",
-  "description": "react hooks for pngfi.",
+  "description": "react hooks for xweb3.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -14,8 +14,8 @@
     "prepare": "husky install",
     "publish": "npm publish --access public",
     "c": "npm run build && git add . && git-cz",
-    "r": "nucm use pngfi-fu && standard-version && git push origin HEAD && npm run publish",
-    "up": "nucm use xweb3 && standard-version && git push up HEAD && npm run publish",
+    "r": "nucm use xweb3-fu && standard-version && git push origin HEAD && npm run publish",
+    "up": "nucm use web3 && standard-version && git push up HEAD && npm run publish",
     "doc": "npx typedoc --excludePrivate --includeVersion --out docs/ src/index.{ts,tsx}",
     "test": "jest"
   },
@@ -24,10 +24,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pngfi/react-hooks.git"
+    "url": "git+https://github.com/xweb3/react-hooks.git"
   },
   "keywords": [
-    "pngfi",
+    "xweb3",
     "png",
     "react hooks",
     "crypto",
@@ -47,7 +47,7 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/pngfi/react-hooks/issues"
+    "url": "https://github.com/xweb3/react-hooks/issues"
   },
   "jest": {
     "transform": {
