@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.35](https://github.com/xweb3/react-hooks/compare/v0.3.34...v0.3.35) (2022-05-27)
+
+
+### Features
+
+* 🎸 add useUtils ([e259d4f](https://github.com/xweb3/react-hooks/commit/e259d4fd0ccedae37b96e813be88c806baf82156))
+
 ### [0.3.34](https://github.com/xweb3/react-hooks/compare/v0.3.33...v0.3.34) (2022-05-27)
 
 
