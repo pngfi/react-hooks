@@ -1,6 +1,6 @@
 {
   "name": "@xweb3/react-hooks",
-  "version": "0.3.32",
+  "version": "0.3.33",
   "description": "react hooks for xweb3.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
@@ -15,7 +15,7 @@
     "publish": "npm publish --access public",
     "c": "npm run build && git add . && git-cz",
     "r": "nucm use xweb3-fu && standard-version && git push origin HEAD && npm run publish",
-    "up": "nucm use web3 && standard-version && git push up HEAD && npm run publish",
+    "up": "nucm use xweb && standard-version && git push up HEAD && npm run publish",
     "doc": "npx typedoc --excludePrivate --includeVersion --out docs/ src/index.{ts,tsx}",
     "test": "jest"
   },
