@@ -23,6 +23,7 @@ import { DecimalUtil } from '../../helpers/decimal';
 
 export interface IRewardsInfo {
   proof: string[];
+  title: string;
   distributor: PublicKeyInitData;
   claimAddress?: PublicKeyInitData;
   mint: PublicKeyInitData;
