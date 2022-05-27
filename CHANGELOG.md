@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.40](https://github.com/xweb3/react-hooks/compare/v0.3.39...v0.3.40) (2022-05-27)
+
+
+### Bug Fixes
+
+* 🐛 useTokensPriceByMints ([38e973f](https://github.com/xweb3/react-hooks/commit/38e973fc20fc19df01da9536f5b38452fd2976c5))
+
 ### [0.3.39](https://github.com/xweb3/react-hooks/compare/v0.3.38...v0.3.39) (2022-05-27)
 
 
