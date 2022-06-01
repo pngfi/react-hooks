@@ -9,7 +9,7 @@ const rpcApi = `${rpcpoolApi()}`;
  * [Solana JSON RPC API ](https://docs.solana.com/developing/clients/jsonrpc-api#methods)
  * 
  * @param {IRPCRequest} options
- * @returns Promise<IRPCResponse>
+ * @returns
  * 
  * @example
  * ```ts
