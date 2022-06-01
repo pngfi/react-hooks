@@ -23,11 +23,12 @@ const rpcApi = `${rpcpoolApi()}`;
  * });
  * ```
  */
-export const useJsonRPC = async (options: IRPCRequest) => {
+export const useJsonRPC = (options: IRPCRequest) => {
   const { data, error } = useSWR([rpcApi, options], (url, options) => fetcher(url, {
     method: 'POST',
     data: options
-  }))
+  }));
+  
   return {
     data,
     loading: !error && !data,
