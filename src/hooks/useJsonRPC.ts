@@ -1,6 +1,7 @@
+import useSWR from 'swr';
 import { rpcpoolApi } from '../common/base';
 import fetcher from '../common/fetcher';
-import { IRPCRequest, IRPCResponse } from '../types/solana-rpc';
+import { IRPCRequest } from '../types/solana-rpc';
 
 const rpcApi = `${rpcpoolApi()}`;
 
@@ -22,9 +23,11 @@ const rpcApi = `${rpcpoolApi()}`;
  * });
  * ```
  */
-export const useJsonRPC = async (options: IRPCRequest): Promise<IRPCResponse> => {
-  return await fetcher(rpcApi, {
-    method: 'POST',
-    data: options
-  });
+export const useJsonRPC = async (options: IRPCRequest) => {
+  const { data, error } = useSWR([rpcApi, options], (url, options) => fetcher(url, options))
+  return {
+    data,
+    loading: !error && !data,
+    error,
+  }
 }
