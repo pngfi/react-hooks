@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.51](https://github.com/xweb3/react-hooks/compare/v0.3.50...v0.3.51) (2022-06-01)
+
+
+### Bug Fixes
+
+* 🐛 useJsonRPC ([13bfb1d](https://github.com/xweb3/react-hooks/commit/13bfb1dda1e84baf9b54b34c3189011a29ac9ba8))
+
 ### [0.3.50](https://github.com/xweb3/react-hooks/compare/v0.3.49...v0.3.50) (2022-06-01)
 
 

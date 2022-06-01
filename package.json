@@ -1,6 +1,6 @@
 {
   "name": "@xweb3/react-hooks",
-  "version": "0.3.50",
+  "version": "0.3.51",
   "description": "react hooks for xweb3.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
