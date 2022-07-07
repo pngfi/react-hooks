@@ -209,7 +209,7 @@ const insertDistributorMerkleRewards = async (options: IMerkleRewardsInsertReque
 
 export interface IInsertDistributor {
   provider: Provider,
-  baseKP: Keypair,
+  base?: string,
   adminAuth: PublicKey,
   data: {
     title: string,
@@ -222,13 +222,13 @@ export interface IInsertDistributor {
 }
 
 const insertDistributor = async (options: IInsertDistributor) => {
-  const { provider, adminAuth, data } = options
+  const { provider, adminAuth, data, base } = options
   const { title, token, rewards } = data;
-  const baseKP = options.baseKP || Keypair.generate();
+  const baseKP = Keypair.generate();
   const { absoluteSlot } = await provider.connection.getEpochInfo();
   const { tx } =  await insertDistributorMerkleRewards({
     title: title,
-    base: baseKP.publicKey.toString(),
+    base: base || baseKP.publicKey.toString(),
     projectID: token.symbol,
     epochID: Number(absoluteSlot || 0),
     adminAuth: adminAuth?.toString() || '',
