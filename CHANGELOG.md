@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.59](https://github.com/xweb3/react-hooks/compare/v0.3.58...v0.3.59) (2022-07-07)
+
+
+### Bug Fixes
+
+* 🐛 add insertDistributor baseKP ([c10f960](https://github.com/xweb3/react-hooks/commit/c10f960c49af8bbf44abbc2f194ec5a9ba7d0274))
+
 ### [0.3.58](https://github.com/xweb3/react-hooks/compare/v0.3.57...v0.3.58) (2022-07-07)
 
 ### [0.3.57](https://github.com/xweb3/react-hooks/compare/v0.3.56...v0.3.57) (2022-07-07)
