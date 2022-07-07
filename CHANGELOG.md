@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.64](https://github.com/xweb3/react-hooks/compare/v0.3.63...v0.3.64) (2022-07-07)
+
+
+### Bug Fixes
+
+* 🐛 change u64 to BN ([4495ebd](https://github.com/xweb3/react-hooks/commit/4495ebde9d85f44ff1d43f493e5f6ffb8a2e95a6))
+
 ### [0.3.63](https://github.com/xweb3/react-hooks/compare/v0.3.62...v0.3.63) (2022-07-07)
 
 ### [0.3.62](https://github.com/xweb3/react-hooks/compare/v0.3.61...v0.3.62) (2022-07-07)
