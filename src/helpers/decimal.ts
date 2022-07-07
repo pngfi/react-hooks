@@ -1,5 +1,6 @@
 import { u64 } from '@solana/spl-token';
 import Decimal from 'decimal.js';
+import BN from 'bn.js';
 
 export const ZERO_DECIMAL = new Decimal(0);
 export const ONE_DECIMAL = new Decimal(1);
@@ -44,7 +45,7 @@ export class DecimalUtil {
       throw new Error(`Negative decimal value ${input} cannot be converted to u64.`);
     }
 
-    const shiftedValue = new u64(input.mul(new Decimal(10).pow(new Decimal(shift))).toFixed());
+    const shiftedValue = new BN(input.mul(new Decimal(10).pow(new Decimal(shift))).toFixed());
     return shiftedValue;
   }
 
