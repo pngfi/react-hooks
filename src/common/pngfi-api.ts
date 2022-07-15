@@ -23,6 +23,11 @@ export const getPrices = async (symbols: string[]) => {
   return await fetcher(pricesApi(symbols));
 }
 
+export const priceApi = (symbol: string) => symbol ? `${baseApi()}/price/${symbol}` : null
+export const getPrice = async (symbol: string) => {
+  return await fetcher(priceApi(symbol));
+}
+
 export const bondingApi = `${baseApi()}/bonding`
 export const getBonding = async () => {
   return await fetcher(bondingApi);

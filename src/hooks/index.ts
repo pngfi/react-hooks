@@ -12,6 +12,7 @@ import {
   distributorEpochsApi,
   merkleRewardsDistributorApi,
   distributorRewardsEpochApi,
+  priceApi,
 } from "../common/pngfi-api";
 import {
   MerkleRewardsDistributor, IResponse, IRewards,
@@ -28,6 +29,16 @@ export const usePools = (): IResponse<IPoolInfo[]> => useFetcher(poolsApi);
 export const useMarkets = (): IResponse<IMarket[]> => useFetcher(marketsApi);
 
 export const usePrices = (symbols: string[]): IResponse<Record<string, number>[]> => useFetcher(pricesApi(symbols));
+
+/**
+ * Request multiple interfaces API and return a fast and stable price.
+ * 
+ * @example
+ * ```typescript
+ * const price = usePrice('SOL');
+ * ```
+ */
+export const usePrice = (symbol: string): IResponse<string> => useFetcher(priceApi(symbol));
 
 export const useBalances = (user: string | null) => useFetcher(balancesApi(user));
 
