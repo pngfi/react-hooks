@@ -1,17 +1,18 @@
 import { PublicKey } from "@solana/web3.js";
 import Decimal from "decimal.js";
-import { IPoolToken, ITokenInfo } from "./token"
+import { u64 } from "@solana/spl-token";
+import { ITokenInfo } from "./token"
 
-export declare enum CurveType {
+export enum CurveType {
   ConstantProduct = 0,
   ConstantPrice = 1,
   Stable = 2,
   Offset = 3
 }
 
-export declare type PoolToken = ITokenInfo & {
+export declare type IPoolToken = ITokenInfo & {
   addr: PublicKey;
-  amount: number;
+  amount: u64;
 };
 
 export interface IFeeStructure {

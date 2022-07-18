@@ -30,10 +30,3 @@ export const PNG_TOKEN_SWAP_FEE_STRUCTURE: IFeeStructure = {
   ownerWithdrawFeeNumerator: 0,
   ownerWithdrawFeeDenominator: 0
 }
-
-export enum CurveType {
-  ConstantProduct,
-  ConstantPrice,
-  Stable,
-  Offset
-}

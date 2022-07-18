@@ -24,17 +24,17 @@ import { SYSTEM_PROGRAM_ID } from '../common/constant';
 /**
  * Layout with decode/encode types.
  */
- export type TypedLayout<T> = Omit<Layout<T>, 'decode' | 'encode'> & {
+ export type ITypedLayout<T> = Omit<Layout<T>, 'decode' | 'encode'> & {
   decode: (data: Buffer) => T;
   encode: (data: T, out: Buffer) => number;
 };
 
-export type ResolvedTokenAccountInstruction = { address: PublicKey } & Instruction;
+export type IResolvedTokenAccountInstruction = { address: PublicKey } & Instruction;
 
 /**
  * Layout for a TokenAccount.
  */
- export const TokenAccountLayout = AccountLayout as TypedLayout<{
+ export const TokenAccountLayout = AccountLayout as ITypedLayout<{
   mint: Buffer;
   owner: Buffer;
   amount: Buffer;
@@ -158,7 +158,7 @@ export const createTokenAccount = async ({
    * The keypair of the account to be created.
    */
   accountSigner?: Signer;
-}): Promise<ResolvedTokenAccountInstruction> => {
+}): Promise<IResolvedTokenAccountInstruction> => {
   // Allocate memory for the account
   const balanceNeeded = await SPLToken.getMinBalanceRentForExemptAccount(
     provider.connection

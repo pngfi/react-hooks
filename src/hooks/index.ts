@@ -15,7 +15,7 @@ import {
   priceApi,
 } from "../common/pngfi-api";
 import {
-  MerkleRewardsDistributor, IResponse, IRewards,
+  IMerkleRewardsDistributor, IResponse, IRewards,
   IMarket, IPoolInfo, IBondingInfo, IStakingInfo
 } from "../types";
 import { usePngfiConfig } from "./usePngfiConfig";
@@ -48,7 +48,7 @@ export const useUserVesting = (owner: string, vestConfig: string) =>
 export const useDistributorEpochs = (distributor: string): IResponse<string[]> =>
   useFetcher(distributorEpochsApi(distributor));
 
-export const useMerkleRewardsDistributor = (distributor: string): IResponse<MerkleRewardsDistributor> =>
+export const useMerkleRewardsDistributor = (distributor: string): IResponse<IMerkleRewardsDistributor> =>
   useFetcher(merkleRewardsDistributorApi(distributor));
 
 export const useDistributorRewardsEpoch = (

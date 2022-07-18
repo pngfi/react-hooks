@@ -15,7 +15,7 @@ export interface IMerkleRewardsResponse {
   tokenHolder: string;
   updatedAt: number;
 }
-export interface MerkleRewardsDistributor {
+export interface IMerkleRewardsDistributor {
   epochID: string;
   merkleRoot: string;
   base: string;
