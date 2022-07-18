@@ -1,6 +1,6 @@
 import Decimal from 'decimal.js';
 
-import { ITokenInfo } from "./token";
+import { IToken } from "./token";
 
 export interface IMerkleRewardsResponse {
   distributor: string;
@@ -38,7 +38,7 @@ export interface IMerkleRewardsInsertRequest {
   /**
    * A string to identify the project using this. For now, use your token symbol.
    */
-  projectID: ITokenInfo['symbol'];
+  projectID: IToken['symbol'];
   /**
    * Describes what the rewards. Display in the rewards caiming UI.
    */
@@ -65,7 +65,7 @@ export interface IMerkleRewardsInsertRequest {
   /**
    * The reward type for this merkle tree.
    */
-  mint: ITokenInfo['mint'];
+  mint: IToken['mint'];
 }
 
 export interface IMerkleRewardsInsertResponse {
@@ -119,7 +119,7 @@ export declare type IDistributorResponse = {
 };
 
 export declare type IMerkleDistributorInfo = IMerkleDistributorItem & {
-  token: ITokenInfo;
+  token: IToken;
   leftAmount?: Decimal,
   rewardTime?: string,
   nextRewardTime?: string,

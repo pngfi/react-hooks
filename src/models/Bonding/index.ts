@@ -7,7 +7,7 @@ import idl from './idl.json';
 import { Idl, Program, Provider } from '@project-serum/anchor';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
 import Decimal from 'decimal.js';
-import { IBondingConfig, IBondingInfo, IPayoutInfo } from '../../types';
+import { IBondingConfig, IBonding, IPayoutInfo } from '../../types';
 import { PNG_BONDING_ID } from '../../common/constant';
 import { DecimalUtil } from '../../helpers/decimal';
 import { deriveAssociatedTokenAddress, resolveOrCreateAssociatedTokenAddress } from '../../helpers/ata';
@@ -16,18 +16,18 @@ const BONDING_SEED_PREFIX = 'bonding_authority';
 
 export class Bonding {
   public config: IBondingConfig;
-  public bondingInfo: IBondingInfo;
+  public bondingInfo: IBonding;
   private program: Program;
   private owner: PublicKey;
 
-  constructor(provider: Provider, config: IBondingConfig, bondingInfo: IBondingInfo, owner: PublicKey) {
+  constructor(provider: Provider, config: IBondingConfig, bondingInfo: IBonding, owner: PublicKey) {
     this.config = config;
     this.bondingInfo = bondingInfo;
     this.program = new Program(idl as Idl, PNG_BONDING_ID, provider as any);
     this.owner = owner;
   }
 
-  private decay(bondingInfo: IBondingInfo): u64 {
+  private decay(bondingInfo: IBonding): u64 {
     const { lastDecay, totalDebt, decayFactor } = bondingInfo;
 
     const duration = Math.floor(new Date().getTime() / 1000 - lastDecay);
@@ -42,14 +42,14 @@ export class Bonding {
       .div(new u64(Math.pow(10, depositTokenDecimals)));
   }
 
-  private debtRatio(totalDebt: u64, tokenSupply: u64, payoutTokenDecimals: number, bondingInfo: IBondingInfo): u64 {
+  private debtRatio(totalDebt: u64, tokenSupply: u64, payoutTokenDecimals: number, bondingInfo: IBonding): u64 {
     return totalDebt
       .sub(this.decay(bondingInfo))
       .mul(new u64(Math.pow(10, payoutTokenDecimals)))
       .div(tokenSupply);
   }
 
-  private price(bondingInfo: IBondingInfo, payoutTokenDecimals: number): u64 {
+  private price(bondingInfo: IBonding, payoutTokenDecimals: number): u64 {
     const { totalDebt, bondingSupply, controlVariable, minPrice } = bondingInfo;
     const debtRatio = this.debtRatio(totalDebt, bondingSupply, payoutTokenDecimals, bondingInfo);
 
@@ -61,7 +61,7 @@ export class Bonding {
   }
 
   calcPayout(
-    bondingInfo: IBondingInfo,
+    bondingInfo: IBonding,
     payoutTokenDecimals: number,
     depositTokenDecimals: number,
     amount = 1

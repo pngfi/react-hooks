@@ -9,7 +9,7 @@ export declare interface IExtensions {
   coingeckoId?: string;
 }
 
-export declare type ITokenInfo = {
+export declare type IToken = {
   chainId?: number;
   decimals: number | undefined;
   logoURI: string;
@@ -24,5 +24,3 @@ export declare type ITokenInfo = {
   isLP?: boolean;
   display?: boolean;
 }
-
-export declare type IToken = ITokenInfo

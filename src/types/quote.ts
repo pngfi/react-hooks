@@ -1,10 +1,10 @@
 import { u64 } from '@solana/spl-token';
 import { IFeeStructure } from './pool';
-import { ITokenInfo } from './token';
+import { IToken } from './token';
 
 export declare interface QuotePoolParams {
-    inputToken: ITokenInfo;
-    outputToken: ITokenInfo;
+    inputToken: IToken;
+    outputToken: IToken;
     inputTokenCount: u64; // 
     outputTokenCount: u64; // 
     feeStructure: IFeeStructure;

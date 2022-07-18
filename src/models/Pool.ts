@@ -9,7 +9,7 @@ import {
   TOKEN_PROGRAM_ID,
   u64
 } from '@solana/spl-token';
-import { CurveType, IPoolInfo, IToken } from '../types';
+import { CurveType, IPool, IToken } from '../types';
 import { PNG_TOKEN_SWAP_FEE_ACCOUNT_OWNER, PNG_TOKEN_SWAP_FEE_STRUCTURE, PNG_TOKEN_SWAP_ID, ZERO_U64, ONE_THOUSAND_U64 } from '../common/constant';
 import { resolveOrCreateAssociatedTokenAddress } from '../helpers/ata';
 import { DecimalUtil, ZERO_DECIMAL } from '../helpers/decimal';
@@ -20,9 +20,9 @@ import { TransactionBuilder } from '../helpers/transactionBuilder';
 
 export class Pool {
   private provider: Provider;
-  private info: IPoolInfo;
+  private info: IPool;
 
-  constructor(provider: Provider, info: IPoolInfo) {
+  constructor(provider: Provider, info: IPool) {
     this.provider = provider;
     this.info = info;
   }
@@ -338,7 +338,7 @@ export class Pool {
   }
 
   static computeWithdrawQuote(
-    config: IPoolInfo,
+    config: IPool,
     withdrawTokenAmount: Decimal,
     withdrawTokenMint: PublicKey,
     slippage = 1

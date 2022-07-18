@@ -14,7 +14,7 @@ export declare interface IPayoutInfo {
 export declare interface IBondingConfig {
     address: PublicKey;
 };
-export declare interface IBondingInfo {
+export declare interface IBonding {
     initDebt: null;
     initSupply: string;
     onlyBonding: boolean;
@@ -35,9 +35,9 @@ export declare interface IBondingInfo {
     controlVariable: number;
     decayFactor: number;
     lastDecay: number;
-    vestConfigInfo: IVestConfigInfo;
+    vestConfigInfo: IVestConfig;
 };
-export declare interface IVestConfigInfo {
+export declare interface IVestConfig {
     vestMint: PublicKey;
     claimAllDuration: number;
     halfLifeDuration: number;

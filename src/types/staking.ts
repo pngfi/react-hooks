@@ -6,7 +6,7 @@ export declare interface IStakingConfig {
     address: PublicKey;
     vestConfig: PublicKey;
 };
-export declare interface IStakingInfo {
+export declare interface IStaking {
     pubkey: PublicKey;
     tokenMint: PublicKey;
     sTokenMint: PublicKey;
@@ -23,10 +23,10 @@ export declare interface IStakingInfo {
     rebaseSupply: u64; // 
     sTokenMintSupply: u64; // 
     rebaseRewardsAmount: u64; // 
-    vestConfigInfo: IVestConfigInfo;
+    vestConfigInfo: IVestConfig;
 };
 
-declare interface IVestConfigInfo {
+declare interface IVestConfig {
     pubkey: PublicKey;
     vestMint: PublicKey;
     claimAllDuration: number;

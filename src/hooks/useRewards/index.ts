@@ -17,7 +17,7 @@ import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
 import { distributorProgramIdl, PNG_DISTRIBUTOR_PROGRAM_ID } from '../../models/Rewards/distributor';
 import { deriveAssociatedTokenAddress, resolveOrCreateAssociatedTokenAddress } from '../../helpers/ata';
 import { TransactionBuilder } from '../../helpers/transactionBuilder';
-import { IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse, ITokenInfo } from '../../types';
+import { IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse, IToken } from '../../types';
 import { distributorMerkleRewardsApi } from '../../common/pngfi-api';
 import fetcher from '../../common/fetcher';
 import { DecimalUtil } from '../../helpers/decimal';
@@ -214,7 +214,7 @@ export interface IInsertDistributor {
   adminAuth: PublicKey,
   data: {
     title: string,
-    token: ITokenInfo,
+    token: IToken,
     rewards: {
       dest: string;
       amount: string;
