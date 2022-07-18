@@ -1,3 +1,6 @@
+import { u64 } from "@solana/spl-token";
+import { PublicKey } from "@solana/web3.js";
+
 export declare interface IExtensions {
   assetContract?: string;
   bridgeContract?: string;
@@ -24,3 +27,10 @@ export declare type ITokenInfo = {
   isLP?: boolean;
   display?: boolean;
 }
+
+export type IPoolToken = ITokenInfo & {
+  addr: PublicKey;
+  amount: u64;
+}
+
+export declare type IToken = ITokenInfo

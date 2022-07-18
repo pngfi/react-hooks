@@ -14,7 +14,7 @@ import { Buffer } from 'buffer'
 import { Keypair, PublicKey, PublicKeyInitData, SystemProgram, Transaction } from '@solana/web3.js';
 import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
 
-import { distributorProgramIdl, PNG_DISTRIBUTOR_PROGRAM_ID } from '../../config/distributor';
+import { distributorProgramIdl, PNG_DISTRIBUTOR_PROGRAM_ID } from '../../models/Rewards/distributor';
 import { deriveAssociatedTokenAddress, resolveOrCreateAssociatedTokenAddress } from '../../helpers/ata';
 import { TransactionBuilder } from '../../helpers/transactionBuilder';
 import { IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse, ITokenInfo } from '../../types';

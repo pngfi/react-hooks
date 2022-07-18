@@ -77,11 +77,13 @@
     "@saberhq/solana-contrib": "^1.13.10",
     "@saberhq/token-utils": "^1.13.15",
     "@solana/spl-token": "0.1.8",
+    "@solana/spl-token-swap": "^0.2.0",
     "@solana/wallet-adapter-react": "^0.15.5",
     "@solana/web3.js": "^1.42.0",
     "buffer": "^6.0.3",
     "decimal.js": "^10.3.1",
-    "query-string": "^7.1.1"
+    "query-string": "^7.1.1",
+    "zustand": "^4.0.0-rc.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.0",

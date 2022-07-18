@@ -23,7 +23,13 @@ export interface IAnchorProvider {
  * @returns Provider
  * @example
  * ```ts
-const provider = useAnchorProvider()
+const { connection } = useConnection();
+const { wallet, connected } = useWallet();
+const provider = useAnchorProvider({
+  connection,
+  wallet,
+  connected
+})
  * ```
  */
 export function useAnchorProvider({

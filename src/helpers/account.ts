@@ -1,5 +1,5 @@
 import type { Layout } from '@solana/buffer-layout';
-import type { AccountInfo } from '@solana/spl-token';
+import type { AccountInfo, MintInfo } from '@solana/spl-token';
 import type { Provider } from '@saberhq/solana-contrib';
 import {
   AccountLayout,
@@ -274,3 +274,81 @@ export function createAssociatedTokenAccountInstruction(
     signers: [],
   };
 }
+
+export const getTokenAccountInfo = async (
+  provider: Provider,
+  tokenAccount: PublicKey
+): Promise<Omit<AccountInfo, "address"> | null> => {
+  const assetHolderInfo = await provider.connection.getAccountInfo(tokenAccount);
+  return assetHolderInfo ? deserializeAccount(assetHolderInfo.data) : null;
+}
+
+
+export const getTokenMintInfo = (
+  provider: Provider,
+  tokenMint: PublicKey
+): Promise<MintInfo> => {
+  const token = new SPLToken(
+    provider.connection,
+    tokenMint,
+    TOKEN_PROGRAM_ID, {} as any
+  );
+
+  return token.getMintInfo();
+}
+
+export function transferToken(
+  source: PublicKey,
+  destination: PublicKey,
+  amount: u64,
+  payer: PublicKey
+) {
+  const instructions = [
+    SPLToken.createTransferInstruction(
+      TOKEN_PROGRAM_ID,
+      source,
+      destination,
+      payer,
+      [],
+      amount
+    )
+  ];
+
+  return {
+    instructions,
+    signers: [],
+    cleanupInstructions: []
+  }
+}
+
+export const createApprovalInstruction = (
+  ownerAddress: PublicKey,
+  approveAmount: u64,
+  tokenUserAddress: PublicKey,
+  userTransferAuthority?: Keypair
+): { userTransferAuthority: Keypair } & Instruction => {
+  userTransferAuthority = userTransferAuthority || new Keypair();
+
+  const approvalInstruction = SPLToken.createApproveInstruction(
+    TOKEN_PROGRAM_ID,
+    tokenUserAddress,
+    userTransferAuthority.publicKey,
+    ownerAddress,
+    [],
+    approveAmount
+  );
+
+  const revokeInstruction = SPLToken.createRevokeInstruction(
+    TOKEN_PROGRAM_ID,
+    tokenUserAddress,
+    ownerAddress,
+    []
+  );
+
+  return {
+    userTransferAuthority: userTransferAuthority,
+    instructions: [approvalInstruction],
+    cleanupInstructions: [revokeInstruction],
+    signers: [],
+  };
+};
