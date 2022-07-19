@@ -1,8 +1,6 @@
-import create from 'zustand';
 import { PublicKey } from '@solana/web3.js';
 import { u64 } from '@solana/spl-token';
-import { DecimalUtil } from '../../helpers/decimal';
-import { getUserVesting } from '../../common/pngfi-api';
+import { DecimalUtil } from '../decimal';
 
 export declare type IRespngseUserVestingInfo = {
   pubkey: string;
@@ -26,13 +24,7 @@ export declare type IUserVestingInfo = {
   vestedHolderAmount: u64;
 };
 
-type VestingStore = {
-  userVestingInfo: IUserVestingInfo | null;
-  fetchUserVestingInfo: (userKey: PublicKey, vestingKey: PublicKey) => void;
-  resetUserVestingInfo: () => void;
-};
-
-function toVestingInfo(item: IRespngseUserVestingInfo) {
+export function toVestingInfo(item: IRespngseUserVestingInfo) {
   if (!item) return;
 
   const {
@@ -60,36 +52,3 @@ function toVestingInfo(item: IRespngseUserVestingInfo) {
     ),
   };
 }
-
-/**
- * vesting store
- *
- * @example
- * ```ts
- * const {
- *   userVestingInfo,
- *   resetUserVestingInfo,
- *   fetchUserVestingInfo
- * } = useUserVestingStore();
- * ```
- */
-export const useUserVestingStore = create(
-  (set: any, get: any): VestingStore => ({
-    userVestingInfo: null,
-
-    fetchUserVestingInfo: async (userKey, vestingKey) => {
-      const vestingKeyStr = vestingKey.toString();
-
-      const res = await getUserVesting(userKey.toBase58(), vestingKeyStr);
-      const vestingInfo = toVestingInfo(res.data);
-
-      const oldInfo = get().userVestingInfo;
-
-      set({ userVestingInfo: { ...oldInfo, [vestingKeyStr]: vestingInfo } });
-    },
-
-    resetUserVestingInfo: () => {
-      set({ userVestingInfo: null });
-    },
-  }),
-);

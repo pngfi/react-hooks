@@ -11,7 +11,7 @@ export declare interface IStaking {
   sTokenMint: PublicKey;
   tokenHolder: PublicKey;
   payoutTokenMint: PublicKey;
-  tokenHolderAmount: u64; //
+  tokenHolderAmount: u64;
   rebaseEpochDuration: number;
   rebaseLastTime: number;
   rebaseRateNumerator: number;
@@ -19,9 +19,9 @@ export declare interface IStaking {
   rewardsHolder: PublicKey;
   apy: number;
   rewardsPerDay: string;
-  rebaseSupply: u64; //
-  sTokenMintSupply: u64; //
-  rebaseRewardsAmount: u64; //
+  rebaseSupply: u64;
+  sTokenMintSupply: u64;
+  rebaseRewardsAmount: u64;
   vestConfigInfo: IVestConfig;
 }
 

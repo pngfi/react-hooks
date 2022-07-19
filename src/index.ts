@@ -1,7 +1,6 @@
 export * from './hooks/provider';
 export * from './hooks/useDistributor';
 export * from './hooks/useRewards';
-export * from './hooks/useBond/userVesting';
 export * from './hooks/useAnchorProvider';
 export * from './hooks/usePngfiConfig';
 export * from './hooks/useToken';
