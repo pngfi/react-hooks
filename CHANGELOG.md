@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.79](https://github.com/xweb3/react-hooks/compare/v0.3.78...v0.3.79) (2022-07-19)
+
+
+### Bug Fixes
+
+* 🐛 delete pool ([acc0d5e](https://github.com/xweb3/react-hooks/commit/acc0d5e3db1d1eb72625daf091fc7d765d93a918))
+
 ### [0.3.78](https://github.com/xweb3/react-hooks/compare/v0.3.77...v0.3.78) (2022-07-19)
 
 ### [0.3.77](https://github.com/xweb3/react-hooks/compare/v0.3.76...v0.3.77) (2022-07-19)
