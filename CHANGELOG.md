@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.80](https://github.com/xweb3/react-hooks/compare/v0.3.79...v0.3.80) (2022-07-19)
+
+
+### Features
+
+* 🎸 add userVesting ([c9fdb6b](https://github.com/xweb3/react-hooks/commit/c9fdb6bb0423e4d182ec6c99ff13af30d918c4bf))
+
 ### [0.3.79](https://github.com/xweb3/react-hooks/compare/v0.3.78...v0.3.79) (2022-07-19)
 
 
