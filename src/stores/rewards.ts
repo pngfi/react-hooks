@@ -65,6 +65,19 @@ type RewardsStore = {
   ) => Promise<TransactionEnvelope>;
 };
 
+/**
+ * rewards store
+ *
+ * @example
+ * ```ts
+ * const {
+ *   fetchUnclaimed,
+ *   getClaimStatus,
+ *   claimCommon,
+ *   claimOne
+ * } = useRewardsStore();
+ * ```
+ */
 export const useRewardsStore = create<RewardsStore>(() => ({
   fetchUnclaimed: async (owner, tokens) => {
     const [res, commonRes, newRes] = await Promise.all([
@@ -221,7 +234,6 @@ export const useRewardsStore = create<RewardsStore>(() => ({
       [...resolveUserHolderInstrucitons.signers],
     );
   },
-
   claimOne: async (provider, owner, info) => {
     const txBuilder = new TransactionBuilder(provider as any);
 

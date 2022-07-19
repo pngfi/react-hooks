@@ -3,7 +3,7 @@ import { PublicKey } from '@solana/web3.js';
 import { IBonding } from '../../types';
 import { DecimalUtil } from '../decimal';
 
-export type BondingInfoWithInitSupply = IBonding & {
+export type IBondingInfoWithInitSupply = IBonding & {
   depositAmount: u64;
   initSupply: u64;
   onlyBonding: boolean;
@@ -37,7 +37,7 @@ export declare type IRespngseBondingInfo = {
 
 export function toBondingInfo(
   item: IRespngseBondingInfo,
-): BondingInfoWithInitSupply {
+): IBondingInfoWithInitSupply {
   const {
     pubkey,
     stakingAddress,
