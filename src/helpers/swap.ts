@@ -24,14 +24,14 @@ export const createInitSwapInstruction = (
   curveParameters: Numberu64 = new Numberu64(0),
 ): TransactionInstruction => {
   const keys = [
-    {pubkey: tokenSwapAccount.publicKey, isSigner: false, isWritable: true},
-    {pubkey: authority, isSigner: false, isWritable: false},
-    {pubkey: tokenAccountA, isSigner: false, isWritable: false},
-    {pubkey: tokenAccountB, isSigner: false, isWritable: false},
-    {pubkey: tokenPool, isSigner: false, isWritable: true},
-    {pubkey: feeAccount, isSigner: false, isWritable: false},
-    {pubkey: tokenAccountPool, isSigner: false, isWritable: true},
-    {pubkey: tokenProgramId, isSigner: false, isWritable: false},
+    { pubkey: tokenSwapAccount.publicKey, isSigner: false, isWritable: true },
+    { pubkey: authority, isSigner: false, isWritable: false },
+    { pubkey: tokenAccountA, isSigner: false, isWritable: false },
+    { pubkey: tokenAccountB, isSigner: false, isWritable: false },
+    { pubkey: tokenPool, isSigner: false, isWritable: true },
+    { pubkey: feeAccount, isSigner: false, isWritable: false },
+    { pubkey: tokenAccountPool, isSigner: false, isWritable: true },
+    { pubkey: tokenProgramId, isSigner: false, isWritable: false },
   ];
   const commandDataLayout = BufferLayout.struct([
     BufferLayout.u8('instruction'),
@@ -51,7 +51,7 @@ export const createInitSwapInstruction = (
   // package curve parameters
   // NOTE: currently assume all curves take a single parameter, u64 int
   //       the remaining 24 of the 32 bytes available are filled with 0s
-  let curveParamsBuffer = Buffer.alloc(32);
+  const curveParamsBuffer = Buffer.alloc(32);
   curveParameters.toBuffer().copy(curveParamsBuffer);
 
   {
@@ -79,5 +79,4 @@ export const createInitSwapInstruction = (
     programId: swapProgramId,
     data,
   });
-
-}
+};

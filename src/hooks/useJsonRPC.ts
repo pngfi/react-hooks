@@ -4,14 +4,14 @@ import fetcher from '../common/fetcher';
 import { IRPCRequest } from '../types/solana-rpc';
 
 const rpcApi = `${rpcpoolApi()}`;
-const baseRpcApi = `${baseApi}/rpc`
+const baseRpcApi = `${baseApi}/rpc`;
 
 /**
  * [Solana JSON RPC API ](https://docs.solana.com/developing/clients/jsonrpc-api#methods)
- * 
+ *
  * @param {IRPCRequest} options
  * @returns
- * 
+ *
  * @example
  * ```ts
  * const { id, result } = useJsonRPC({
@@ -25,25 +25,27 @@ const baseRpcApi = `${baseApi}/rpc`
  * ```
  */
 export const useJsonRPC = (options: IRPCRequest) => {
-  const { data, error } = useSWR([rpcApi, options], (url, options) => fetcher(url, {
-    method: 'POST',
-    data: options
-  }));
-  
+  const { data, error } = useSWR([rpcApi, options], (url, options) =>
+    fetcher(url, {
+      method: 'POST',
+      data: options,
+    }),
+  );
+
   return {
     data,
     loading: !error && !data,
     error,
-  }
-}
+  };
+};
 
 /**
  * [Solana JSON RPC API ](https://docs.solana.com/developing/clients/jsonrpc-api#methods)
  * Request multiple interfaces API and return a fast and stable one.
- * 
+ *
  * @param {IRPCRequest} options
  * @returns
- * 
+ *
  * @example
  * ```ts
  * const { id, result } = useAnyRPC({
@@ -56,15 +58,17 @@ export const useJsonRPC = (options: IRPCRequest) => {
  * });
  * ```
  */
- export const useAnyRPC = (options: IRPCRequest) => {
-  const { data, error } = useSWR([baseRpcApi, options], (url, options) => fetcher(url, {
-    method: 'POST',
-    data: options
-  }));
-  
+export const useAnyRPC = (options: IRPCRequest) => {
+  const { data, error } = useSWR([baseRpcApi, options], (url, options) =>
+    fetcher(url, {
+      method: 'POST',
+      data: options,
+    }),
+  );
+
   return {
     data,
     loading: !error && !data,
     error,
-  }
-}
+  };
+};

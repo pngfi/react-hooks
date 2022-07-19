@@ -1,8 +1,8 @@
-import create from "zustand";
-import { PublicKey } from "@solana/web3.js";
-import { u64 } from "@solana/spl-token";
-import { DecimalUtil } from "../../helpers/decimal";
-import { getUserVesting } from "../../common/pngfi-api";
+import create from 'zustand';
+import { PublicKey } from '@solana/web3.js';
+import { u64 } from '@solana/spl-token';
+import { DecimalUtil } from '../../helpers/decimal';
+import { getUserVesting } from '../../common/pngfi-api';
 
 export declare type IRespngseUserVestingInfo = {
   pubkey: string;
@@ -56,14 +56,14 @@ function toVestingInfo(item: IRespngseUserVestingInfo) {
     vestConfig: new PublicKey(vestConfig),
     vestedHolder: new PublicKey(vestedHolder),
     vestedHolderAmount: DecimalUtil.toU64(
-      DecimalUtil.fromString(vestedHolderAmount)
+      DecimalUtil.fromString(vestedHolderAmount),
     ),
   };
 }
 
 /**
  * vesting store
- * 
+ *
  * @example
  * ```ts
  * const {
@@ -91,5 +91,5 @@ export const useUserVestingStore = create(
     resetUserVestingInfo: () => {
       set({ userVestingInfo: null });
     },
-  })
+  }),
 );

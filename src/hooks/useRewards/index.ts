@@ -1,23 +1,31 @@
-import {
-  TOKEN_PROGRAM_ID, 
-  u64
-} from '@solana/spl-token';
+import { TOKEN_PROGRAM_ID, u64 } from '@solana/spl-token';
 import Decimal from 'decimal.js';
+import { Idl, Program, BN } from '@project-serum/anchor';
+import { Provider, TransactionEnvelope } from '@saberhq/solana-contrib';
+import { Buffer } from 'buffer';
 import {
-  Idl, Program, BN
-} from '@project-serum/anchor';
-import {
-  Provider,
-  TransactionEnvelope
-} from '@saberhq/solana-contrib';
-import { Buffer } from 'buffer'
-import { Keypair, PublicKey, PublicKeyInitData, SystemProgram, Transaction } from '@solana/web3.js';
+  Keypair,
+  PublicKey,
+  PublicKeyInitData,
+  SystemProgram,
+  Transaction,
+} from '@solana/web3.js';
 import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
 
-import { distributorProgramIdl, PNG_DISTRIBUTOR_PROGRAM_ID } from '../../models/Rewards/distributor';
-import { deriveAssociatedTokenAddress, resolveOrCreateAssociatedTokenAddress } from '../../helpers/ata';
+import {
+  distributorProgramIdl,
+  PNG_DISTRIBUTOR_PROGRAM_ID,
+} from '../../models/Rewards/distributor';
+import {
+  deriveAssociatedTokenAddress,
+  resolveOrCreateAssociatedTokenAddress,
+} from '../../helpers/ata';
 import { TransactionBuilder } from '../../helpers/transactionBuilder';
-import { IMerkleRewardsInsertRequest, IMerkleRewardsInsertResponse, IToken } from '../../types';
+import {
+  IMerkleRewardsInsertRequest,
+  IMerkleRewardsInsertResponse,
+  IToken,
+} from '../../types';
 import { distributorMerkleRewardsApi } from '../../common/pngfi-api';
 import fetcher from '../../common/fetcher';
 import { DecimalUtil } from '../../helpers/decimal';
@@ -37,7 +45,7 @@ export interface IRewardsInfo {
 export interface IRewardsResponse {
   /**
    * claim distributor rewards
-   * 
+   *
    * @example
    * ```ts
    * import { useRewards } from '@pngfi/react-hooks';
@@ -52,13 +60,17 @@ export interface IRewardsResponse {
    * });
    *```
    */
-  claimRewards: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>;
+  claimRewards: (
+    provider: Provider,
+    owner: PublicKey,
+    info: IRewardsInfo,
+  ) => Promise<TransactionEnvelope>;
 
   /**
    * Insert distributor
-   * 
-   * @param {IInsertDistributor} options 
-   * 
+   *
+   * @param {IInsertDistributor} options
+   *
    * @example
    * ```typescript
    * const  = insertDistributor({
@@ -74,13 +86,15 @@ export interface IRewardsResponse {
    * });
    * ```
    */
-  insertDistributor: (options: IInsertDistributor) => Promise<TransactionEnvelope>,
+  insertDistributor: (
+    options: IInsertDistributor,
+  ) => Promise<TransactionEnvelope>;
 
   /**
-   * only insert distributor data 
-   * 
-   * @param {IMerkleRewardsInsertRequest} options 
-   * 
+   * only insert distributor data
+   *
+   * @param {IMerkleRewardsInsertRequest} options
+   *
    * @example
    * ```typescript
    * const  = insertDistributorMerkleRewards({
@@ -97,30 +111,44 @@ export interface IRewardsResponse {
    * });
    * ```
    */
-  insertDistributorMerkleRewards: (options: IMerkleRewardsInsertRequest) => Promise<IMerkleRewardsInsertResponse>,
+  insertDistributorMerkleRewards: (
+    options: IMerkleRewardsInsertRequest,
+  ) => Promise<IMerkleRewardsInsertResponse>;
   // claimOne: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
   // claimCommon: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
 }
 
-const claimCommon = async (provider: Provider, owner: PublicKey, info: IRewardsInfo): Promise<TransactionEnvelope> => {
+const claimCommon = async (
+  provider: Provider,
+  owner: PublicKey,
+  info: IRewardsInfo,
+): Promise<TransactionEnvelope> => {
   const { proof, amount, index, distributor, mint } = info;
-  const program = new Program(distributorProgramIdl as Idl, PNG_DISTRIBUTOR_PROGRAM_ID, provider as any);
+  const program = new Program(
+    distributorProgramIdl as Idl,
+    PNG_DISTRIBUTOR_PROGRAM_ID,
+    provider as any,
+  );
 
-  let [claimStatus, claimNonce] = await PublicKey.findProgramAddress(
-    [Buffer.from('ClaimStatus'), new PublicKey(distributor).toBuffer(), owner.toBuffer()],
-    program.programId
+  const [claimStatus, claimNonce] = await PublicKey.findProgramAddress(
+    [
+      Buffer.from('ClaimStatus'),
+      new PublicKey(distributor).toBuffer(),
+      owner.toBuffer(),
+    ],
+    program.programId,
   );
 
   const distributorHolder = await deriveAssociatedTokenAddress(
     new PublicKey(distributor),
-    new PublicKey(mint)
+    new PublicKey(mint),
   );
 
   const { address: userHolder, ...resolveUserHolderInstrucitons } =
     await resolveOrCreateAssociatedTokenAddress(
       program.provider.connection,
       owner,
-      new PublicKey(mint)
+      new PublicKey(mint),
     );
 
   const rewardsInstruction = program.instruction.claim(
@@ -137,32 +165,33 @@ const claimCommon = async (provider: Provider, owner: PublicKey, info: IRewardsI
         claimant: owner,
         payer: owner,
         systemProgram: SystemProgram.programId,
-        tokenProgram: TOKEN_PROGRAM_ID
+        tokenProgram: TOKEN_PROGRAM_ID,
       },
-    }
+    },
   );
 
   return new TransactionEnvelope(
     program.provider as any,
-    [
-      ...resolveUserHolderInstrucitons.instructions,
-      rewardsInstruction
-    ],
-    [
-      ...resolveUserHolderInstrucitons.signers
-    ]
+    [...resolveUserHolderInstrucitons.instructions, rewardsInstruction],
+    [...resolveUserHolderInstrucitons.signers],
   );
-}
+};
 
-const claimOne = async (provider: Provider, owner: PublicKey, info: IRewardsInfo): Promise<TransactionEnvelope> => {
+const claimOne = async (
+  provider: Provider,
+  owner: PublicKey,
+  info: IRewardsInfo,
+): Promise<TransactionEnvelope> => {
   const txBuilder = new TransactionBuilder(provider);
 
   const sdk = MerkleDistributorSDK.load({ provider });
-  const distributor = await sdk.loadDistributor(new PublicKey(info.distributor));
+  const distributor = await sdk.loadDistributor(
+    new PublicKey(info.distributor),
+  );
 
-  const status = info.claimAddress ? await provider.connection.getAccountInfo(
-    new PublicKey(info.claimAddress)
-  ) : false;
+  const status = info.claimAddress
+    ? await provider.connection.getAccountInfo(new PublicKey(info.claimAddress))
+    : false;
   if (status) {
     throw new Error('already claimed');
   }
@@ -171,7 +200,7 @@ const claimOne = async (provider: Provider, owner: PublicKey, info: IRewardsInfo
     await resolveOrCreateAssociatedTokenAddress(
       provider.connection,
       owner,
-      new PublicKey(info.mint)
+      new PublicKey(info.mint),
     );
 
   const claimInstruction = await distributor.claimIX(
@@ -181,7 +210,7 @@ const claimOne = async (provider: Provider, owner: PublicKey, info: IRewardsInfo
       proof: info.proof.map((p: string) => Buffer.from(p, 'hex')),
       claimant: owner,
     },
-    owner
+    owner,
   );
   txBuilder.addInstruction({
     instructions: [...claimMintTokenAccount, claimInstruction],
@@ -190,10 +219,13 @@ const claimOne = async (provider: Provider, owner: PublicKey, info: IRewardsInfo
   });
 
   return txBuilder.build() as TransactionEnvelope;
-}
+};
 
-
-const claimRewards = async (provider: Provider, owner: PublicKey, info: IRewardsInfo): Promise<TransactionEnvelope> => {
+const claimRewards = async (
+  provider: Provider,
+  owner: PublicKey,
+  info: IRewardsInfo,
+): Promise<TransactionEnvelope> => {
   if (info.createdAt) {
     return await claimOne(provider, owner, info);
   } else {
@@ -201,46 +233,45 @@ const claimRewards = async (provider: Provider, owner: PublicKey, info: IRewards
   }
 };
 
-const insertDistributorMerkleRewards = async (options: IMerkleRewardsInsertRequest): Promise<IMerkleRewardsInsertResponse> => {
-  return  await fetcher(distributorMerkleRewardsApi, {
+const insertDistributorMerkleRewards = async (
+  options: IMerkleRewardsInsertRequest,
+): Promise<IMerkleRewardsInsertResponse> => {
+  return await fetcher(distributorMerkleRewardsApi, {
     method: 'POST',
     data: options,
   });
-}
+};
 
 export interface IInsertDistributor {
-  provider: Provider,
-  base?: string,
-  adminAuth: PublicKey,
+  provider: Provider;
+  base?: string;
+  adminAuth: PublicKey;
   data: {
-    title: string,
-    token: IToken,
+    title: string;
+    token: IToken;
     rewards: {
       dest: string;
       amount: string;
-    }[]
-  }
+    }[];
+  };
 }
 
 const insertDistributor = async (options: IInsertDistributor) => {
-  const { provider, adminAuth, data, base } = options
+  const { provider, adminAuth, data, base } = options;
   const { title, token, rewards } = data;
   const baseKP = Keypair.generate();
   const { absoluteSlot } = await provider.connection.getEpochInfo();
-  const { tx } =  await insertDistributorMerkleRewards({
+  const { tx } = await insertDistributorMerkleRewards({
     title: title,
     base: base || baseKP.publicKey.toString(),
     projectID: token.symbol,
     epochID: Number(absoluteSlot || 0),
     adminAuth: adminAuth?.toString() || '',
     mint: token.mint,
-    rewards: rewards.map(({
+    rewards: rewards.map(({ dest, amount }) => ({
       dest,
-      amount
-    }) => ({
-      dest,
-      amount: DecimalUtil.toU64(new Decimal(amount), token.decimals).toString()
-    }))
+      amount: DecimalUtil.toU64(new Decimal(amount), token.decimals).toString(),
+    })),
   });
 
   const trans = Transaction.from(Buffer.from(tx, 'hex'));
@@ -248,10 +279,10 @@ const insertDistributor = async (options: IInsertDistributor) => {
   const txe = new TransactionEnvelope(
     provider as Provider,
     trans.instructions,
-    [baseKP]
+    [baseKP],
   );
   return txe as TransactionEnvelope;
-}
+};
 
 export const useRewards = (): IRewardsResponse => {
   return {
@@ -259,6 +290,6 @@ export const useRewards = (): IRewardsResponse => {
     // claimCommon,
     claimRewards,
     insertDistributor,
-    insertDistributorMerkleRewards
-  } as IRewardsResponse
+    insertDistributorMerkleRewards,
+  } as IRewardsResponse;
 };

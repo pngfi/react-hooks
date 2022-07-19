@@ -2,15 +2,15 @@ import qs from 'query-string';
 import fetcher from './fetcher';
 
 // https://www.coingecko.com/zh/api/documentation
-const baseApi = `https://api.coingecko.com/api/v3`
+const baseApi = `https://api.coingecko.com/api/v3`;
 
-export const pingApi = `${baseApi}/ping`
+export const pingApi = `${baseApi}/ping`;
 /**
  * Check API server status
  */
 export const ping = async () => {
   return await fetcher(pingApi);
-}
+};
 
 export type ISimplePrice = {
   ids: string;
@@ -19,19 +19,22 @@ export type ISimplePrice = {
   include_24hr_vol?: string;
   include_24hr_change?: string;
   include_last_updated_at?: string;
-}
+};
 export const defaultSimplePriceOptions = {
   ids: `solana`,
-  vs_currencies: `usd`
-}
+  vs_currencies: `usd`,
+};
 /**
  * Get the current price of any cryptocurrencies in any other supported currencies that you need.
  */
-export const simplePriceApi = (options: ISimplePrice = defaultSimplePriceOptions) => options.ids ? `${baseApi}/simple/price?${qs.stringify(options)}` : null;
-export const simplePrice = async (options: ISimplePrice = defaultSimplePriceOptions) => {
+export const simplePriceApi = (
+  options: ISimplePrice = defaultSimplePriceOptions,
+) => (options.ids ? `${baseApi}/simple/price?${qs.stringify(options)}` : null);
+export const simplePrice = async (
+  options: ISimplePrice = defaultSimplePriceOptions,
+) => {
   return await fetcher(`${simplePriceApi(options)}`);
-}
-
+};
 
 export interface ISimpleTokenPrice {
   id: string;
@@ -42,37 +45,40 @@ export interface ISimpleTokenPrice {
   include_24hr_change?: string;
   include_last_updated_at?: string;
 }
-export const simpleTokenPriceApi = (id: string) => `${baseApi}/simple/token_price/${id}`
+export const simpleTokenPriceApi = (id: string) =>
+  `${baseApi}/simple/token_price/${id}`;
 /**
  * Get current price of tokens (using contract addresses) for a given platform in any other currency that you need.
- * @param options 
- * @returns 
+ * @param options
+ * @returns
  */
 export const simpleTokenPrice = async (options: ISimpleTokenPrice) => {
-  return await fetcher(`${simpleTokenPriceApi(options.id)}?${qs.stringify(options)}`);
-}
+  return await fetcher(
+    `${simpleTokenPriceApi(options.id)}?${qs.stringify(options)}`,
+  );
+};
 
-export const supportedVsCurrenciesApi = `${baseApi}/simple/supported_vs_currencies`
+export const supportedVsCurrenciesApi = `${baseApi}/simple/supported_vs_currencies`;
 /**
  * Get list of supported_vs_currencies.
  */
 export const supportedVsCurrencies = async () => {
   return await fetcher(supportedVsCurrenciesApi);
-}
+};
 
-
-export const coinsListApi = `${baseApi}/coins/list`
+export const coinsListApi = `${baseApi}/coins/list`;
 /**
  * List all supported coins id, name and symbol (no pagination required)
  */
-export const coinsList = async (options: {
-  include_platform?: boolean
-} = {
-  include_platform: true
-}) => {
+export const coinsList = async (
+  options: {
+    include_platform?: boolean;
+  } = {
+    include_platform: true,
+  },
+) => {
   return await fetcher(`${coinsListApi}?${qs.stringify(options)}`);
-}
-
+};
 
 export type ICoinsMarkets = {
   vs_currency: string;
@@ -83,16 +89,18 @@ export type ICoinsMarkets = {
   page?: number;
   sparkline?: boolean;
   price_change_percentage?: string;
-}
-export const coinsMarketsApi = (options: ICoinsMarkets) => options.ids ? `${baseApi}/coins/markets?${qs.stringify(options)}` : null
+};
+export const coinsMarketsApi = (options: ICoinsMarkets) =>
+  options.ids ? `${baseApi}/coins/markets?${qs.stringify(options)}` : null;
 /**
  * List all supported coins price, market cap, volume, and market related data
  */
 export const coinsMarkets = async (options: ICoinsMarkets) => {
   return await fetcher(`${coinsMarketsApi(options)}`);
-}
+};
 
-export const coinsIdApi = (id: string) => id ? `${baseApi}/coins/${id}` : null
+export const coinsIdApi = (id: string) =>
+  id ? `${baseApi}/coins/${id}` : null;
 /**
  * Get current data (name, price, market, ... including exchange tickers) for a coin
  */
@@ -106,9 +114,10 @@ export const coinsId = async (options: {
   sparkline?: boolean;
 }) => {
   return await fetcher(`${coinsIdApi(options.id)}?${qs.stringify(options)}`);
-}
+};
 
-export const coinsIdTickersApi = (id: string) => id ? `${baseApi}/coins/${id}/tickers` : null
+export const coinsIdTickersApi = (id: string) =>
+  id ? `${baseApi}/coins/${id}/tickers` : null;
 /**
  * Get coin tickers (paginated to 100 items)
  */
@@ -120,10 +129,13 @@ export const coinsIdTickers = async (options: {
   order?: string;
   depth?: string;
 }) => {
-  return await fetcher(`${coinsIdTickersApi(options.id)}?${qs.stringify(options)}`);
-}
+  return await fetcher(
+    `${coinsIdTickersApi(options.id)}?${qs.stringify(options)}`,
+  );
+};
 
-export const coinsIdHistoryApi = (id: string) => id ? `${baseApi}/coins/${id}/history` : null
+export const coinsIdHistoryApi = (id: string) =>
+  id ? `${baseApi}/coins/${id}/history` : null;
 /**
  * Get historical data (name, price, market, stats) at a given date for a coin
  */
@@ -132,25 +144,30 @@ export const coinsIdHistory = async (options: {
   date: string;
   localization?: string;
 }) => {
-  return await fetcher(`${coinsIdHistoryApi(options.id)}?${qs.stringify(options)}`);
-}
-
+  return await fetcher(
+    `${coinsIdHistoryApi(options.id)}?${qs.stringify(options)}`,
+  );
+};
 
 export type ICoinsIdMarketChart = {
   id: string;
   vs_currency: string;
   days: string;
   interval?: string;
-}
-export const coinsIdMarketChartApi = (options: ICoinsIdMarketChart) => options.id ? `${baseApi}/coins/${options.id}/market_chart?${qs.stringify(options)}` : null
+};
+export const coinsIdMarketChartApi = (options: ICoinsIdMarketChart) =>
+  options.id
+    ? `${baseApi}/coins/${options.id}/market_chart?${qs.stringify(options)}`
+    : null;
 /**
  * Get historical market data include price, market cap, and 24h volume (granularity auto)
  */
 export const coinsIdMarketChart = async (options: ICoinsIdMarketChart) => {
   return await fetcher(`${coinsIdMarketChartApi(options)}`);
-}
+};
 
-export const coinsIdMarketChartRangeApi = (id: string) => id ? `${baseApi}/coins/${id}/market_chart/range` : null
+export const coinsIdMarketChartRangeApi = (id: string) =>
+  id ? `${baseApi}/coins/${id}/market_chart/range` : null;
 /**
  * Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto)
  */
@@ -160,10 +177,13 @@ export const coinsIdMarketChartRange = async (options: {
   from: string;
   to: string;
 }) => {
-  return await fetcher(`${coinsIdMarketChartRangeApi(options.id)}?${qs.stringify(options)}`);
-}
+  return await fetcher(
+    `${coinsIdMarketChartRangeApi(options.id)}?${qs.stringify(options)}`,
+  );
+};
 
-export const coinsIdOhlcApi = (id: string) => id ? `${baseApi}/coins/${id}/ohlc` : null
+export const coinsIdOhlcApi = (id: string) =>
+  id ? `${baseApi}/coins/${id}/ohlc` : null;
 /**
  * Get coin's OHLC
  */
@@ -172,8 +192,10 @@ export const coinsIdOhlc = async (options: {
   vs_currency: string;
   days: string;
 }) => {
-  return await fetcher(`${coinsIdOhlcApi(options.id)}?${qs.stringify(options)}`);
-}
+  return await fetcher(
+    `${coinsIdOhlcApi(options.id)}?${qs.stringify(options)}`,
+  );
+};
 
 /**
 ping

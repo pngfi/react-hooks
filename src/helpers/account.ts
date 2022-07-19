@@ -4,37 +4,42 @@ import type { Provider } from '@saberhq/solana-contrib';
 import {
   AccountLayout,
   u64,
-  Token as SPLToken, 
+  Token as SPLToken,
   TOKEN_PROGRAM_ID,
-  ASSOCIATED_TOKEN_PROGRAM_ID
+  ASSOCIATED_TOKEN_PROGRAM_ID,
 } from '@solana/spl-token';
-import { Buffer } from 'buffer'
+import { Buffer } from 'buffer';
 
-import { 
-  PublicKey, 
-  Keypair, 
+import {
+  PublicKey,
+  Keypair,
   Signer,
   SystemProgram,
   SYSVAR_RENT_PUBKEY,
-  TransactionInstruction
+  TransactionInstruction,
 } from '@solana/web3.js';
-import { Instruction, ResolvedTokenAddressInstruction } from '../types/instruction';
+import {
+  Instruction,
+  ResolvedTokenAddressInstruction,
+} from '../types/instruction';
 import { SYSTEM_PROGRAM_ID } from '../common/constant';
 
 /**
  * Layout with decode/encode types.
  */
- export type ITypedLayout<T> = Omit<Layout<T>, 'decode' | 'encode'> & {
+export type ITypedLayout<T> = Omit<Layout<T>, 'decode' | 'encode'> & {
   decode: (data: Buffer) => T;
   encode: (data: T, out: Buffer) => number;
 };
 
-export type IResolvedTokenAccountInstruction = { address: PublicKey } & Instruction;
+export type IResolvedTokenAccountInstruction = {
+  address: PublicKey;
+} & Instruction;
 
 /**
  * Layout for a TokenAccount.
  */
- export const TokenAccountLayout = AccountLayout as ITypedLayout<{
+export const TokenAccountLayout = AccountLayout as ITypedLayout<{
   mint: Buffer;
   owner: Buffer;
   amount: Buffer;
@@ -48,12 +53,11 @@ export type IResolvedTokenAccountInstruction = { address: PublicKey } & Instruct
   closeAuthority: Buffer;
 }>;
 
-
 export const createWSOLAccountInstructions = (
   owner: PublicKey,
   solMint: PublicKey,
   amountIn: u64,
-  rentExemptLamports: number
+  rentExemptLamports: number,
 ): ResolvedTokenAddressInstruction => {
   const tempAccount = new Keypair();
 
@@ -69,7 +73,7 @@ export const createWSOLAccountInstructions = (
     TOKEN_PROGRAM_ID,
     solMint,
     tempAccount.publicKey,
-    owner
+    owner,
   );
 
   const closeWSOLAccountInstruction = SPLToken.createCloseAccountInstruction(
@@ -77,7 +81,7 @@ export const createWSOLAccountInstructions = (
     tempAccount.publicKey,
     owner,
     owner,
-    []
+    [],
   );
 
   return {
@@ -89,8 +93,8 @@ export const createWSOLAccountInstructions = (
 };
 
 export const deserializeAccount = (
-  data: Buffer
-): Omit<AccountInfo, "address"> => {
+  data: Buffer,
+): Omit<AccountInfo, 'address'> => {
   const accountInfo = TokenAccountLayout.decode(data);
 
   const mint = new PublicKey(accountInfo.mint);
@@ -141,7 +145,7 @@ export const deserializeAccount = (
     isNative,
     closeAuthority,
   };
-}
+};
 
 export const createTokenAccount = async ({
   provider,
@@ -161,7 +165,7 @@ export const createTokenAccount = async ({
 }): Promise<IResolvedTokenAccountInstruction> => {
   // Allocate memory for the account
   const balanceNeeded = await SPLToken.getMinBalanceRentForExemptAccount(
-    provider.connection
+    provider.connection,
   );
 
   const tokenAccount = accountSigner.publicKey;
@@ -180,20 +184,19 @@ export const createTokenAccount = async ({
         TOKEN_PROGRAM_ID,
         mint,
         tokenAccount,
-        owner
+        owner,
       ),
     ],
     cleanupInstructions: [],
-    signers: [accountSigner]
-  }
-
-}
+    signers: [accountSigner],
+  };
+};
 
 export async function createTokenMint(
   provider: Provider,
   authority: PublicKey,
   mint: PublicKey,
-  decimals = 6
+  decimals = 6,
 ): Promise<Instruction> {
   const instructions = [
     SystemProgram.createAccount({
@@ -208,15 +211,15 @@ export async function createTokenMint(
       mint,
       decimals,
       authority,
-      null
+      null,
     ),
   ];
-  
+
   return {
     instructions,
     signers: [],
-    cleanupInstructions: []
-  }
+    cleanupInstructions: [],
+  };
 }
 
 export function createAssociatedTokenAccountInstruction(
@@ -277,31 +280,33 @@ export function createAssociatedTokenAccountInstruction(
 
 export const getTokenAccountInfo = async (
   provider: Provider,
-  tokenAccount: PublicKey
-): Promise<Omit<AccountInfo, "address"> | null> => {
-  const assetHolderInfo = await provider.connection.getAccountInfo(tokenAccount);
+  tokenAccount: PublicKey,
+): Promise<Omit<AccountInfo, 'address'> | null> => {
+  const assetHolderInfo = await provider.connection.getAccountInfo(
+    tokenAccount,
+  );
   return assetHolderInfo ? deserializeAccount(assetHolderInfo.data) : null;
-}
-
+};
 
 export const getTokenMintInfo = (
   provider: Provider,
-  tokenMint: PublicKey
+  tokenMint: PublicKey,
 ): Promise<MintInfo> => {
   const token = new SPLToken(
     provider.connection,
     tokenMint,
-    TOKEN_PROGRAM_ID, {} as any
+    TOKEN_PROGRAM_ID,
+    {} as any,
   );
 
   return token.getMintInfo();
-}
+};
 
 export function transferToken(
   source: PublicKey,
   destination: PublicKey,
   amount: u64,
-  payer: PublicKey
+  payer: PublicKey,
 ) {
   const instructions = [
     SPLToken.createTransferInstruction(
@@ -310,22 +315,22 @@ export function transferToken(
       destination,
       payer,
       [],
-      amount
-    )
+      amount,
+    ),
   ];
 
   return {
     instructions,
     signers: [],
-    cleanupInstructions: []
-  }
+    cleanupInstructions: [],
+  };
 }
 
 export const createApprovalInstruction = (
   ownerAddress: PublicKey,
   approveAmount: u64,
   tokenUserAddress: PublicKey,
-  userTransferAuthority?: Keypair
+  userTransferAuthority?: Keypair,
 ): { userTransferAuthority: Keypair } & Instruction => {
   userTransferAuthority = userTransferAuthority || new Keypair();
 
@@ -335,14 +340,14 @@ export const createApprovalInstruction = (
     userTransferAuthority.publicKey,
     ownerAddress,
     [],
-    approveAmount
+    approveAmount,
   );
 
   const revokeInstruction = SPLToken.createRevokeInstruction(
     TOKEN_PROGRAM_ID,
     tokenUserAddress,
     ownerAddress,
-    []
+    [],
   );
 
   return {

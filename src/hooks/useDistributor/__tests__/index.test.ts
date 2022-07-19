@@ -1,8 +1,8 @@
 // import { renderHook } from "@testing-library/react-hooks";
-import { useDistributors } from "../index";
+import { useDistributors } from '../index';
 
-describe("useDistributor tests", () => {
-  it("should be defined", async () => {
+describe('useDistributor tests', () => {
+  it('should be defined', async () => {
     expect(useDistributors).toBeDefined();
   });
 

@@ -1,4 +1,8 @@
-export declare type IApiCluster = "devnet" | 'stagingnet' | "testnet" | "mainnet-beta"
+export declare type IApiCluster =
+  | 'devnet'
+  | 'stagingnet'
+  | 'testnet'
+  | 'mainnet-beta';
 
 export * from './response';
 export * from './distributor';

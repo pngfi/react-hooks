@@ -1,8 +1,8 @@
 /**
  * global configs for @pngfi/react-hooks
- * 
+ *
  * @returns IPngfiProvider
- * 
+ *
  * @example
  * ```ts
  * const {

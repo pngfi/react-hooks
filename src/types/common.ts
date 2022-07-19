@@ -1,24 +1,24 @@
 export type IGlobalInfo = {
   walletName: string;
   slippage: number;
-}
+};
 
 export type IMessage = {
   duration?: number;
   doNotAutoRemove?: boolean;
   title: string;
   description: string;
-  status: 'success'|'error'|'info'|'loading';
+  status: 'success' | 'error' | 'info' | 'loading';
   link?: string;
-}
+};
 
 export type ITransaction = {
   hash: string;
-  status: 'success'|'error'|'loading';
+  status: 'success' | 'error' | 'loading';
   summary: string;
   addedTime: number;
   from: string;
-}
+};
 
 export type IFeeStructure = {
   tradeFeeNumerator: number;
@@ -27,4 +27,4 @@ export type IFeeStructure = {
   ownerTradeFeeDenominator: number;
   ownerWithdrawFeeNumerator: number;
   ownerWithdrawFeeDenominator: number;
-}
+};

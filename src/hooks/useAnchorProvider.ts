@@ -11,9 +11,9 @@ import { SOLANA_COMMITMENT } from '../common/constant';
 import { Connection } from '@solana/web3.js';
 
 export interface IAnchorProvider {
-  connection: Connection,
-  wallet: Wallet | null,
-  connected: boolean
+  connection: Connection;
+  wallet: Wallet | null;
+  connected: boolean;
 }
 
 /**
@@ -35,21 +35,22 @@ const provider = useAnchorProvider({
 export function useAnchorProvider({
   connection,
   wallet,
-  connected
+  connected,
 }: IAnchorProvider): Provider {
-  const provider = useMemo(() =>
-    wallet && connected ?
-      new SolanaAugmentedProvider(
-        SolanaProvider.init({
-          connection,
-          wallet: wallet.adapter as any,
-          opts: DEFAULT_PROVIDER_OPTIONS,
-        })
-      ) :
-      new SolanaReadonlyProvider(connection, {
-        commitment: SOLANA_COMMITMENT,
-      }),
-    [wallet, connected, connection]
+  const provider = useMemo(
+    () =>
+      wallet && connected
+        ? new SolanaAugmentedProvider(
+            SolanaProvider.init({
+              connection,
+              wallet: wallet.adapter as any,
+              opts: DEFAULT_PROVIDER_OPTIONS,
+            }),
+          )
+        : new SolanaReadonlyProvider(connection, {
+            commitment: SOLANA_COMMITMENT,
+          }),
+    [wallet, connected, connection],
   );
 
   return provider as Provider;

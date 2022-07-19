@@ -4,16 +4,22 @@ import { TokenSwapLayout, TokenSwap, Numberu64 } from '@solana/spl-token-swap';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
 import Decimal from 'decimal.js';
 
-import {
-  Token as SPLToken,
-  TOKEN_PROGRAM_ID,
-  u64
-} from '@solana/spl-token';
+import { Token as SPLToken, TOKEN_PROGRAM_ID, u64 } from '@solana/spl-token';
 import { CurveType, IPool, IToken } from '../types';
-import { PNG_TOKEN_SWAP_FEE_ACCOUNT_OWNER, PNG_TOKEN_SWAP_FEE_STRUCTURE, PNG_TOKEN_SWAP_ID, ZERO_U64, ONE_THOUSAND_U64 } from '../common/constant';
+import {
+  PNG_TOKEN_SWAP_FEE_ACCOUNT_OWNER,
+  PNG_TOKEN_SWAP_FEE_STRUCTURE,
+  PNG_TOKEN_SWAP_ID,
+  ZERO_U64,
+  ONE_THOUSAND_U64,
+} from '../common/constant';
 import { resolveOrCreateAssociatedTokenAddress } from '../helpers/ata';
 import { DecimalUtil, ZERO_DECIMAL } from '../helpers/decimal';
-import { createApprovalInstruction, createTokenAccount, createTokenMint } from '../helpers/account';
+import {
+  createApprovalInstruction,
+  createTokenAccount,
+  createTokenMint,
+} from '../helpers/account';
 import { createInitSwapInstruction } from '../helpers/swap';
 import { IDepositQuote, IWithdrawQuote } from '../types/quote';
 import { TransactionBuilder } from '../helpers/transactionBuilder';
@@ -37,11 +43,10 @@ export class Pool {
     inputTokenAmount: Decimal,
     outputTokenAmount: Decimal,
   ): Promise<{
-    address: PublicKey,
-    mint: PublicKey,
-    tx: TransactionEnvelope
+    address: PublicKey;
+    mint: PublicKey;
+    tx: TransactionEnvelope;
   }> {
-
     const swapAccount = Keypair.generate();
 
     const inputTokenMint = new PublicKey(inputToken.mint),
@@ -59,7 +64,7 @@ export class Pool {
         provider.connection,
         owner,
         inputTokenMint,
-        DecimalUtil.toU64(inputTokenAmount, inputToken.decimals)
+        DecimalUtil.toU64(inputTokenAmount, inputToken.decimals),
       );
 
     // If tokenB is SOL, this will create a new wSOL account with maxTokenBIn_U64
@@ -69,20 +74,22 @@ export class Pool {
         provider.connection,
         owner,
         new PublicKey(outputTokenMint),
-        DecimalUtil.toU64(outputTokenAmount, outputToken.decimals)
+        DecimalUtil.toU64(outputTokenAmount, outputToken.decimals),
       );
 
-    const { address: swapTokenAAccount, ...resolveTokenAAccountInstrucitons } = await createTokenAccount({
-      provider,
-      mint: inputTokenMint,
-      owner: authority
-    });
+    const { address: swapTokenAAccount, ...resolveTokenAAccountInstrucitons } =
+      await createTokenAccount({
+        provider,
+        mint: inputTokenMint,
+        owner: authority,
+      });
 
-    const { address: swapTokenBAccount, ...resolveTokenBAccountInstrucitons } = await createTokenAccount({
-      provider,
-      mint: outputTokenMint,
-      owner: authority
-    });
+    const { address: swapTokenBAccount, ...resolveTokenBAccountInstrucitons } =
+      await createTokenAccount({
+        provider,
+        mint: outputTokenMint,
+        owner: authority,
+      });
 
     const transferTokenAInstruction = SPLToken.createTransferInstruction(
       TOKEN_PROGRAM_ID,
@@ -90,7 +97,7 @@ export class Pool {
       swapTokenAAccount,
       owner,
       [],
-      DecimalUtil.toU64(inputTokenAmount, inputToken.decimals)
+      DecimalUtil.toU64(inputTokenAmount, inputToken.decimals),
     );
 
     const transferTokenBInstruction = SPLToken.createTransferInstruction(
@@ -99,7 +106,7 @@ export class Pool {
       swapTokenBAccount,
       owner,
       [],
-      DecimalUtil.toU64(outputTokenAmount, outputToken.decimals)
+      DecimalUtil.toU64(outputTokenAmount, outputToken.decimals),
     );
 
     const poolMintKP = Keypair.generate();
@@ -111,18 +118,19 @@ export class Pool {
       6, // pool token decimals
     );
 
-    const { address: feeAccount, ...resolveFeeAccountInstructions } = await createTokenAccount({
-      provider,
-      mint: poolMintKP.publicKey,
-      owner: PNG_TOKEN_SWAP_FEE_ACCOUNT_OWNER
-    });
+    const { address: feeAccount, ...resolveFeeAccountInstructions } =
+      await createTokenAccount({
+        provider,
+        mint: poolMintKP.publicKey,
+        owner: PNG_TOKEN_SWAP_FEE_ACCOUNT_OWNER,
+      });
 
     // If the user lacks the pool token account, create it
     const { address: userPoolTokenPublicKey, ...resolvePoolTokenInstructions } =
       await resolveOrCreateAssociatedTokenAddress(
         provider.connection,
         owner,
-        poolMintKP.publicKey
+        poolMintKP.publicKey,
       );
 
     const intializeInstruction = createInitSwapInstruction(
@@ -146,9 +154,10 @@ export class Pool {
       CurveType.ConstantProduct,
     );
 
-    const balanceNeeded = await provider.connection.getMinimumBalanceForRentExemption(
-      TokenSwapLayout.span
-    );
+    const balanceNeeded =
+      await provider.connection.getMinimumBalanceForRentExemption(
+        TokenSwapLayout.span,
+      );
 
     const createSwapAccountInstruction = SystemProgram.createAccount({
       fromPubkey: owner,
@@ -171,7 +180,7 @@ export class Pool {
         ...resolveTokenAAccountInstrucitons.signers,
         ...resolveTokenBAccountInstrucitons.signers,
         ...resolveFeeAccountInstructions.signers,
-      ]
+      ],
     ).confirm();
 
     const tx = new TransactionEnvelope(
@@ -191,26 +200,25 @@ export class Pool {
         ...resolveTokenBInstrucitons.signers,
         ...resolvePoolTokenInstructions.signers,
 
-        swapAccount
-      ]
+        swapAccount,
+      ],
     );
 
     return {
       address: swapAccount.publicKey,
       mint: poolMintKP.publicKey,
-      tx
-    }
+      tx,
+    };
   }
 
   public async getDepositQuote(
     maxTokenAIn: Decimal,
     maxTokenBIn: Decimal,
-    slippage = 1
+    slippage = 1,
   ): Promise<IDepositQuote> {
-
     const { tokenA, tokenB, lpSupply, poolTokenDecimals } = this.info;
 
-    const lpSupply_U64 = DecimalUtil.toU64(lpSupply, poolTokenDecimals)
+    const lpSupply_U64 = DecimalUtil.toU64(lpSupply, poolTokenDecimals);
     const maxTokenAIn_U64 = DecimalUtil.toU64(maxTokenAIn, tokenA.decimals);
     const maxTokenBIn_U64 = DecimalUtil.toU64(maxTokenBIn, tokenB.decimals);
 
@@ -235,7 +243,9 @@ export class Pool {
       .div(new u64(slippage).add(ONE_THOUSAND_U64));
 
     // Pick the smaller value of the two to calculate the minimum poolTokenAmount out
-    const minPoolTokenAmountOut_U64 = poolTokenAmountWithA.gt(poolTokenAmountWithB)
+    const minPoolTokenAmountOut_U64 = poolTokenAmountWithA.gt(
+      poolTokenAmountWithB,
+    )
       ? poolTokenAmountWithB
       : poolTokenAmountWithA;
 
@@ -250,16 +260,15 @@ export class Pool {
     owner: PublicKey,
     maxTokenAIn: Decimal,
     maxTokenBIn: Decimal,
-    minPoolTokenAmountOut: Decimal
+    minPoolTokenAmountOut: Decimal,
   ): Promise<TransactionEnvelope> {
-
     const { tokenA, tokenB, poolTokenDecimals } = this.info;
 
     const maxTokenAIn_U64 = DecimalUtil.toU64(maxTokenAIn, tokenA.decimals);
     const maxTokenBIn_U64 = DecimalUtil.toU64(maxTokenBIn, tokenB.decimals);
     const minPoolTokenAmountOut_U64 = DecimalUtil.toU64(
       minPoolTokenAmountOut,
-      poolTokenDecimals
+      poolTokenDecimals,
     );
 
     // If tokenA is SOL, this will create a new wSOL account with maxTokenAIn_U64
@@ -269,9 +278,9 @@ export class Pool {
         this.provider.connection,
         owner,
         new PublicKey(tokenA.mint),
-        maxTokenAIn_U64
+        maxTokenAIn_U64,
       );
-    
+
     // If tokenB is SOL, this will create a new wSOL account with maxTokenBIn_U64
     // Otherwise, get tokenB's associated token account
     const { address: userTokenBPublicKey, ...resolveTokenBInstrucitons } =
@@ -279,7 +288,7 @@ export class Pool {
         this.provider.connection,
         owner,
         new PublicKey(tokenB.mint),
-        maxTokenBIn_U64
+        maxTokenBIn_U64,
       );
 
     // If the user lacks the pool token account, create it
@@ -287,21 +296,18 @@ export class Pool {
       await resolveOrCreateAssociatedTokenAddress(
         this.provider.connection,
         owner,
-        this.info.poolTokenMint
+        this.info.poolTokenMint,
       );
 
     // Approve transfer of the tokens being deposited
-    const { userTransferAuthority, ...transferTokenAInstruction } = createApprovalInstruction(
-      owner,
-      maxTokenAIn_U64,
-      userTokenAPublicKey
-    );
+    const { userTransferAuthority, ...transferTokenAInstruction } =
+      createApprovalInstruction(owner, maxTokenAIn_U64, userTokenAPublicKey);
 
     const { ...transferTokenBInstruction } = createApprovalInstruction(
       owner,
       maxTokenBIn_U64,
       userTokenBPublicKey,
-      userTransferAuthority
+      userTransferAuthority,
     );
 
     const depositInstruction = TokenSwap.depositAllTokenTypesInstruction(
@@ -318,7 +324,7 @@ export class Pool {
       TOKEN_PROGRAM_ID,
       minPoolTokenAmountOut_U64,
       maxTokenAIn_U64,
-      maxTokenBIn_U64
+      maxTokenBIn_U64,
     );
 
     return new TransactionBuilder(this.provider as any)
@@ -330,9 +336,7 @@ export class Pool {
       .addInstruction({
         instructions: [depositInstruction],
         cleanupInstructions: [],
-        signers: [
-          userTransferAuthority
-        ]
+        signers: [userTransferAuthority],
       })
       .build();
   }
@@ -341,10 +345,10 @@ export class Pool {
     config: IPool,
     withdrawTokenAmount: Decimal,
     withdrawTokenMint: PublicKey,
-    slippage = 1
+    slippage = 1,
   ): IWithdrawQuote {
-
-    const { tokenA, tokenB, poolTokenMint, poolTokenDecimals, lpSupply } = config;
+    const { tokenA, tokenB, poolTokenMint, poolTokenDecimals, lpSupply } =
+      config;
 
     // withdrawTokenAmount needs represent amounts for one of the following: poolTokenAmount, tokenAAmount, or tokenBAmount
     // determine which token this amount represents, then calculate poolTokenIn_U64
@@ -352,12 +356,10 @@ export class Pool {
 
     const lpSupplyIn_U64 = DecimalUtil.toU64(lpSupply, poolTokenDecimals);
     if (withdrawTokenMint.equals(poolTokenMint)) {
-
       poolTokenIn_U64 = DecimalUtil.toU64(
         withdrawTokenAmount,
-        poolTokenDecimals
+        poolTokenDecimals,
       );
-
     } else if (
       withdrawTokenMint.equals(new PublicKey(tokenA.mint)) ||
       withdrawTokenMint.equals(new PublicKey(tokenB.mint))
@@ -366,7 +368,8 @@ export class Pool {
         ? tokenA
         : tokenB;
 
-      const totalAmount = token.mint === tokenA.mint ? tokenA.amount : tokenB.amount;
+      const totalAmount =
+        token.mint === tokenA.mint ? tokenA.amount : tokenB.amount;
 
       const numerator = withdrawTokenAmount;
       const denominator = DecimalUtil.fromU64(totalAmount, token.decimals);
@@ -375,7 +378,7 @@ export class Pool {
       poolTokenIn_U64 = DecimalUtil.toU64(poolTokenIn, poolTokenDecimals);
     } else {
       throw new Error(
-        `Unable to get withdraw quote with an invalid withdrawTokenMint ${withdrawTokenMint}`
+        `Unable to get withdraw quote with an invalid withdrawTokenMint ${withdrawTokenMint}`,
       );
     }
 
@@ -387,19 +390,17 @@ export class Pool {
       };
     }
 
-    const minTokenAOut =
-      poolTokenIn_U64
-        .mul(ONE_THOUSAND_U64)
-        .mul(tokenA.amount)
-        .div(lpSupplyIn_U64)
-        .div(new u64(slippage).add(ONE_THOUSAND_U64));
+    const minTokenAOut = poolTokenIn_U64
+      .mul(ONE_THOUSAND_U64)
+      .mul(tokenA.amount)
+      .div(lpSupplyIn_U64)
+      .div(new u64(slippage).add(ONE_THOUSAND_U64));
 
-    const minTokenBOut =
-      poolTokenIn_U64
-        .mul(ONE_THOUSAND_U64)
-        .mul(tokenB.amount)
-        .div(lpSupplyIn_U64)
-        .div(new u64(slippage).add(ONE_THOUSAND_U64));
+    const minTokenBOut = poolTokenIn_U64
+      .mul(ONE_THOUSAND_U64)
+      .mul(tokenB.amount)
+      .div(lpSupplyIn_U64)
+      .div(new u64(slippage).add(ONE_THOUSAND_U64));
 
     return {
       maxPoolTokenAmountIn: poolTokenIn_U64,
@@ -410,59 +411,66 @@ export class Pool {
 
   public async withdraw(
     owner: PublicKey,
-    poolTokenAmountIn: Decimal
+    poolTokenAmountIn: Decimal,
   ): Promise<TransactionEnvelope> {
-
-    const { tokenA, tokenB, feeStructure, poolTokenDecimals, lpSupply } = this.info;
+    const { tokenA, tokenB, feeStructure, poolTokenDecimals, lpSupply } =
+      this.info;
 
     let feeAmount = ZERO_DECIMAL;
     if (feeStructure.ownerWithdrawFeeNumerator !== 0) {
-      feeAmount = poolTokenAmountIn.mul(
-        new Decimal(feeStructure.ownerWithdrawFeeNumerator)
-      ).div(feeStructure.ownerWithdrawFeeDenominator);
+      feeAmount = poolTokenAmountIn
+        .mul(new Decimal(feeStructure.ownerWithdrawFeeNumerator))
+        .div(feeStructure.ownerWithdrawFeeDenominator);
     }
 
     const poolTokenAmount = poolTokenAmountIn.sub(feeAmount);
 
     const poolTokenAmount_U64 = DecimalUtil.toU64(
       poolTokenAmount,
-      poolTokenDecimals
+      poolTokenDecimals,
     );
 
     const lpSupplyIn_U64 = DecimalUtil.toU64(lpSupply, poolTokenDecimals);
 
-    const tokenAAmount =
-      tokenA.amount
-        .mul(poolTokenAmount_U64)
-        .div(lpSupplyIn_U64);
+    const tokenAAmount = tokenA.amount
+      .mul(poolTokenAmount_U64)
+      .div(lpSupplyIn_U64);
 
-    const tokenBAmount =
-      tokenB.amount
-        .mul(poolTokenAmount_U64)
-        .div(lpSupplyIn_U64);
+    const tokenBAmount = tokenB.amount
+      .mul(poolTokenAmount_U64)
+      .div(lpSupplyIn_U64);
 
     // Create a token account for tokenA, if necessary
     const { address: userTokenAPublicKey, ...resolveTokenAInstrucitons } =
-      await resolveOrCreateAssociatedTokenAddress(this.provider.connection, owner, new PublicKey(tokenA.mint));
+      await resolveOrCreateAssociatedTokenAddress(
+        this.provider.connection,
+        owner,
+        new PublicKey(tokenA.mint),
+      );
 
     // Create a token account for tokenB, if necessary
     const { address: userTokenBPublicKey, ...resolveTokenBInstrucitons } =
-      await resolveOrCreateAssociatedTokenAddress(this.provider.connection, owner, new PublicKey(tokenB.mint));
+      await resolveOrCreateAssociatedTokenAddress(
+        this.provider.connection,
+        owner,
+        new PublicKey(tokenB.mint),
+      );
 
     // Get user's poolToken token account
     const { address: userPoolTokenPublicKey, ...resolvePoolTokenInstructions } =
       await resolveOrCreateAssociatedTokenAddress(
         this.provider.connection,
         owner,
-        this.info.poolTokenMint
+        this.info.poolTokenMint,
       );
 
     // Approve transfer of pool token
-    const { userTransferAuthority, ...transferPoolTokenInstruction } = createApprovalInstruction(
-      owner,
-      poolTokenAmount_U64,
-      userPoolTokenPublicKey
-    );
+    const { userTransferAuthority, ...transferPoolTokenInstruction } =
+      createApprovalInstruction(
+        owner,
+        poolTokenAmount_U64,
+        userPoolTokenPublicKey,
+      );
 
     const withdrawInstruction = TokenSwap.withdrawAllTokenTypesInstruction(
       this.info.address,
@@ -479,7 +487,7 @@ export class Pool {
       TOKEN_PROGRAM_ID,
       new Numberu64(poolTokenAmount_U64.toString()),
       new Numberu64(tokenAAmount.toString()),
-      new Numberu64(tokenBAmount.toString())
+      new Numberu64(tokenBAmount.toString()),
     );
 
     return new TransactionBuilder(this.provider as any)
@@ -490,9 +498,8 @@ export class Pool {
       .addInstruction({
         instructions: [withdrawInstruction],
         cleanupInstructions: [],
-        signers: [userTransferAuthority]
+        signers: [userTransferAuthority],
       })
       .build();
   }
-
 }

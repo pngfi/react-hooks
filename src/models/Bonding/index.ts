@@ -10,7 +10,10 @@ import Decimal from 'decimal.js';
 import { IBondingConfig, IBonding, IPayoutInfo } from '../../types';
 import { PNG_BONDING_ID } from '../../common/constant';
 import { DecimalUtil } from '../../helpers/decimal';
-import { deriveAssociatedTokenAddress, resolveOrCreateAssociatedTokenAddress } from '../../helpers/ata';
+import {
+  deriveAssociatedTokenAddress,
+  resolveOrCreateAssociatedTokenAddress,
+} from '../../helpers/ata';
 
 const BONDING_SEED_PREFIX = 'bonding_authority';
 
@@ -20,7 +23,12 @@ export class Bonding {
   private program: Program;
   private owner: PublicKey;
 
-  constructor(provider: Provider, config: IBondingConfig, bondingInfo: IBonding, owner: PublicKey) {
+  constructor(
+    provider: Provider,
+    config: IBondingConfig,
+    bondingInfo: IBonding,
+    owner: PublicKey,
+  ) {
     this.config = config;
     this.bondingInfo = bondingInfo;
     this.program = new Program(idl as Idl, PNG_BONDING_ID, provider as any);
@@ -36,13 +44,22 @@ export class Bonding {
     return decay.gt(totalDebt) ? totalDebt : decay;
   }
 
-  private valueOf(amount: u64, payoutTokenDecimals: number, depositTokenDecimals: number): u64 {
+  private valueOf(
+    amount: u64,
+    payoutTokenDecimals: number,
+    depositTokenDecimals: number,
+  ): u64 {
     return amount
       .mul(new u64(Math.pow(10, payoutTokenDecimals)))
       .div(new u64(Math.pow(10, depositTokenDecimals)));
   }
 
-  private debtRatio(totalDebt: u64, tokenSupply: u64, payoutTokenDecimals: number, bondingInfo: IBonding): u64 {
+  private debtRatio(
+    totalDebt: u64,
+    tokenSupply: u64,
+    payoutTokenDecimals: number,
+    bondingInfo: IBonding,
+  ): u64 {
     return totalDebt
       .sub(this.decay(bondingInfo))
       .mul(new u64(Math.pow(10, payoutTokenDecimals)))
@@ -51,7 +68,12 @@ export class Bonding {
 
   private price(bondingInfo: IBonding, payoutTokenDecimals: number): u64 {
     const { totalDebt, bondingSupply, controlVariable, minPrice } = bondingInfo;
-    const debtRatio = this.debtRatio(totalDebt, bondingSupply, payoutTokenDecimals, bondingInfo);
+    const debtRatio = this.debtRatio(
+      totalDebt,
+      bondingSupply,
+      payoutTokenDecimals,
+      bondingInfo,
+    );
 
     const price = debtRatio
       .mul(new u64(controlVariable))
@@ -64,13 +86,12 @@ export class Bonding {
     bondingInfo: IBonding,
     payoutTokenDecimals: number,
     depositTokenDecimals: number,
-    amount = 1
+    amount = 1,
   ): IPayoutInfo {
-
     const valuation = this.valueOf(
       DecimalUtil.toU64(new Decimal(amount), depositTokenDecimals),
       payoutTokenDecimals,
-      depositTokenDecimals
+      depositTokenDecimals,
     );
 
     const price = this.price(bondingInfo, payoutTokenDecimals);
@@ -78,29 +99,32 @@ export class Bonding {
 
     return {
       payoutAmount: payout,
-      internalPrice: price
-    }
-
+      internalPrice: price,
+    };
   }
 
   async bond(amount: u64): Promise<TransactionEnvelope> {
-
     const owner = this.owner;
 
     const [bondingPda] = await PublicKey.findProgramAddress(
       [Buffer.from(BONDING_SEED_PREFIX), this.config.address.toBuffer()],
-      this.program.programId
+      this.program.programId,
     );
 
-    const userDepositHolder = await deriveAssociatedTokenAddress(owner, this.bondingInfo.depositTokenMint);
+    const userDepositHolder = await deriveAssociatedTokenAddress(
+      owner,
+      this.bondingInfo.depositTokenMint,
+    );
 
-    const { address: userPayoutHolder, ...resolveUserPayoutHolderInstrucitons } =
-      await resolveOrCreateAssociatedTokenAddress(
-        this.program.provider.connection,
-        owner,
-        this.bondingInfo.payoutTokenMint,
-        amount
-      );
+    const {
+      address: userPayoutHolder,
+      ...resolveUserPayoutHolderInstrucitons
+    } = await resolveOrCreateAssociatedTokenAddress(
+      this.program.provider.connection,
+      owner,
+      this.bondingInfo.payoutTokenMint,
+      amount,
+    );
 
     const bondInstruction = this.program.instruction.bond(
       amount,
@@ -117,21 +141,14 @@ export class Bonding {
           userPayoutHolder,
           owner,
           tokenProgram: TOKEN_PROGRAM_ID,
-        }
-      }
+        },
+      },
     );
 
     return new TransactionEnvelope(
       this.program.provider as any,
-      [
-        ...resolveUserPayoutHolderInstrucitons.instructions,
-        bondInstruction
-      ],
-      [
-        ...resolveUserPayoutHolderInstrucitons.signers
-      ]
+      [...resolveUserPayoutHolderInstrucitons.instructions, bondInstruction],
+      [...resolveUserPayoutHolderInstrucitons.signers],
     );
-
   }
-
 }

@@ -1,13 +1,13 @@
-import { PublicKey } from "@solana/web3.js";
-import Decimal from "decimal.js";
-import { u64 } from "@solana/spl-token";
-import { IToken } from "./token"
+import { PublicKey } from '@solana/web3.js';
+import Decimal from 'decimal.js';
+import { u64 } from '@solana/spl-token';
+import { IToken } from './token';
 
 export enum CurveType {
   ConstantProduct = 0,
   ConstantPrice = 1,
   Stable = 2,
-  Offset = 3
+  Offset = 3,
 }
 
 export declare type IPoolToken = IToken & {
@@ -43,6 +43,6 @@ export declare interface IPoolConfig {
   pair: string;
   addr: PublicKey;
   public?: boolean;
-};
+}
 
 export declare type IPoolRecords = Record<string, IPool>;

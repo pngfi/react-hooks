@@ -1,10 +1,7 @@
-import {
-  Signer,
-  TransactionInstruction,
-} from '@solana/web3.js';
+import { Signer, TransactionInstruction } from '@solana/web3.js';
 
 import type { Provider } from '@saberhq/solana-contrib';
-import { TransactionEnvelope, } from '@saberhq/solana-contrib';
+import { TransactionEnvelope } from '@saberhq/solana-contrib';
 import { Instruction } from '../types/instruction';
 
 export class TransactionBuilder {
@@ -22,22 +19,21 @@ export class TransactionBuilder {
   }
 
   build(): TransactionEnvelope {
-
     let instructions: TransactionInstruction[] = [];
     let cleanupInstructions: TransactionInstruction[] = [];
     let signers: Signer[] = [];
     this.instructions.forEach((curr) => {
-     
       instructions = instructions.concat(curr.instructions);
-      cleanupInstructions = cleanupInstructions.concat(curr.cleanupInstructions);
+      cleanupInstructions = cleanupInstructions.concat(
+        curr.cleanupInstructions,
+      );
       signers = signers.concat(curr.signers);
     });
 
     return new TransactionEnvelope(
       this.provider,
       instructions.concat(cleanupInstructions),
-      signers
+      signers,
     );
-
   }
 }

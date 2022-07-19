@@ -1,19 +1,19 @@
-import { renderHook, act } from "@testing-library/react-hooks";
-import { useCounter } from "../index";
+import { renderHook, act } from '@testing-library/react-hooks';
+import { useCounter } from '../index';
 
-describe("useCounter tests", () => {
-  it("should be defined", () => {
+describe('useCounter tests', () => {
+  it('should be defined', () => {
     expect(useCounter).toBeDefined();
   });
 
-  it("renders the hook correctly and checks types", () => {
+  it('renders the hook correctly and checks types', () => {
     const { result } = renderHook(() => useCounter());
     expect(result.current.count).toBe(0);
-    expect(typeof result.current.count).toBe("number");
-    expect(typeof result.current.increment).toBe("function");
+    expect(typeof result.current.count).toBe('number');
+    expect(typeof result.current.increment).toBe('function');
   });
 
-  it("should increment counter", () => {
+  it('should increment counter', () => {
     const { result } = renderHook(() => useCounter());
     act(() => {
       result.current.increment();
@@ -21,7 +21,7 @@ describe("useCounter tests", () => {
     expect(result.current.count).toBe(1);
   });
 
-  it("should increment counter from custom initial value", () => {
+  it('should increment counter from custom initial value', () => {
     const { result } = renderHook(() => useCounter(10));
     act(() => {
       result.current.increment();
@@ -29,7 +29,7 @@ describe("useCounter tests", () => {
     expect(result.current.count).toBe(11);
   });
 
-  it("should decrement counter from custom initial value", () => {
+  it('should decrement counter from custom initial value', () => {
     const { result } = renderHook(() => useCounter(20));
     act(() => {
       result.current.decrement();
@@ -37,7 +37,7 @@ describe("useCounter tests", () => {
     expect(result.current.count).toBe(19);
   });
 
-  it("should reset counter to updated initial value", () => {
+  it('should reset counter to updated initial value', () => {
     let initialValue = 0;
     const { result, rerender } = renderHook(() => useCounter(initialValue));
     initialValue = 10;

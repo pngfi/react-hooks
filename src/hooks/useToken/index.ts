@@ -9,11 +9,13 @@ export const useTokensPriceByMints = (mints: string[]) => {
   const { data = [] } = useFetcher(tokensApi);
   const mintTokens = data.filter((v: IToken) => mints.includes(v.mint));
   console.log('mintTokens', mintTokens);
-  return useFetcher(pricesApi(mintTokens.map((v: { symbol: string; }) => v.symbol)))
+  return useFetcher(
+    pricesApi(mintTokens.map((v: { symbol: string }) => v.symbol)),
+  );
 };
 
 export const useTokensPriceBySymbols = (symbols: string[]) => {
-  return useFetcher(pricesApi(symbols))
+  return useFetcher(pricesApi(symbols));
 };
 
 export const useTokensByMints = (mints: string[]) => {
@@ -34,14 +36,22 @@ export const useTokenByMint = (mint: string) => {
 export const useTokenBySymbol = (symbol: string) => {
   const { data = [] } = useFetcher(tokensApi);
   return data.find((v: IToken) => v.symbol === symbol);
-}
+};
 
 export const useTokenByDefault = (filter: Record<keyof IToken, any>) => {
   const { data = [] } = useFetcher(tokensApi);
-  return data.filter((val: IToken) => Object.keys(filter).map(v => filter[v] !== val[v]).every(v => v))[0];
-} 
+  return data.filter((val: IToken) =>
+    Object.keys(filter)
+      .map((v) => filter[v] !== val[v])
+      .every((v) => v),
+  )[0];
+};
 
 export const useToken = (filter: Record<keyof IToken, any>) => {
   const { data = [] } = useFetcher(tokensApi);
-  return data.find((val: IToken) => Object.keys(filter).map(v => filter[v] === val[v]).every(v => v));
-}
+  return data.find((val: IToken) =>
+    Object.keys(filter)
+      .map((v) => filter[v] === val[v])
+      .every((v) => v),
+  );
+};

@@ -23,4 +23,4 @@ export declare type IToken = {
   fetchPrice?: boolean;
   isLP?: boolean;
   display?: boolean;
-}
+};

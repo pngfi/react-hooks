@@ -1,11 +1,11 @@
 import Decimal from 'decimal.js';
 
-import { IToken } from "./token";
+import { IToken } from './token';
 
 export interface IMerkleRewardsResponse {
   distributor: string;
   dest: string;
-  proof: string[],
+  proof: string[];
   index: number;
   amount: string;
   unclaimed: string;
@@ -27,11 +27,11 @@ export interface IRewards {
   /**
    * address
    */
-  dest: string,  
+  dest: string;
   /**
    * DecimalUtil.toU64
    */
-  amount: string  
+  amount: string;
 }
 
 export interface IMerkleRewardsInsertRequest {
@@ -101,7 +101,7 @@ export declare interface IMerkleDistributorItem {
    * hex array
    */
   proof: string[];
-};
+}
 
 export declare type IDistributorResponse = {
   title: string;
@@ -120,9 +120,9 @@ export declare type IDistributorResponse = {
 
 export declare type IMerkleDistributorInfo = IMerkleDistributorItem & {
   token: IToken;
-  leftAmount?: Decimal,
-  rewardTime?: string,
-  nextRewardTime?: string,
-  isCommon?: boolean,
+  leftAmount?: Decimal;
+  rewardTime?: string;
+  nextRewardTime?: string;
+  isCommon?: boolean;
   amount: string;
 };

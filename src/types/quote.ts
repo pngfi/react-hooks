@@ -3,23 +3,23 @@ import { IFeeStructure } from './pool';
 import { IToken } from './token';
 
 export declare interface QuotePoolParams {
-    inputToken: IToken;
-    outputToken: IToken;
-    inputTokenCount: u64; // 
-    outputTokenCount: u64; // 
-    feeStructure: IFeeStructure;
-    slippage: number;
-    lamportsPerSignature: number;
-    amp?: u64; // 
-};
+  inputToken: IToken;
+  outputToken: IToken;
+  inputTokenCount: u64;
+  outputTokenCount: u64;
+  feeStructure: IFeeStructure;
+  slippage: number;
+  lamportsPerSignature: number;
+  amp?: u64;
+}
 
 export declare interface IDepositQuote {
-    minPoolTokenAmountOut: u64; // 
-    maxTokenAIn: u64; // 
-    maxTokenBIn: u64; // 
-};
+  minPoolTokenAmountOut: u64;
+  maxTokenAIn: u64;
+  maxTokenBIn: u64;
+}
 export declare interface IWithdrawQuote {
-    maxPoolTokenAmountIn: u64; // 
-    minTokenAOut: u64; // 
-    minTokenBOut: u64; // 
-};
+  maxPoolTokenAmountIn: u64;
+  minTokenAOut: u64;
+  minTokenBOut: u64;
+}

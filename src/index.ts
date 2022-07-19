@@ -31,9 +31,9 @@ export * from './types';
 /**
  * tools
  */
-export * from './helpers/account'
+export * from './helpers/account';
 
 /**
  * modles
  */
-export * from './models/index'
+export * from './models/index';
