@@ -33,13 +33,3 @@ declare interface IVestConfig {
   claimableHolder: PublicKey;
   claimableMint: PublicKey;
 }
-export declare interface IUserVestingInfo {
-  pubkey: PublicKey;
-  claimableAmount: u64; //
-  lastUpdatedTime: u64; //
-  lastVestTime: u64; //
-  owner: PublicKey;
-  vestConfig: PublicKey;
-  vestedHolder: PublicKey;
-  vestedHolderAmount: u64; //
-}
