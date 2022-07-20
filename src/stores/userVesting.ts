@@ -4,7 +4,9 @@ import { getUserVesting } from '../common/pngfi-api';
 import { IUserVestingInfo, toVestingInfo } from '../helpers/format';
 
 type VestingStore = {
-  userVestingInfo: IUserVestingInfo | null;
+  userVestingInfo: {
+    [key: string]: IUserVestingInfo;
+  } | null;
   fetchUserVestingInfo: (userKey: PublicKey, vestingKey: PublicKey) => void;
   resetUserVestingInfo: () => void;
 };

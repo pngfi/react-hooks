@@ -7,14 +7,14 @@ export type IRespngseStakingInfo = {
   sTokenMint: string;
   tokenHolder: string;
   tokenHolderAmount: string;
-  rebaseEpochDuration: string;
-  rebaseLastTime: string;
-  rebaseRateNumerator: string;
-  rebaseRateDenominator: string;
+  rebaseEpochDuration: number;
+  rebaseLastTime: number;
+  rebaseRateNumerator: number;
+  rebaseRateDenominator: number;
   rebaseRewardsAmount: string;
   rewardsHolder: string;
   rebaseSupply: string;
-  apy: string;
+  apy: number;
   rewardsPerDay: string;
   sTokenMintSupply: string;
   vestConfigInfo: {
