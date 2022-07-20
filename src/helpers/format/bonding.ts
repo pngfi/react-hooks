@@ -7,7 +7,7 @@ export type IBondingInfoWithInitSupply = IBonding & {
   depositAmount: u64;
   initSupply: u64;
   onlyBonding: boolean;
-  isHidden: boolean;
+  isHidden?: boolean;
 };
 
 export declare type IRespngseBondingInfo = {
@@ -32,7 +32,7 @@ export declare type IRespngseBondingInfo = {
     [key: string]: any;
   };
   onlyBonding: boolean;
-  isHidden: boolean;
+  isHidden?: boolean;
 };
 
 export function toBondingInfo(
