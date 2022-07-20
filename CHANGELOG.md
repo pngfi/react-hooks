@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.90](https://github.com/xweb3/react-hooks/compare/v0.3.89...v0.3.90) (2022-07-20)
+
+
+### Bug Fixes
+
+* 🐛 staking type info ([24b6121](https://github.com/xweb3/react-hooks/commit/24b612129426c624ec449486ed7bac35915d3298))
+
 ### [0.3.89](https://github.com/xweb3/react-hooks/compare/v0.3.88...v0.3.89) (2022-07-20)
 
 ### [0.3.88](https://github.com/xweb3/react-hooks/compare/v0.3.87...v0.3.88) (2022-07-20)
