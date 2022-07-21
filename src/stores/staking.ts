@@ -23,8 +23,7 @@ export const useStakingStore = create(
   (set: any): StakingStore => ({
     stakingList: [],
     fetchStakingList: async () => {
-      const res = await getStaking();
-      const data = res.data ?? [];
+      const { data = [] } = await getStaking();
       const stakingList = data.map((item: any) => toStakingInfo(item));
 
       if (stakingList.length) {

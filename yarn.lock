@@ -1597,10 +1597,10 @@
     bn.js "^5.1.2"
     buffer-layout "^1.2.0"
 
-"@raydium-io/raydium-sdk@^1.1.0-beta.5":
-  version "1.1.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@raydium-io/raydium-sdk/-/raydium-sdk-1.1.0-beta.5.tgz#7cf688d155dd92504fd2dcad5740b50ccfa432e4"
-  integrity sha512-kOE2OwV1fCsFmWR8oO9pT6fLOvhBWPvOn8E33/buDaSmruy10Uj+XysO+IHRGKFRZcruFOY3DUh1vJuZN7dLIg==
+"@raydium-io/raydium-sdk@^1.1.0-beta.6":
+  version "1.1.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@raydium-io/raydium-sdk/-/raydium-sdk-1.1.0-beta.6.tgz#653b9b37b04dc676a35e4461e542987000bc811a"
+  integrity sha512-esrmrSleSAWa2WyXX9w89UYOIkt7OdMaDKKJI/hsYbCA94tNB1sL4EwVjDD6MVIMpxpGk4H+qZiZBRsA40HjpQ==
   dependencies:
     "@colors/colors" "^1.5.0"
     "@solana/buffer-layout" "^4.0.0"
@@ -2687,6 +2687,11 @@ bigint-buffer@^1.1.5:
   integrity sha512-trfYco6AoZ+rKhKnxA0hgX0HAbVP/s808/EuDSe2JDzUnCp/xAsli35Orvk67UrTEcwuxZqYZDmfA2RXJgxVvA==
   dependencies:
     bindings "^1.3.0"
+
+bignumber.js@^9.0.2:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.0.2.tgz#71c6c6bed38de64e24a65ebe16cfcf23ae693673"
+  integrity sha512-GAcQvbpsM0pUb0zw1EI0KhQEZ+lRwR5fYaAp3vPOYuP7aDvGy6cVN6XHLauvF8SOga2y0dcLcjt3iQDTSEliyw==
 
 binary-extensions@^2.0.0:
   version "2.2.0"

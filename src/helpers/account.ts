@@ -17,6 +17,8 @@ import {
   SystemProgram,
   SYSVAR_RENT_PUBKEY,
   TransactionInstruction,
+  Connection,
+  Transaction,
 } from '@solana/web3.js';
 import {
   Instruction,
@@ -92,10 +94,10 @@ export const createWSOLAccountInstructions = (
   };
 };
 
-export const deserializeAccount = (
+export const deserializeTokenAccount = (
   data: Buffer,
 ): Omit<AccountInfo, 'address'> => {
-  const accountInfo = TokenAccountLayout.decode(data);
+  const accountInfo = AccountLayout.decode(data);
 
   const mint = new PublicKey(accountInfo.mint);
   const owner = new PublicKey(accountInfo.owner);
@@ -285,7 +287,7 @@ export const getTokenAccountInfo = async (
   const assetHolderInfo = await provider.connection.getAccountInfo(
     tokenAccount,
   );
-  return assetHolderInfo ? deserializeAccount(assetHolderInfo.data) : null;
+  return assetHolderInfo ? deserializeTokenAccount(assetHolderInfo.data) : null;
 };
 
 export const getTokenMintInfo = (
@@ -356,4 +358,16 @@ export const createApprovalInstruction = (
     cleanupInstructions: [revokeInstruction],
     signers: [],
   };
+};
+
+export const simulateTransaction = (
+  connection: Connection,
+  feePayer: PublicKey,
+  instructions: TransactionInstruction[],
+  accounts?: PublicKey[],
+  signers?: Signer[],
+) => {
+  const transaction = new Transaction({ feePayer });
+  transaction.add(...instructions);
+  return connection.simulateTransaction(transaction, signers, accounts);
 };

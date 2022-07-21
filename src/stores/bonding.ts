@@ -24,8 +24,7 @@ export const useBondingStore = create(
   (set: any): BondingStore => ({
     bondingList: [],
     fetchBondingList: async () => {
-      const res = await getBonding();
-      const data = res.data ?? [];
+      const { data = [] } = await getBonding();
       const bondingList = data.map((item: any) => toBondingInfo(item));
 
       set({ bondingList });

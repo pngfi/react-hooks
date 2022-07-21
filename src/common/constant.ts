@@ -1,6 +1,14 @@
 import { u64 } from '@solana/spl-token';
-import { PublicKey } from '@solana/web3.js';
+import { Cluster, PublicKey } from '@solana/web3.js';
 import { IFeeStructure } from '../types';
+
+export const solanaCluster = (): Cluster => {
+  const cluster =
+    typeof window !== 'undefined'
+      ? window.localStorage.getItem('cluster')
+      : 'mainnet-beta';
+  return cluster as Cluster;
+};
 
 export const SOLANA_COMMITMENT = 'processed';
 

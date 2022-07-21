@@ -30,8 +30,11 @@ export const useUserVestingStore = create(
     fetchUserVestingInfo: async (userKey, vestingKey) => {
       const vestingKeyStr = vestingKey.toString();
 
-      const res = await getUserVesting(userKey.toBase58(), vestingKeyStr);
-      const vestingInfo = toVestingInfo(res.data);
+      const { data = {} } = await getUserVesting(
+        userKey.toBase58(),
+        vestingKeyStr,
+      );
+      const vestingInfo = toVestingInfo(data);
 
       const oldInfo = get().userVestingInfo;
 

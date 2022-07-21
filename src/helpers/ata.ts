@@ -11,7 +11,7 @@ import {
 } from '../types/instruction';
 import { SOL_TOKEN_MINT } from '../common/constant';
 import {
-  deserializeAccount,
+  deserializeTokenAccount,
   createAssociatedTokenAccountInstruction,
   createWSOLAccountInstructions,
 } from './account';
@@ -57,7 +57,7 @@ export async function resolveOrCreateAssociatedTokenAddress(
     let tokenAccountInfo: any = await connection.getAccountInfo(derivedAddress);
 
     if (tokenAccountInfo) {
-      tokenAccountInfo = deserializeAccount(tokenAccountInfo.data);
+      tokenAccountInfo = deserializeTokenAccount(tokenAccountInfo.data);
     }
 
     if (!tokenAccountInfo) {

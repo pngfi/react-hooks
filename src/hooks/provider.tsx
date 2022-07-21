@@ -61,12 +61,11 @@ export const PngfiProvider = ({
   },
 }: IPngfiProvider) => {
   if (typeof window !== 'undefined') {
-    window.localStorage.setItem('pngfiApi', (pngfiApi || '') as string);
-    window.localStorage.setItem(
-      'distributorApi',
-      (distributorApi || '') as string,
-    );
-    window.localStorage.setItem('rpcpoolApi', (rpcpoolApi || '') as string);
+    cluster && window.localStorage.setItem('cluster', cluster);
+    pngfiApi && window.localStorage.setItem('pngfiApi', pngfiApi || '');
+    distributorApi &&
+      window.localStorage.setItem('distributorApi', distributorApi || '');
+    rpcpoolApi && window.localStorage.setItem('rpcpoolApi', rpcpoolApi || '');
   }
 
   return (

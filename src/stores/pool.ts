@@ -28,9 +28,7 @@ export const usePoolStore = create(
       set({ pools });
     },
     fetchPoolList: async () => {
-      const res = await getPools();
-
-      const data = res.data ?? [];
+      const { data = [] } = await getPools();
       const poolsInfo = data.map((item: any) => toPoolInfo(item));
 
       const pools = poolsInfo.reduce(
