@@ -14,17 +14,15 @@ import {
 export class Rewards {
   public rewardsInfo: any;
   private program: Program;
-  private owner: IPublicKey;
 
-  constructor(provider: Provider, rewardsInfo: any, owner: IPublicKey) {
+  constructor(provider: Provider, rewardsInfo: any) {
     this.rewardsInfo = rewardsInfo;
     this.program = new Program(idl as Idl, BUD_REWARD_ID, provider as any);
-    this.owner = owner;
   }
 
   async getClaimStatusInfo() {
     const { distributor } = this.rewardsInfo;
-    const owner = this.owner;
+    const owner = this.program.provider.publicKey as IPublicKey;
 
     const [claimStatus] = await PublicKey.findProgramAddress(
       [
@@ -48,7 +46,7 @@ export class Rewards {
 
   async claim(): Promise<TransactionEnvelope> {
     const { distributor, amount, index, proof } = this.rewardsInfo;
-    // const owner = this.program.provider.wallet?.publicKey;
+    const owner = this.program.provider.publicKey as PublicKey;
 
     const distributorAcc = await this.program.account.merkleDistributor.fetch(
       new PublicKey(distributor),
@@ -58,7 +56,7 @@ export class Rewards {
       [
         Buffer.from('ClaimStatus'),
         new PublicKey(distributor).toBuffer(),
-        this.owner.toBuffer(),
+        owner.toBuffer(),
       ],
       this.program.programId,
     );
@@ -70,7 +68,7 @@ export class Rewards {
     const { address: userHolder, ...resolveUserHolderInstrucitons } =
       await resolveOrCreateAssociatedTokenAddress(
         this.program.provider.connection,
-        this.owner,
+        owner,
         distributorAcc.mint as PublicKey,
       );
 
@@ -85,8 +83,8 @@ export class Rewards {
           claimStatus,
           from: distributorHolder,
           to: userHolder,
-          claimant: this.owner,
-          payer: this.owner,
+          claimant: owner,
+          payer: owner,
           systemProgram: SystemProgram.programId,
           tokenProgram: TOKEN_PROGRAM_ID,
         },

@@ -23,18 +23,15 @@ export class Bonding {
   public config: IBondingConfig;
   public bondingInfo: IBonding;
   private program: Program;
-  private owner: IPublicKey;
 
   constructor(
     provider: Provider,
     config: IBondingConfig,
-    bondingInfo: IBonding,
-    owner: IPublicKey,
+    bondingInfo: IBonding
   ) {
     this.config = config;
     this.bondingInfo = bondingInfo;
     this.program = new Program(idl as Idl, PNG_BONDING_ID, provider as any);
-    this.owner = owner;
   }
 
   private decay(bondingInfo: IBonding): u64 {
@@ -106,7 +103,7 @@ export class Bonding {
   }
 
   async bond(amount: u64): Promise<TransactionEnvelope> {
-    const owner = this.owner;
+    const owner = this.program.provider.publicKey as IPublicKey;
 
     const [bondingPda] = await PublicKey.findProgramAddress(
       [Buffer.from(BONDING_SEED_PREFIX), this.config.address.toBuffer()],

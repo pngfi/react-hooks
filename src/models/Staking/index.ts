@@ -44,14 +44,8 @@ export class Staking {
   private program: Program;
   private vestingProgram: Program;
   private stakingInfo: any;
-  private owner: IPublicKey;
 
-  constructor(
-    provider: Provider,
-    config: IStakingConfig,
-    stakingInfo: any,
-    owner: IPublicKey,
-  ) {
+  constructor(provider: Provider, config: IStakingConfig, stakingInfo: any) {
     this.config = config;
     this.program = new Program(idl as Idl, PNG_STAKING_ID, provider as any);
     this.vestingProgram = new Program(
@@ -60,11 +54,10 @@ export class Staking {
       provider as any,
     );
     this.stakingInfo = stakingInfo;
-    this.owner = owner;
   }
 
   async toVToken(amount: u64): Promise<TransactionEnvelope> {
-    const owner = this.owner;
+    const owner = this.program.provider.publicKey as PublicKey;
     const vestConfigInfo = this.stakingInfo.vestConfigInfo;
 
     const [vcSigner] = await PublicKey.findProgramAddress(
@@ -114,7 +107,7 @@ export class Staking {
     userVestingInfo: any,
     vestMint: IPublicKey,
   ): Promise<TransactionEnvelope> {
-    const owner = this.owner;
+    const owner = this.program.provider.publicKey as PublicKey;
 
     const instructions = [];
 
@@ -203,7 +196,7 @@ export class Staking {
       this.program.programId,
     );
 
-    const owner = this.owner;
+    const owner = this.program.provider.publicKey as PublicKey;
 
     const stakedHolder = await deriveAssociatedTokenAddress(
       stakingPda,
@@ -248,7 +241,7 @@ export class Staking {
       this.program.programId,
     );
 
-    const owner = this.owner;
+    const owner = this.program.provider.publicKey as PublicKey;
 
     const tokenHolder = await deriveAssociatedTokenAddress(
       stakingPda,
@@ -295,7 +288,7 @@ export class Staking {
       this.vestingProgram.programId,
     );
 
-    const owner = this.owner;
+    const owner = this.program.provider.publicKey as PublicKey;
 
     const vestConfigInfo = this.stakingInfo.vestConfigInfo;
 
@@ -342,7 +335,7 @@ export class Staking {
       this.program.programId,
     );
 
-    const owner = this.owner;
+    const owner = this.program.provider.publicKey as PublicKey;
 
     const [stakedHolder, userSTokenHolder] = await Promise.all([
       deriveAssociatedTokenAddress(stakingPda, this.stakingInfo.tokenMint),
@@ -381,7 +374,7 @@ export class Staking {
     vTokenMint: IPublicKey,
     userVestingInfo: any,
   ): Promise<TransactionEnvelope> {
-    const owner = this.owner;
+    const owner = this.program.provider.publicKey as PublicKey;
     const userVestingAddress = userVestingInfo.pubkey;
 
     const [vcSigner] = await PublicKey.findProgramAddress(

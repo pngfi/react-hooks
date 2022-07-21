@@ -390,8 +390,7 @@ export const useZappingStore = create<ZappingStore>((_set, get) => ({
             address: bondingInfo.pubkey,
             vestConfig: bondingInfo.vestConfigInfo.pubkey,
           } as any,
-          bondingInfo,
-          bondingInfo.pubkey,
+          bondingInfo
         );
         const [bondTx, vestAll]: TransactionEnvelope[] = await Promise.all<any>(
           [
@@ -533,7 +532,6 @@ export const useZappingStore = create<ZappingStore>((_set, get) => ({
             vestConfig: bondingInfo.vestConfigInfo.pubkey,
           } as any,
           bondingInfo,
-          bondingInfo.pubkey,
         );
         const [bondTx, vestAll]: TransactionEnvelope[] = await Promise.all<any>(
           [
