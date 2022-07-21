@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.98](https://github.com/xweb3/react-hooks/compare/v0.3.97...v0.3.98) (2022-07-21)
+
+
+### Bug Fixes
+
+* 🐛 @solana/spl-token-swap import ([5e1b185](https://github.com/xweb3/react-hooks/commit/5e1b1856fbc04b59bd2ace971b60066d95df370d))
+
 ### [0.3.97](https://github.com/xweb3/react-hooks/compare/v0.3.96...v0.3.97) (2022-07-21)
 
 ### [0.3.96](https://github.com/xweb3/react-hooks/compare/v0.3.95...v0.3.96) (2022-07-21)
