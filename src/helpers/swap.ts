@@ -1,6 +1,8 @@
 import { Keypair, PublicKey, TransactionInstruction } from '@solana/web3.js';
 import * as BufferLayout from '@solana/buffer-layout';
-import { Numberu64 } from '@solana/spl-token-swap';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { Numberu64 } = require('@solana/spl-token-swap');
+// import { Numberu64 } from '@solana/spl-token-swap';
 
 export const createInitSwapInstruction = (
   tokenSwapAccount: Keypair,
@@ -21,7 +23,7 @@ export const createInitSwapInstruction = (
   hostFeeNumerator: number,
   hostFeeDenominator: number,
   curveType: number,
-  curveParameters: Numberu64 = new Numberu64(0),
+  curveParameters: typeof Numberu64 = new Numberu64(0),
 ): TransactionInstruction => {
   const keys = [
     { pubkey: tokenSwapAccount.publicKey, isSigner: false, isWritable: true },

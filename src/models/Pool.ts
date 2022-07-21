@@ -1,6 +1,13 @@
 import type { Provider } from '@saberhq/solana-contrib';
 import { PublicKey, Keypair, SystemProgram } from '@solana/web3.js';
-import { TokenSwapLayout, TokenSwap, Numberu64 } from '@solana/spl-token-swap';
+
+const {
+  TokenSwapLayout,
+  TokenSwap,
+  Numberu64,
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token-swap');
+// import { TokenSwapLayout, TokenSwap, Numberu64 } from '@solana/spl-token-swap';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
 import Decimal from 'decimal.js';
 
