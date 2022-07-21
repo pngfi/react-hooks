@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.102](https://github.com/xweb3/react-hooks/compare/v0.3.101...v0.3.102) (2022-07-21)
+
+
+### Features
+
+* 🎸 add Pool class ([75258d7](https://github.com/xweb3/react-hooks/commit/75258d76404a7187b32370de58b10963a8cfc2b8))
+
 ### [0.3.101](https://github.com/xweb3/react-hooks/compare/v0.3.100...v0.3.101) (2022-07-21)
 
 
