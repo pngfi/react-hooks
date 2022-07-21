@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.93](https://github.com/xweb3/react-hooks/compare/v0.3.92...v0.3.93) (2022-07-21)
+
+
+### Features
+
+* 🎸 add other stores ([dfbb225](https://github.com/xweb3/react-hooks/commit/dfbb225595f53c30f7292ab42a39b77c8e9b3e84))
+
 ### [0.3.92](https://github.com/xweb3/react-hooks/compare/v0.3.91...v0.3.92) (2022-07-21)
 
 
