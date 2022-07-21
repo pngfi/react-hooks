@@ -40,7 +40,7 @@ export declare interface IBonding {
 }
 
 export type IBondingInfoWithTokens = IBonding & {
-  originMint: string;
+  originMint?: string;
   depositToken: IToken;
   depositTokenPrice: number;
   payoutToken: IToken;
