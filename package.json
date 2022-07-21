@@ -1,6 +1,6 @@
 {
   "name": "@xweb3/react-hooks",
-  "version": "0.3.98",
+  "version": "0.3.99",
   "description": "react hooks for xweb3.",
   "types": "dist/index.d.ts",
   "main": "./dist/index.js",
