@@ -1,5 +1,5 @@
 import create from 'zustand';
-import { PublicKey } from '@solana/web3.js';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { getUserVesting } from '../common/pngfi-api';
 import { IUserVestingInfo, toVestingInfo } from '../helpers/format';
 
@@ -7,7 +7,7 @@ type VestingStore = {
   userVestingInfo: {
     [key: string]: IUserVestingInfo;
   } | null;
-  fetchUserVestingInfo: (userKey: PublicKey, vestingKey: PublicKey) => void;
+  fetchUserVestingInfo: (userKey: IPublicKey, vestingKey: IPublicKey) => void;
   resetUserVestingInfo: () => void;
 };
 

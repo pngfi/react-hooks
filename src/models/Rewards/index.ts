@@ -1,4 +1,6 @@
 import { PublicKey, SystemProgram } from '@solana/web3.js';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
+import { Buffer } from 'buffer';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { BN, Idl, Program, Provider } from '@project-serum/anchor';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
@@ -12,9 +14,9 @@ import {
 export class Rewards {
   public rewardsInfo: any;
   private program: Program;
-  private owner: PublicKey;
+  private owner: IPublicKey;
 
-  constructor(provider: Provider, rewardsInfo: any, owner: PublicKey) {
+  constructor(provider: Provider, rewardsInfo: any, owner: IPublicKey) {
     this.rewardsInfo = rewardsInfo;
     this.program = new Program(idl as Idl, BUD_REWARD_ID, provider as any);
     this.owner = owner;

@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { getAssociatedTokenAddress } from '@project-serum/associated-token';
 import { Idl, Program, BN } from '@project-serum/anchor';
 import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
@@ -47,20 +49,20 @@ export type MerkleDistributorInfo = MerkleDistributorItem & {
 };
 
 type RewardsStore = {
-  fetchUnclaimed: (owner: PublicKey, tokens: any[]) => Promise<void>;
+  fetchUnclaimed: (owner: IPublicKey, tokens: any[]) => Promise<void>;
   getClaimStatus: (
     provider: Provider,
-    owner: PublicKey,
+    owner: IPublicKey,
     info: any,
   ) => Promise<any>;
   claimCommon: (
     provider: Provider,
-    owner: PublicKey,
+    owner: IPublicKey,
     info: any,
   ) => Promise<any>;
   claimOne: (
     provider: Provider,
-    owner: PublicKey,
+    owner: IPublicKey,
     info: MerkleDistributorInfo,
   ) => Promise<TransactionEnvelope>;
 };

@@ -1,11 +1,12 @@
 import type { Provider } from '@saberhq/solana-contrib';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { PublicKey, Keypair, SystemProgram } from '@solana/web3.js';
 
 const {
   TokenSwapLayout,
   TokenSwap,
   Numberu64,
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require('@solana/spl-token-swap');
 // import { TokenSwapLayout, TokenSwap, Numberu64 } from '@solana/spl-token-swap';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
@@ -43,15 +44,15 @@ export class Pool {
   // Create a Pool
   static async createPool(
     provider: Provider,
-    owner: PublicKey,
+    owner: IPublicKey,
     tradeFee: number,
     inputToken: IToken,
     outputToken: IToken,
     inputTokenAmount: Decimal,
     outputTokenAmount: Decimal,
   ): Promise<{
-    address: PublicKey;
-    mint: PublicKey;
+    address: any;
+    mint: any;
     tx: TransactionEnvelope;
   }> {
     const swapAccount = Keypair.generate();
@@ -264,7 +265,7 @@ export class Pool {
   }
 
   public async deposit(
-    owner: PublicKey,
+    owner: IPublicKey,
     maxTokenAIn: Decimal,
     maxTokenBIn: Decimal,
     minPoolTokenAmountOut: Decimal,
@@ -351,7 +352,7 @@ export class Pool {
   static computeWithdrawQuote(
     config: IPool,
     withdrawTokenAmount: Decimal,
-    withdrawTokenMint: PublicKey,
+    withdrawTokenMint: IPublicKey,
     slippage = 1,
   ): IWithdrawQuote {
     const { tokenA, tokenB, poolTokenMint, poolTokenDecimals, lpSupply } =
@@ -417,7 +418,7 @@ export class Pool {
   }
 
   public async withdraw(
-    owner: PublicKey,
+    owner: IPublicKey,
     poolTokenAmountIn: Decimal,
   ): Promise<TransactionEnvelope> {
     const { tokenA, tokenB, feeStructure, poolTokenDecimals, lpSupply } =

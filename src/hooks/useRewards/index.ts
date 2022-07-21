@@ -3,6 +3,7 @@ import Decimal from 'decimal.js';
 import { Idl, Program, BN } from '@project-serum/anchor';
 import { Provider, TransactionEnvelope } from '@saberhq/solana-contrib';
 import { Buffer } from 'buffer';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import {
   Keypair,
   PublicKey,
@@ -62,7 +63,7 @@ export interface IRewardsResponse {
    */
   claimRewards: (
     provider: Provider,
-    owner: PublicKey,
+    owner: IPublicKey,
     info: IRewardsInfo,
   ) => Promise<TransactionEnvelope>;
 
@@ -114,13 +115,13 @@ export interface IRewardsResponse {
   insertDistributorMerkleRewards: (
     options: IMerkleRewardsInsertRequest,
   ) => Promise<IMerkleRewardsInsertResponse>;
-  // claimOne: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
-  // claimCommon: (provider: Provider, owner: PublicKey, info: IRewardsInfo) => Promise<TransactionEnvelope>
+  // claimOne: (provider: Provider, owner, info: IRewardsInfo) => Promise<TransactionEnvelope>
+  // claimCommon: (provider: Provider, owner, info: IRewardsInfo) => Promise<TransactionEnvelope>
 }
 
 const claimCommon = async (
   provider: Provider,
-  owner: PublicKey,
+  owner: IPublicKey,
   info: IRewardsInfo,
 ): Promise<TransactionEnvelope> => {
   const { proof, amount, index, distributor, mint } = info;
@@ -179,7 +180,7 @@ const claimCommon = async (
 
 const claimOne = async (
   provider: Provider,
-  owner: PublicKey,
+  owner: IPublicKey,
   info: IRewardsInfo,
 ): Promise<TransactionEnvelope> => {
   const txBuilder = new TransactionBuilder(provider);
@@ -223,7 +224,7 @@ const claimOne = async (
 
 const claimRewards = async (
   provider: Provider,
-  owner: PublicKey,
+  owner: IPublicKey,
   info: IRewardsInfo,
 ): Promise<TransactionEnvelope> => {
   if (info.createdAt) {
@@ -245,7 +246,7 @@ const insertDistributorMerkleRewards = async (
 export interface IInsertDistributor {
   provider: Provider;
   base?: string;
-  adminAuth: PublicKey;
+  adminAuth: IPublicKey;
   data: {
     title: string;
     token: IToken;

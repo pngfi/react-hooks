@@ -1,4 +1,6 @@
 import type { Provider } from '@saberhq/solana-contrib';
+import { Buffer } from 'buffer';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 
 import {
   u64,
@@ -42,13 +44,13 @@ export class Staking {
   private program: Program;
   private vestingProgram: Program;
   private stakingInfo: any;
-  private owner: PublicKey;
+  private owner: IPublicKey;
 
   constructor(
     provider: Provider,
     config: IStakingConfig,
     stakingInfo: any,
-    owner: PublicKey,
+    owner: IPublicKey,
   ) {
     this.config = config;
     this.program = new Program(idl as Idl, PNG_STAKING_ID, provider as any);
@@ -110,7 +112,7 @@ export class Staking {
 
   async vestAll(
     userVestingInfo: any,
-    vestMint: PublicKey,
+    vestMint: IPublicKey,
   ): Promise<TransactionEnvelope> {
     const owner = this.owner;
 
@@ -375,8 +377,8 @@ export class Staking {
   }
 
   async claimVestedToken(
-    payoutTokenMint: PublicKey,
-    vTokenMint: PublicKey,
+    payoutTokenMint: IPublicKey,
+    vTokenMint: IPublicKey,
     userVestingInfo: any,
   ): Promise<TransactionEnvelope> {
     const owner = this.owner;

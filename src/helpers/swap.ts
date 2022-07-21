@@ -1,19 +1,20 @@
-import { Keypair, PublicKey, TransactionInstruction } from '@solana/web3.js';
+import { Keypair, TransactionInstruction } from '@solana/web3.js';
 import * as BufferLayout from '@solana/buffer-layout';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { Numberu64 } = require('@solana/spl-token-swap');
 // import { Numberu64 } from '@solana/spl-token-swap';
 
 export const createInitSwapInstruction = (
   tokenSwapAccount: Keypair,
-  authority: PublicKey,
-  tokenAccountA: PublicKey,
-  tokenAccountB: PublicKey,
-  tokenPool: PublicKey,
-  feeAccount: PublicKey,
-  tokenAccountPool: PublicKey,
-  tokenProgramId: PublicKey,
-  swapProgramId: PublicKey,
+  authority: IPublicKey,
+  tokenAccountA: IPublicKey,
+  tokenAccountB: IPublicKey,
+  tokenPool: IPublicKey,
+  feeAccount: IPublicKey,
+  tokenAccountPool: IPublicKey,
+  tokenProgramId: IPublicKey,
+  swapProgramId: IPublicKey,
   tradeFeeNumerator: number,
   tradeFeeDenominator: number,
   ownerTradeFeeNumerator: number,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
-import { Cluster, PublicKey } from '@solana/web3.js';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
+import { Cluster } from '@solana/web3.js';
 // import { Wallet } from "@solana/wallet-adapter-react";
 import {
   BareFetcher,
@@ -25,7 +26,7 @@ export declare interface IPngfiProvider {
   pngfiApi?: string;
   distributorApi?: string;
   rpcpoolApi?: string;
-  userPublicKey?: PublicKey | undefined;
+  userPublicKey?: IPublicKey | undefined;
   children: React.ReactElement;
   options?: IProviderOptionsValue;
 }

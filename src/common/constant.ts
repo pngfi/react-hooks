@@ -1,4 +1,5 @@
 import { u64 } from '@solana/spl-token';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { Cluster, PublicKey } from '@solana/web3.js';
 import { IFeeStructure } from '../types';
 
@@ -25,20 +26,20 @@ export const SYSTEM_PROGRAM_ID = new PublicKey(
   '11111111111111111111111111111111',
 );
 
-export const PNG_TOKEN_SWAP_ID: PublicKey = new PublicKey(
+export const PNG_TOKEN_SWAP_ID: IPublicKey = new PublicKey(
   'PSwapMdSai8tjrEXcxFeQth87xC4rRsa4VA5mhGhXkP',
 );
 
-export const PNG_BONDING_ID: PublicKey = new PublicKey(
+export const PNG_BONDING_ID: IPublicKey = new PublicKey(
   'PBondDFu4LkX2iw1ozEvdhxv5CtmY7mzLRa8t8D75di',
 );
-export const PNG_VESTING_ID: PublicKey = new PublicKey(
+export const PNG_VESTING_ID: IPublicKey = new PublicKey(
   'VESTZzwXWQ4MSjUZSUEg1Kb7rxsrYjHCrenA6pHpGxL',
 );
-export const PNG_STAKING_ID: PublicKey = new PublicKey(
+export const PNG_STAKING_ID: IPublicKey = new PublicKey(
   'PStakuQi71BkHTyPor8EF6ooAvNLpqc4cYGNjGpLrtY',
 );
-export const BUD_REWARD_ID: PublicKey = new PublicKey(
+export const BUD_REWARD_ID: IPublicKey = new PublicKey(
   'PMRKTWvK9f1cPkQuXvvyDPmyCSoq8FdedCimXrXJp8M',
 );
 

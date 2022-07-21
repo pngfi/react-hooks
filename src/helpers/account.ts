@@ -9,7 +9,7 @@ import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
 } from '@solana/spl-token';
 import { Buffer } from 'buffer';
-
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import {
   PublicKey,
   Keypair,
@@ -35,7 +35,7 @@ export type ITypedLayout<T> = Omit<Layout<T>, 'decode' | 'encode'> & {
 };
 
 export type IResolvedTokenAccountInstruction = {
-  address: PublicKey;
+  address: IPublicKey;
 } & Instruction;
 
 /**
@@ -56,8 +56,8 @@ export const TokenAccountLayout = AccountLayout as ITypedLayout<{
 }>;
 
 export const createWSOLAccountInstructions = (
-  owner: PublicKey,
-  solMint: PublicKey,
+  owner: IPublicKey,
+  solMint: IPublicKey,
   amountIn: u64,
   rentExemptLamports: number,
 ): ResolvedTokenAddressInstruction => {
@@ -103,7 +103,7 @@ export const deserializeTokenAccount = (
   const owner = new PublicKey(accountInfo.owner);
   const amount = u64.fromBuffer(accountInfo.amount);
 
-  let delegate: PublicKey | null;
+  let delegate: IPublicKey | null;
   let delegatedAmount: u64;
 
   if (accountInfo.delegateOption === 0) {
@@ -128,7 +128,7 @@ export const deserializeTokenAccount = (
     isNative = false;
   }
 
-  let closeAuthority: PublicKey | null;
+  let closeAuthority: IPublicKey | null;
   if (accountInfo.closeAuthorityOption === 0) {
     closeAuthority = null;
   } else {
@@ -157,9 +157,9 @@ export const createTokenAccount = async ({
   accountSigner = Keypair.generate(),
 }: {
   provider: Provider;
-  mint: PublicKey;
-  owner?: PublicKey;
-  payer?: PublicKey;
+  mint: IPublicKey;
+  owner?: IPublicKey;
+  payer?: IPublicKey;
   /**
    * The keypair of the account to be created.
    */
@@ -196,8 +196,8 @@ export const createTokenAccount = async ({
 
 export async function createTokenMint(
   provider: Provider,
-  authority: PublicKey,
-  mint: PublicKey,
+  authority: IPublicKey,
+  mint: IPublicKey,
   decimals = 6,
 ): Promise<Instruction> {
   const instructions = [
@@ -225,11 +225,11 @@ export async function createTokenMint(
 }
 
 export function createAssociatedTokenAccountInstruction(
-  associatedTokenAddress: PublicKey,
-  fundSource: PublicKey,
-  destination: PublicKey,
-  tokenMint: PublicKey,
-  // fundAddressOwner: PublicKey
+  associatedTokenAddress: IPublicKey,
+  fundSource: IPublicKey,
+  destination: IPublicKey,
+  tokenMint: IPublicKey,
+  // fundAddressOwner: IPublicKey
 ): Instruction {
   const keys = [
     {
@@ -282,7 +282,7 @@ export function createAssociatedTokenAccountInstruction(
 
 export const getTokenAccountInfo = async (
   provider: Provider,
-  tokenAccount: PublicKey,
+  tokenAccount: IPublicKey,
 ): Promise<Omit<AccountInfo, 'address'> | null> => {
   const assetHolderInfo = await provider.connection.getAccountInfo(
     tokenAccount,
@@ -292,7 +292,7 @@ export const getTokenAccountInfo = async (
 
 export const getTokenMintInfo = (
   provider: Provider,
-  tokenMint: PublicKey,
+  tokenMint: IPublicKey,
 ): Promise<MintInfo> => {
   const token = new SPLToken(
     provider.connection,
@@ -305,10 +305,10 @@ export const getTokenMintInfo = (
 };
 
 export function transferToken(
-  source: PublicKey,
-  destination: PublicKey,
+  source: IPublicKey,
+  destination: IPublicKey,
   amount: u64,
-  payer: PublicKey,
+  payer: IPublicKey,
 ) {
   const instructions = [
     SPLToken.createTransferInstruction(
@@ -329,9 +329,9 @@ export function transferToken(
 }
 
 export const createApprovalInstruction = (
-  ownerAddress: PublicKey,
+  ownerAddress: IPublicKey,
   approveAmount: u64,
-  tokenUserAddress: PublicKey,
+  tokenUserAddress: IPublicKey,
   userTransferAuthority?: Keypair,
 ): { userTransferAuthority: Keypair } & Instruction => {
   userTransferAuthority = userTransferAuthority || new Keypair();
@@ -362,9 +362,9 @@ export const createApprovalInstruction = (
 
 export const simulateTransaction = (
   connection: Connection,
-  feePayer: PublicKey,
+  feePayer: IPublicKey,
   instructions: TransactionInstruction[],
-  accounts?: PublicKey[],
+  accounts?: IPublicKey[],
   signers?: Signer[],
 ) => {
   const transaction = new Transaction({ feePayer });

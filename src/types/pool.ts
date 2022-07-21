@@ -1,4 +1,4 @@
-import { PublicKey } from '@solana/web3.js';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import Decimal from 'decimal.js';
 import { u64 } from '@solana/spl-token';
 import { IToken } from './token';
@@ -11,7 +11,7 @@ export enum CurveType {
 }
 
 export declare type IPoolToken = IToken & {
-  addr: PublicKey;
+  addr: IPublicKey;
   amount: u64;
 };
 
@@ -24,12 +24,12 @@ export interface IFeeStructure {
   tradeFeeNumerator: number;
 }
 export interface IPool {
-  address: PublicKey;
+  address: IPublicKey;
   nonce: number;
-  authority: PublicKey;
-  poolTokenMint: PublicKey;
+  authority: IPublicKey;
+  poolTokenMint: IPublicKey;
   poolTokenDecimals: number;
-  feeAccount: PublicKey;
+  feeAccount: IPublicKey;
   curveType: CurveType;
   feeStructure: IFeeStructure;
   tokenA: IPoolToken;
@@ -41,7 +41,7 @@ export interface IPool {
 
 export declare interface IPoolConfig {
   pair: string;
-  addr: PublicKey;
+  addr: IPublicKey;
   public?: boolean;
 }
 

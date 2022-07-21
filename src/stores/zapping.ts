@@ -1,5 +1,7 @@
 import { Provider, TransactionEnvelope } from '@saberhq/solana-contrib';
 import { TOKEN_PROGRAM_ID } from '@saberhq/token-utils';
+import { Buffer } from 'buffer';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 const {
   TokenSwap,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -30,9 +32,9 @@ import {
 
 export function pngAddLiquidityInstruction(
   poolInfo: IPool,
-  ownerAccount: PublicKey,
-  userSourceTokenAccount: PublicKey,
-  userLPTokenAccount: PublicKey,
+  ownerAccount: IPublicKey,
+  userSourceTokenAccount: IPublicKey,
+  userLPTokenAccount: IPublicKey,
   amount: u64,
 ) {
   return TokenSwap.depositSingleTokenTypeExactAmountInInstruction(
@@ -54,8 +56,8 @@ export function pngAddLiquidityInstruction(
 export async function simulateTransactionAndGetBalanceChanges(
   connection: Connection,
   instructions: TransactionInstruction[],
-  owner: PublicKey,
-  tokenAccount: PublicKey,
+  owner: IPublicKey,
+  tokenAccount: IPublicKey,
 ) {
   const preBalanceData = await connection.getAccountInfo(tokenAccount);
 
@@ -98,9 +100,9 @@ export function raydiumSwapInstruction(
   poolInfo: LiquidityPoolInfo,
   poolKeys: LiquidityPoolKeysV4,
   depositAmount: u64,
-  ownerAccount: PublicKey,
-  userLPTokenATokenAccount: PublicKey,
-  userLPTokenBTokenAccount: PublicKey,
+  ownerAccount: IPublicKey,
+  userLPTokenATokenAccount: IPublicKey,
+  userLPTokenBTokenAccount: IPublicKey,
 ) {
   const amountIn = new TokenAmount(
     isBase
@@ -149,10 +151,10 @@ function raydiumAddLiquidityInstruction(
   poolInfo: LiquidityPoolInfo,
   poolKeys: LiquidityPoolKeysV4,
   swapAmount: string,
-  ownerAccount: PublicKey,
-  userLPTokenATokenAccount: PublicKey,
-  userLPTokenBTokenAccount: PublicKey,
-  userLPTokenAccount: PublicKey,
+  ownerAccount: IPublicKey,
+  userLPTokenATokenAccount: IPublicKey,
+  userLPTokenBTokenAccount: IPublicKey,
+  userLPTokenAccount: IPublicKey,
 ) {
   // calculate swap token amount, and use this token as base to add liquidity
   const liqAmount = new TokenAmount(
@@ -202,7 +204,7 @@ type ZappingStore = {
   }) => Decimal;
   prepareAccounts: (args: {
     provider: Provider;
-    ownerAccount: PublicKey;
+    ownerAccount: IPublicKey;
     allTokens: IToken[];
     bondingModel: Bonding;
     bondingInfo: IBondingInfoWithTokens;
@@ -210,17 +212,17 @@ type ZappingStore = {
     depositToken: IToken;
   }) => Promise<{
     prepareTx: TransactionEnvelope;
-    LPTokenBMint: PublicKey;
+    LPTokenBMint: IPublicKey;
     LPTokenBInfo: IToken;
-    // userLPTokenBTokenAccount: PublicKey;
-    LPTokenAMint: PublicKey;
+    // userLPTokenBTokenAccount: IPublicKey;
+    LPTokenAMint: IPublicKey;
     LPTokenAInfo: IToken;
-    userLPTokenATokenAccount: PublicKey;
-    userLPTokenAccount: PublicKey;
+    userLPTokenATokenAccount: IPublicKey;
+    userLPTokenAccount: IPublicKey;
   }>;
   executeBond: (args: {
     provider: Provider;
-    ownerAccount: PublicKey;
+    ownerAccount: IPublicKey;
     allTokens: IToken[];
     bondingModel: Bonding;
     bondingInfo: IBondingInfoWithTokens;

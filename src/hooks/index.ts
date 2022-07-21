@@ -1,4 +1,4 @@
-import { PublicKey } from '@solana/web3.js';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { useFetcher } from '../common/fetcher';
 
 import {
@@ -84,7 +84,7 @@ export const useDistributorRewardsEpoch = (
  * const userPublicKey = useUserPublicKey();
  * ```
  */
-export const useUserPublicKey = (): PublicKey => {
+export const useUserPublicKey = (): IPublicKey => {
   const {
     fallback: { userPublicKey },
   } = usePngfiConfig();

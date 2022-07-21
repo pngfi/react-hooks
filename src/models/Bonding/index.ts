@@ -1,4 +1,6 @@
 import { PublicKey } from '@solana/web3.js';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
+import { Buffer } from 'buffer';
 
 import { u64, TOKEN_PROGRAM_ID } from '@solana/spl-token';
 
@@ -21,13 +23,13 @@ export class Bonding {
   public config: IBondingConfig;
   public bondingInfo: IBonding;
   private program: Program;
-  private owner: PublicKey;
+  private owner: IPublicKey;
 
   constructor(
     provider: Provider,
     config: IBondingConfig,
     bondingInfo: IBonding,
-    owner: PublicKey,
+    owner: IPublicKey,
   ) {
     this.config = config;
     this.bondingInfo = bondingInfo;

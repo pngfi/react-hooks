@@ -1,4 +1,5 @@
 import { Connection, PublicKey } from '@solana/web3.js';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import {
   AccountLayout,
   u64,
@@ -17,8 +18,8 @@ import {
 } from './account';
 
 export async function deriveAssociatedTokenAddress(
-  walletAddress: PublicKey,
-  tokenMint: PublicKey,
+  walletAddress: IPublicKey,
+  tokenMint: IPublicKey,
 ): Promise<PublicKey> {
   return (
     await PublicKey.findProgramAddress(
@@ -45,8 +46,8 @@ export async function deriveAssociatedTokenAddress(
  */
 export async function resolveOrCreateAssociatedTokenAddress(
   connection: Connection,
-  owner: PublicKey,
-  tokenMint: PublicKey,
+  owner: IPublicKey,
+  tokenMint: IPublicKey,
   wrappedSolAmountIn = new u64(0),
 ): Promise<ResolvedTokenAddressInstruction> {
   if (!tokenMint.equals(SOL_TOKEN_MINT)) {

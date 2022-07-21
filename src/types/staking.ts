@@ -1,22 +1,22 @@
-import { PublicKey } from '@solana/web3.js';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { u64 } from '@solana/spl-token';
 
 export declare interface IStakingConfig {
-  address: PublicKey;
-  vestConfig: PublicKey;
+  address: IPublicKey;
+  vestConfig: IPublicKey;
 }
 export declare interface IStaking {
-  pubkey: PublicKey;
-  tokenMint: PublicKey;
-  sTokenMint: PublicKey;
-  tokenHolder: PublicKey;
-  payoutTokenMint: PublicKey;
+  pubkey: IPublicKey;
+  tokenMint: IPublicKey;
+  sTokenMint: IPublicKey;
+  tokenHolder: IPublicKey;
+  payoutTokenMint: IPublicKey;
   tokenHolderAmount: u64;
   rebaseEpochDuration: number;
   rebaseLastTime: number;
   rebaseRateNumerator: number;
   rebaseRateDenominator: number;
-  rewardsHolder: PublicKey;
+  rewardsHolder: IPublicKey;
   apy: number;
   rewardsPerDay: string;
   rebaseSupply: u64;
@@ -26,10 +26,10 @@ export declare interface IStaking {
 }
 
 declare interface IVestConfig {
-  pubkey: PublicKey;
-  vestMint: PublicKey;
+  pubkey: IPublicKey;
+  vestMint: IPublicKey;
   claimAllDuration: number;
   halfLifeDuration: number;
-  claimableHolder: PublicKey;
-  claimableMint: PublicKey;
+  claimableHolder: IPublicKey;
+  claimableMint: IPublicKey;
 }

@@ -1,10 +1,10 @@
 import {
-  PublicKey,
   Signer,
   Transaction,
   TransactionInstruction,
   TransactionSignature,
 } from '@solana/web3.js';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 
 export declare interface Instruction {
   instructions: TransactionInstruction[];
@@ -12,7 +12,7 @@ export declare interface Instruction {
   signers: Signer[];
 }
 export declare type ResolvedTokenAddressInstruction = Instruction & {
-  address: PublicKey;
+  address: IPublicKey;
 };
 
 export const emptyInstruction: Instruction = {
