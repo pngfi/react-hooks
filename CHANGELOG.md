@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.100](https://github.com/xweb3/react-hooks/compare/v0.3.99...v0.3.100) (2022-07-21)
+
+
+### Bug Fixes
+
+* 🐛 change PublicKey to IPublicKey ([11ea968](https://github.com/xweb3/react-hooks/commit/11ea9689c27acb98ab1ce57475bd72f6cac05dd6))
+
 ### [0.3.99](https://github.com/xweb3/react-hooks/compare/v0.3.98...v0.3.99) (2022-07-21)
 
 
