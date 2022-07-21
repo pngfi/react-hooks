@@ -18,7 +18,7 @@ export type IRespngseStakingInfo = {
   rewardsPerDay: string;
   sTokenMintSupply: string;
   vestConfigInfo: {
-    [key: string]: any
+    [key: string]: any;
   };
 };
 
