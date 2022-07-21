@@ -7,7 +7,19 @@ type MessageStore = {
   removeMessage: (id: number) => void;
   clearMessages: () => void;
 };
-
+/**
+ * message store
+ *
+ * @example
+ * ```ts
+ * const {
+ *   messages,
+ *   pushMessage,
+ *   removeMessage,
+ *   clearMessages
+ * } = useMessageStore();
+ * ```
+ */
 export const useMessageStore = create(
   (set: any, get: any): MessageStore => ({
     messages: {},

@@ -241,6 +241,18 @@ type ZappingStore = {
   }) => Promise<string>;
 };
 
+/**
+ * zapping store
+ *
+ * @example
+ * ```ts
+ * const {
+ *   estimatePayoutAmount,
+ *   prepareAccounts,
+ *   executeBond
+ * } = useZappingStore();
+ * ```
+ */
 export const useZappingStore = create<ZappingStore>((_set, get) => ({
   estimatePayoutAmount: ({
     tokenPrices,

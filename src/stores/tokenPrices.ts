@@ -7,7 +7,19 @@ type StoreComponent = {
   updateAllTokenPrices: (prices: Record<string, number>) => void;
   fetchTokenPrices: (symbols?: string[]) => void;
 };
-
+/**
+ * token price store
+ *
+ * @example
+ * ```ts
+ * const {
+ *   tokenPrices,
+ *   fetchTokenPrices,
+ *   updateOneTokenPrices,
+ *   updateAllTokenPrices
+ * } = useTokenPriceStore();
+ * ```
+ */
 export const useTokenPriceStore = create(
   (set: any, get: any): StoreComponent => ({
     tokenPrices: {},

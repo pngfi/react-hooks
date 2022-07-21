@@ -9,14 +9,25 @@ export type GlobalInfo = {
 
 type GlobalInfoStore = {
   globalInfo: GlobalInfo;
-  updateInfo: (key: string, value: any) => void;
+  updateGlobalInfo: (key: string, value: any) => void;
   resetGlobalInfo: () => void;
 };
 
 const slippageInStorage: any = window.localStorage.getItem('slippage') || '1';
 const prevWalletNameInStorage: any =
   window.localStorage.getItem('PREV_WALLET_NAME');
-
+/**
+ * global store
+ *
+ * @example
+ * ```ts
+ * const {
+ *   globalInfo,
+ *   updateGlobalInfo,
+ *   resetGlobalInfo
+ * } = useGlobalInfoStore();
+ * ```
+ */
 export const useGlobalInfoStore = create(
   (set: any): GlobalInfoStore => ({
     globalInfo: {
@@ -25,7 +36,7 @@ export const useGlobalInfoStore = create(
       walletOpen: false,
       slippage: slippageInStorage * 1,
     },
-    updateInfo: (key: string, value: any) => {
+    updateGlobalInfo: (key: string, value: any) => {
       set((state: any) => ({
         globalInfo: { ...state.globalInfo, [key]: value },
       }));

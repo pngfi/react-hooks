@@ -22,6 +22,19 @@ const storeTxns = (txns: any) => {
   );
 };
 
+/**
+ * Transaction store
+ *
+ * @example
+ * ```ts
+ * const {
+ *   transactions,
+ *   appendTxn,
+ *   updateTxn,
+ *   clearTxns
+ * } = useTransactionStore();
+ * ```
+ */
 export const useTransactionStore = create(
   (set: any, get: any): TransactionStore => ({
     transactions: localTxnsObj

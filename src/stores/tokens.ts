@@ -7,6 +7,18 @@ type StoreComponent = {
   updateAllTokens: (tokens: any) => void;
 };
 
+/**
+ * tokens store
+ *
+ * @example
+ * ```ts
+ * const {
+ *   allTokens,
+ *   fetchTokens,
+ *   updateAllTokens
+ * } = useTokensStore();
+ * ```
+ */
 export const useTokensStore = create(
   (set: any): StoreComponent => ({
     allTokens: [],

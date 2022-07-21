@@ -9,7 +9,18 @@ type BalanceStore = {
   fetchBalances: (user: string) => void;
   resetBalance: () => void;
 };
-
+/**
+ * balance store
+ *
+ * @example
+ * ```ts
+ * const {
+ *   balances,
+ *   fetchBalances,
+ *   resetBalance
+ * } = useBalanceStore();
+ * ```
+ */
 export const useBalanceStore = create(
   (set: any): BalanceStore => ({
     balances: {},
