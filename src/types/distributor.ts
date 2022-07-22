@@ -85,6 +85,7 @@ export interface IMerkleRewardsInsertResponse {
 }
 
 export declare interface IMerkleDistributorItem {
+  // address: string;
   distributor: string;
   /**
    * UI can check whether this exists or not
@@ -97,10 +98,7 @@ export declare interface IMerkleDistributorItem {
   campaignID: string;
   campaignName: string;
   createdAt: string; // timestamp
-  /**
-   * hex array
-   */
-  proof: string[];
+  proofs: string[]; // hex array
 }
 
 export declare type IDistributorResponse = {
@@ -124,5 +122,5 @@ export declare type IMerkleDistributorInfo = IMerkleDistributorItem & {
   rewardTime?: string;
   nextRewardTime?: string;
   isCommon?: boolean;
-  amount: string;
+  amountStr: string;
 };

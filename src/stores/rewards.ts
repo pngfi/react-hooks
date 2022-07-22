@@ -7,9 +7,8 @@ import type { Provider } from '@saberhq/solana-contrib';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
 import { u64, TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { PublicKey, SystemProgram } from '@solana/web3.js';
-import Decimal from 'decimal.js';
 import create from 'zustand';
-import { IMerkleRewardsResponse, IToken } from '../types';
+import { IMerkleDistributorInfo, IMerkleRewardsResponse } from '../types';
 import {
   merkleDistributors,
   merkleRewardsDistributors,
@@ -26,29 +25,7 @@ import {
 } from '../helpers/ata';
 import { TransactionBuilder } from '../helpers/transactionBuilder';
 
-type MerkleDistributorItem = {
-  address: string;
-  claimAddress: string; // UI can check whether this exists or not
-  owner: string;
-  index: number;
-  mint: string;
-  amount: string;
-  campaignID: string;
-  campaignName: string;
-  createdAt: string; // timestamp
-  proofs: string[]; // hex array
-};
-
-export type MerkleDistributorInfo = MerkleDistributorItem & {
-  token: IToken;
-  leftAmount?: Decimal;
-  rewardTime?: string;
-  nextRewardTime?: string;
-  isCommon?: boolean;
-  amountStr: string;
-};
-
-type RewardsStore = {
+type IRewardsStore = {
   fetchUnclaimed: (owner: IPublicKey, tokens: any[]) => Promise<void>;
   getClaimStatus: (
     provider: Provider,
@@ -63,7 +40,7 @@ type RewardsStore = {
   claimOne: (
     provider: Provider,
     owner: IPublicKey,
-    info: MerkleDistributorInfo,
+    info: IMerkleDistributorInfo,
   ) => Promise<TransactionEnvelope>;
 };
 
@@ -80,7 +57,7 @@ type RewardsStore = {
  * } = useRewardsStore();
  * ```
  */
-export const useRewardsStore = create<RewardsStore>(() => ({
+export const useRewardsStore = create<IRewardsStore>(() => ({
   fetchUnclaimed: async (owner, tokens) => {
     const [res, commonRes, newRes] = await Promise.all([
       merkleDistributors(owner.toString())
@@ -240,7 +217,9 @@ export const useRewardsStore = create<RewardsStore>(() => ({
     const txBuilder = new TransactionBuilder(provider as any);
 
     const sdk = MerkleDistributorSDK.load({ provider });
-    const distributor = await sdk.loadDistributor(new PublicKey(info.address));
+    const distributor = await sdk.loadDistributor(
+      new PublicKey(info.distributor),
+    );
 
     const status = await provider.connection.getAccountInfo(
       new PublicKey(info.claimAddress),
@@ -259,7 +238,7 @@ export const useRewardsStore = create<RewardsStore>(() => ({
     const claimInstruction = await distributor.claimIX(
       {
         index: new u64(info.index),
-        amount: new u64(info.amountStr),
+        amount: new u64(info.amount),
         proof: info.proofs.map((p) => Buffer.from(p, 'hex')),
         claimant: owner,
       },

@@ -27,7 +27,7 @@ export class Bonding {
   constructor(
     provider: Provider,
     config: IBondingConfig,
-    bondingInfo: IBonding
+    bondingInfo: IBonding,
   ) {
     this.config = config;
     this.bondingInfo = bondingInfo;

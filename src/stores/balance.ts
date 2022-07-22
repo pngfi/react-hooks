@@ -2,10 +2,10 @@ import create from 'zustand';
 import Decimal from 'decimal.js';
 import { getBalances } from '../common/pngfi-api';
 
-export type BalancesRecord = Record<string, Decimal>;
+export type IBalancesRecord = Record<string, Decimal>;
 
 type BalanceStore = {
-  balances: BalancesRecord;
+  balances: IBalancesRecord;
   fetchBalances: (user: string) => void;
   resetBalance: () => void;
 };

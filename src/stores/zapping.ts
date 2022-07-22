@@ -402,7 +402,7 @@ export const useZappingStore = create<ZappingStore>((_set, get) => ({
             address: bondingInfo.pubkey,
             vestConfig: bondingInfo.vestConfigInfo.pubkey,
           } as any,
-          bondingInfo
+          bondingInfo,
         );
         const [bondTx, vestAll]: TransactionEnvelope[] = await Promise.all<any>(
           [
