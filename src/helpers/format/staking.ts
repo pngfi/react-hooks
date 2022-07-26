@@ -1,7 +1,7 @@
 import { PublicKey } from '@solana/web3.js';
 import { DecimalUtil } from '../decimal';
 
-export type IRespngseStakingInfo = {
+export type IResponseStakingInfo = {
   pubkey: string;
   tokenMint: string;
   sTokenMint: string;
@@ -22,7 +22,7 @@ export type IRespngseStakingInfo = {
   };
 };
 
-export function toStakingInfo(item: IRespngseStakingInfo) {
+export function toStakingInfo(item: IResponseStakingInfo) {
   const {
     pubkey,
     tokenMint,

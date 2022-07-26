@@ -6,14 +6,14 @@ import {
   SolanaReadonlyProvider,
   Provider,
 } from '@saberhq/solana-contrib';
-import { Wallet } from '@solana/wallet-adapter-react';
+import { useConnection, useWallet, Wallet } from '@solana/wallet-adapter-react';
 import { SOLANA_COMMITMENT } from '../common/constant';
 import { Connection } from '@solana/web3.js';
 
 export interface IAnchorProvider {
-  connection: Connection;
-  wallet: Wallet | null;
-  connected: boolean;
+  connection?: Connection;
+  wallet?: Wallet | null;
+  connected?: boolean;
 }
 
 /**
@@ -23,20 +23,12 @@ export interface IAnchorProvider {
  * @returns Provider
  * @example
  * ```ts
-const { connection } = useConnection();
-const { wallet, connected } = useWallet();
-const provider = useAnchorProvider({
-  connection,
-  wallet,
-  connected
-})
+const provider = useAnchorProvider()
  * ```
  */
-export function useAnchorProvider({
-  connection,
-  wallet,
-  connected,
-}: IAnchorProvider): Provider {
+export function useAnchorProvider(): Provider {
+  const { connection } = useConnection();
+  const { wallet, connected } = useWallet();
   const provider = useMemo(
     () =>
       wallet && connected

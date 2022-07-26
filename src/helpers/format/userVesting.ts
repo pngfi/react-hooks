@@ -3,7 +3,7 @@ import { PublicKey } from '@solana/web3.js';
 import { u64 } from '@solana/spl-token';
 import { DecimalUtil } from '../decimal';
 
-export declare type IRespngseUserVestingInfo = {
+export declare type IResponseUserVestingInfo = {
   pubkey: string;
   claimableAmount: string;
   lastUpdatedTime: string;
@@ -25,7 +25,7 @@ export declare type IUserVestingInfo = {
   vestedHolderAmount: u64;
 };
 
-export function toVestingInfo(item: IRespngseUserVestingInfo) {
+export function toVestingInfo(item: IResponseUserVestingInfo) {
   if (!item) return;
 
   const {

@@ -10,7 +10,7 @@ export type IBondingInfoWithInitSupply = IBonding & {
   isHidden?: boolean;
 };
 
-export declare type IRespngseBondingInfo = {
+export declare type IResponseBondingInfo = {
   pubkey: string;
   stakingAddress: string;
   payoutHolder: string;
@@ -36,7 +36,7 @@ export declare type IRespngseBondingInfo = {
 };
 
 export function toBondingInfo(
-  item: IRespngseBondingInfo,
+  item: IResponseBondingInfo,
 ): IBondingInfoWithInitSupply {
   const {
     pubkey,

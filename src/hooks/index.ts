@@ -15,9 +15,9 @@ import {
   priceApi,
 } from '../common/pngfi-api';
 import {
-  IRespngseBondingInfo,
+  IResponseBondingInfo,
   IResponsePoolInfo,
-  IRespngseStakingInfo,
+  IResponseStakingInfo,
 } from '../helpers/format';
 import {
   IMerkleRewardsDistributor,
@@ -27,10 +27,10 @@ import {
 } from '../types';
 import { usePngfiConfig } from './usePngfiConfig';
 
-export const useBonding = (): IResponse<IRespngseBondingInfo[]> =>
+export const useBonding = (): IResponse<IResponseBondingInfo[]> =>
   useFetcher(bondingApi);
 
-export const useStaking = (): IResponse<IRespngseStakingInfo[]> =>
+export const useStaking = (): IResponse<IResponseStakingInfo[]> =>
   useFetcher(stakingApi);
 
 export const usePools = (): IResponse<IResponsePoolInfo[]> =>
