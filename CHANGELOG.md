@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.119](https://github.com/xweb3/react-hooks/compare/v0.3.118...v0.3.119) (2022-07-26)
+
+
+### Features
+
+* 🎸 add bonding function <: end ([d046583](https://github.com/xweb3/react-hooks/commit/d04658375f63953b38d394998432c31ee4e84314))
+
 ### [0.3.118](https://github.com/xweb3/react-hooks/compare/v0.3.117...v0.3.118) (2022-07-26)
 
 
