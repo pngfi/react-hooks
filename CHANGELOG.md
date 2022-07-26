@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/xweb3/react-hooks/compare/v0.4.0...v0.4.1) (2022-07-26)
+
+
+### Bug Fixes
+
+* 🐛 getTokenAccountInfo ([8d8cf2a](https://github.com/xweb3/react-hooks/commit/8d8cf2ab2f4d21c7e37bc904171a959f213f60bd))
+
 ## [0.4.0](https://github.com/xweb3/react-hooks/compare/v0.3.120...v0.4.0) (2022-07-26)
 
 
