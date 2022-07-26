@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/xweb3/react-hooks/compare/v0.3.120...v0.4.0) (2022-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* 🧨 useAnchorProvider
+
+* 💡 useAnchorProvider ([fadaae2](https://github.com/xweb3/react-hooks/commit/fadaae251191865add2661792ece686c9cccd1f0))
+
 ### [0.3.120](https://github.com/xweb3/react-hooks/compare/v0.3.119...v0.3.120) (2022-07-26)
 
 
