@@ -38,9 +38,19 @@ export const usePools = (): IResponse<IRespngsePoolInfo[]> =>
 
 export const useMarkets = (): IResponse<IMarket[]> => useFetcher(marketsApi);
 
+/**
+ * Request multiple interfaces API and return multiple fast and stable token's price.
+ *
+ * @example
+ * ```typescript
+ * let prices = usePrices(['SOL', 'ETH', 'BTC']);
+ * prices = usePrices([]);
+ * prices = usePrices();
+ * ```
+ */
 export const usePrices = (
-  symbols: string[],
-): IResponse<Record<string, number>[]> => useFetcher(pricesApi(symbols));
+  symbols?: string[],
+): IResponse<Record<string, number>> => useFetcher(pricesApi(symbols));
 
 /**
  * Request multiple interfaces API and return a fast and stable price.
