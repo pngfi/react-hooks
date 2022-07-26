@@ -57,7 +57,14 @@ export class Staking {
   }
 
   async toVToken(amount: u64): Promise<TransactionEnvelope> {
-    const owner = this.program.provider.publicKey as PublicKey;
+    const {
+      publicKey,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      wallet: { publicKey: publicKey2 },
+    } = this.program.provider || {};
+    const owner = publicKey2 || publicKey;
+    // const owner = this.program.provider.publicKey as PublicKey;
     const vestConfigInfo = this.stakingInfo.vestConfigInfo;
 
     const [vcSigner] = await PublicKey.findProgramAddress(
@@ -107,7 +114,14 @@ export class Staking {
     userVestingInfo: any,
     vestMint: IPublicKey,
   ): Promise<TransactionEnvelope> {
-    const owner = this.program.provider.publicKey as PublicKey;
+    const {
+      publicKey,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      wallet: { publicKey: publicKey2 },
+    } = this.program.provider || {};
+    const owner = publicKey2 || publicKey;
+    // const owner = this.program.provider.publicKey as PublicKey;
 
     const instructions = [];
 
@@ -196,7 +210,14 @@ export class Staking {
       this.program.programId,
     );
 
-    const owner = this.program.provider.publicKey as PublicKey;
+    const {
+      publicKey,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      wallet: { publicKey: publicKey2 },
+    } = this.program.provider || {};
+    const owner = publicKey2 || publicKey;
+    // const owner = this.program.provider.publicKey as PublicKey;
 
     const stakedHolder = await deriveAssociatedTokenAddress(
       stakingPda,
@@ -241,7 +262,14 @@ export class Staking {
       this.program.programId,
     );
 
-    const owner = this.program.provider.publicKey as PublicKey;
+    const {
+      publicKey,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      wallet: { publicKey: publicKey2 },
+    } = this.program.provider || {};
+    const owner = publicKey2 || publicKey;
+    // const owner = this.program.provider.publicKey as PublicKey;
 
     const tokenHolder = await deriveAssociatedTokenAddress(
       stakingPda,
@@ -288,7 +316,14 @@ export class Staking {
       this.vestingProgram.programId,
     );
 
-    const owner = this.program.provider.publicKey as PublicKey;
+    const {
+      publicKey,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      wallet: { publicKey: publicKey2 },
+    } = this.program.provider || {};
+    const owner = publicKey2 || publicKey;
+    // const owner = this.program.provider.publicKey as PublicKey;
 
     const vestConfigInfo = this.stakingInfo.vestConfigInfo;
 
@@ -335,7 +370,14 @@ export class Staking {
       this.program.programId,
     );
 
-    const owner = this.program.provider.publicKey as PublicKey;
+    const {
+      publicKey,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      wallet: { publicKey: publicKey2 },
+    } = this.program.provider || {};
+    const owner = publicKey2 || publicKey;
+    // const owner = this.program.provider.publicKey as PublicKey;
 
     const [stakedHolder, userSTokenHolder] = await Promise.all([
       deriveAssociatedTokenAddress(stakingPda, this.stakingInfo.tokenMint),
@@ -374,7 +416,14 @@ export class Staking {
     vTokenMint: IPublicKey,
     userVestingInfo: any,
   ): Promise<TransactionEnvelope> {
-    const owner = this.program.provider.publicKey as PublicKey;
+    const {
+      publicKey,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      wallet: { publicKey: publicKey2 },
+    } = this.program.provider || {};
+    const owner = publicKey2 || publicKey;
+    // const owner = this.program.provider.publicKey as PublicKey;
     const userVestingAddress = userVestingInfo.pubkey;
 
     const [vcSigner] = await PublicKey.findProgramAddress(

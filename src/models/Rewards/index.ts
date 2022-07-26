@@ -1,5 +1,4 @@
 import { PublicKey, SystemProgram } from '@solana/web3.js';
-import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { Buffer } from 'buffer';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { BN, Idl, Program, Provider } from '@project-serum/anchor';
@@ -22,7 +21,15 @@ export class Rewards {
 
   async getClaimStatusInfo() {
     const { distributor } = this.rewardsInfo;
-    const owner = this.program.provider.publicKey as IPublicKey;
+
+    const {
+      publicKey,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      wallet: { publicKey: publicKey2 },
+    } = this.program.provider || {};
+    const owner = publicKey2 || publicKey;
+    // const owner = this.program.provider.publicKey as IPublicKey;
 
     const [claimStatus] = await PublicKey.findProgramAddress(
       [
@@ -46,7 +53,15 @@ export class Rewards {
 
   async claim(): Promise<TransactionEnvelope> {
     const { distributor, amount, index, proof } = this.rewardsInfo;
-    const owner = this.program.provider.publicKey as PublicKey;
+
+    const {
+      publicKey,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      wallet: { publicKey: publicKey2 },
+    } = this.program.provider || {};
+    const owner = publicKey2 || publicKey;
+    // const owner = this.program.provider.publicKey as PublicKey;
 
     const distributorAcc = await this.program.account.merkleDistributor.fetch(
       new PublicKey(distributor),

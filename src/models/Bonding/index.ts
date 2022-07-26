@@ -1,5 +1,4 @@
 import { PublicKey } from '@solana/web3.js';
-import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { Buffer } from 'buffer';
 
 import { u64, TOKEN_PROGRAM_ID } from '@solana/spl-token';
@@ -103,7 +102,14 @@ export class Bonding {
   }
 
   async bond(amount: u64): Promise<TransactionEnvelope> {
-    const owner = this.program.provider.publicKey as IPublicKey;
+    const {
+      publicKey,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      wallet: { publicKey: publicKey2 },
+    } = this.program.provider || {};
+    const owner = publicKey2 || publicKey;
+    // const owner = this.program.provider.publicKey as IPublicKey;
     console.log(
       'bond owner',
       this.program,
