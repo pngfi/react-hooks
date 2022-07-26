@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.118](https://github.com/xweb3/react-hooks/compare/v0.3.117...v0.3.118) (2022-07-26)
+
+
+### Bug Fixes
+
+* 🐛 this.program.provider fix publicKey ([6594ab5](https://github.com/xweb3/react-hooks/commit/6594ab51519b9dd4ad41cef2081c2a5cb118de32))
+
 ### [0.3.117](https://github.com/xweb3/react-hooks/compare/v0.3.116...v0.3.117) (2022-07-26)
 
 
