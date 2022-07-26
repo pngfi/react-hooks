@@ -491,6 +491,16 @@ export const useZappingStore = create<ZappingStore>((_set, get) => ({
           poolKeys,
         });
 
+        console.log(
+          '1 addLiquidityTx.build().instructions',
+          isBase,
+          poolInfo,
+          poolKeys,
+          depositAmount,
+          ownerAccount,
+          userLPTokenATokenAccount,
+          userLPTokenBTokenAccount,
+        );
         // swap
         addLiquidityTx = prepareTx.addInstructions(
           await raydiumSwapInstruction(
@@ -504,6 +514,11 @@ export const useZappingStore = create<ZappingStore>((_set, get) => ({
           ),
         );
 
+        console.log(
+          'addLiquidityTx.build().instructions',
+          addLiquidityTx,
+          addLiquidityTx.build().instructions,
+        );
         const swapSimulateAmount =
           await simulateTransactionAndGetBalanceChanges(
             provider.connection,

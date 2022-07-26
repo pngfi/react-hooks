@@ -367,7 +367,7 @@ export const simulateTransaction = (
   accounts?: IPublicKey[],
   signers?: Signer[],
 ) => {
-  console.log('simulateTransaction', feePayer, signers, accounts);
+  console.log('simulateTransaction', instructions, feePayer, signers, accounts);
   const transaction = new Transaction({ feePayer });
   transaction.add(...instructions);
   return connection.simulateTransaction(transaction, signers, accounts);
