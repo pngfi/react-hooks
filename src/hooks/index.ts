@@ -16,7 +16,7 @@ import {
 } from '../common/pngfi-api';
 import {
   IRespngseBondingInfo,
-  IRespngsePoolInfo,
+  IResponsePoolInfo,
   IRespngseStakingInfo,
 } from '../helpers/format';
 import {
@@ -33,7 +33,7 @@ export const useBonding = (): IResponse<IRespngseBondingInfo[]> =>
 export const useStaking = (): IResponse<IRespngseStakingInfo[]> =>
   useFetcher(stakingApi);
 
-export const usePools = (): IResponse<IRespngsePoolInfo[]> =>
+export const usePools = (): IResponse<IResponsePoolInfo[]> =>
   useFetcher(poolsApi);
 
 export const useMarkets = (): IResponse<IMarket[]> => useFetcher(marketsApi);

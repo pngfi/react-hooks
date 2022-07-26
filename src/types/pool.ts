@@ -15,6 +15,11 @@ export declare type IPoolToken = IToken & {
   amount: u64;
 };
 
+export declare type IPoolTokenResponse = IToken & {
+  addr: string;
+  amount: string;
+};
+
 export interface IFeeStructure {
   ownerTradeFeeDenominator: number;
   ownerTradeFeeNumerator: number;

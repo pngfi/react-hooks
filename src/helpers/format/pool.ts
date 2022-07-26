@@ -1,9 +1,9 @@
 import { PublicKey } from '@solana/web3.js';
 import { u64 } from '@solana/spl-token';
-import { IPoolToken } from '../../types';
+import { IPoolTokenResponse } from '../../types';
 import { DecimalUtil } from '../decimal';
 
-export declare type IRespngsePoolInfo = {
+export declare type IResponsePoolInfo = {
   pubkey: string;
   authority: string;
   curveType: string;
@@ -13,11 +13,11 @@ export declare type IRespngsePoolInfo = {
   nonce: string;
   poolTokenDecimals: string;
   poolTokenMint: string;
-  tokenA: IPoolToken;
-  tokenB: IPoolToken;
+  tokenA: IPoolTokenResponse;
+  tokenB: IPoolTokenResponse;
 };
 
-export function toPoolInfo(item: IRespngsePoolInfo) {
+export function toPoolInfo(item: IResponsePoolInfo) {
   const {
     pubkey,
     authority,

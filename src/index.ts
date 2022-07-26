@@ -33,6 +33,7 @@ export * from './types';
  */
 export * from './helpers/account';
 export * from './helpers/format';
+export * from './helpers/decimal';
 
 /**
  * modles
