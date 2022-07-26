@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.106](https://github.com/xweb3/react-hooks/compare/v0.3.105...v0.3.106) (2022-07-26)
+
+
+### Bug Fixes
+
+* 🐛 get all tokens prices ([db1b7ca](https://github.com/xweb3/react-hooks/commit/db1b7cae92e8c62ba94a8e8307f786812ff150c6))
+
 ### [0.3.105](https://github.com/xweb3/react-hooks/compare/v0.3.104...v0.3.105) (2022-07-22)
 
 
