@@ -36,7 +36,8 @@ export interface IPool {
   tokenB: IPoolToken;
   lpSupply: Decimal;
   amp?: number;
-  pubkey: string;
+
+  pubkey?: string;
 }
 
 export declare interface IPoolConfig {
