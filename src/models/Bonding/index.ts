@@ -104,7 +104,12 @@ export class Bonding {
 
   async bond(amount: u64): Promise<TransactionEnvelope> {
     const owner = this.program.provider.publicKey as IPublicKey;
-    console.log('bond owner', owner, this.bondingInfo.depositTokenMint);
+    console.log(
+      'bond owner',
+      this.program,
+      owner,
+      this.bondingInfo.depositTokenMint,
+    );
     const [bondingPda] = await PublicKey.findProgramAddress(
       [Buffer.from(BONDING_SEED_PREFIX), this.config.address.toBuffer()],
       this.program.programId,
