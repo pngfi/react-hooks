@@ -110,12 +110,6 @@ export class Bonding {
     } = this.program.provider || {};
     const owner = publicKey2 || publicKey;
     // const owner = this.program.provider.publicKey as IPublicKey;
-    console.log(
-      'bond owner',
-      this.program,
-      owner,
-      this.bondingInfo.depositTokenMint,
-    );
     const [bondingPda] = await PublicKey.findProgramAddress(
       [Buffer.from(BONDING_SEED_PREFIX), this.config.address.toBuffer()],
       this.program.programId,

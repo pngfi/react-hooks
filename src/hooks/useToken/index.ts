@@ -8,7 +8,6 @@ export const useTokens = (): IResponse<IToken[]> => useFetcher(tokensApi);
 export const useTokensPriceByMints = (mints: string[]) => {
   const { data = [] } = useFetcher(tokensApi);
   const mintTokens = data.filter((v: IToken) => mints.includes(v.mint));
-  console.log('mintTokens', mintTokens);
   return useFetcher(
     pricesApi(mintTokens.map((v: { symbol: string }) => v.symbol)),
   );

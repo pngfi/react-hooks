@@ -1,6 +1,6 @@
 import { Buffer } from 'buffer';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
-import { getAssociatedTokenAddress } from '@project-serum/associated-token';
+// import { getAssociatedTokenAddress } from '@project-serum/associated-token';
 import { Idl, Program, BN } from '@project-serum/anchor';
 import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
 import type { Provider } from '@saberhq/solana-contrib';
@@ -150,7 +150,6 @@ export const useRewardsStore = create<IRewardsStore>(() => ({
     return claimStatusAcc;
   },
   claimCommon: async (provider, owner, info) => {
-    console.log(info);
     const { proof, amountStr, index, address, mint } = info;
     const program = new Program(
       distributorProgramIdl as Idl,
@@ -171,16 +170,11 @@ export const useRewardsStore = create<IRewardsStore>(() => ({
       new PublicKey(address),
       new PublicKey(mint),
     );
-    const sDistributoerHolder = await getAssociatedTokenAddress(
-      new PublicKey(address),
-      new PublicKey(mint),
-    );
+    // const sDistributoerHolder = await getAssociatedTokenAddress(
+    //   new PublicKey(address),
+    //   new PublicKey(mint),
+    // );
 
-    console.log(
-      distributorHolder.toString(),
-      sDistributoerHolder.toString(),
-      mint,
-    );
     const { address: userHolder, ...resolveUserHolderInstrucitons } =
       await resolveOrCreateAssociatedTokenAddress(
         program.provider.connection,

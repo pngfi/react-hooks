@@ -31,7 +31,6 @@ export function toPoolInfo(item: IRespngsePoolInfo) {
     tokenA,
     tokenB,
   } = item;
-  console.log('item', item);
   return {
     address: new PublicKey(pubkey),
     authority: new PublicKey(authority),

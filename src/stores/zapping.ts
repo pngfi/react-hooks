@@ -485,22 +485,12 @@ export const useZappingStore = create<ZappingStore>((_set, get) => ({
         );
         if (!poolKeys) throw new Error('poolKeys is not exists');
         // .then(data => data.find(p => p.id.toString() === '6UmmUiYoBjSrhakAobJw8BvkmJtDVxaeBtbt7rxWo1mg'));
-        console.log('poolKeys', poolKeys);
+
         const poolInfo = await Liquidity.fetchInfo({
           connection: provider.connection,
           poolKeys,
         });
 
-        console.log(
-          '1 addLiquidityTx.build().instructions',
-          isBase,
-          poolInfo,
-          poolKeys,
-          depositAmount,
-          ownerAccount,
-          userLPTokenATokenAccount,
-          userLPTokenBTokenAccount,
-        );
         // swap
         addLiquidityTx = prepareTx.addInstructions(
           await raydiumSwapInstruction(
@@ -576,10 +566,7 @@ export const useZappingStore = create<ZappingStore>((_set, get) => ({
           ownerAccount,
           LPTokenBMint,
         );
-        console.log(
-          'createUserLPTokenBTokenAccount',
-          createUserLPTokenBTokenAccount,
-        );
+
         prepareTx.addInstructions(
           ...createUserLPTokenBTokenAccount.instructions,
         );
@@ -595,16 +582,6 @@ export const useZappingStore = create<ZappingStore>((_set, get) => ({
           ),
         );
 
-        console.log(
-          '21 addLiquidityTx.build().instructions',
-          pngPools[bondingInfo.depositToken.symbol],
-          ownerAccount,
-          userLPTokenBTokenAccount,
-          userLPTokenAccount,
-          depositAmount,
-
-          addLiquidityTx,
-        );
         const addLiquidityAmount =
           await simulateTransactionAndGetBalanceChanges(
             provider.connection,
