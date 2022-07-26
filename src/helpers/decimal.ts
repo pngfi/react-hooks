@@ -1,6 +1,5 @@
 import { u64 } from '@solana/spl-token';
 import Decimal from 'decimal.js';
-import BN from 'bn.js';
 
 export const ZERO_DECIMAL = new Decimal(0);
 export const ONE_DECIMAL = new Decimal(1);
@@ -46,7 +45,7 @@ export class DecimalUtil {
       );
     }
 
-    const shiftedValue = new BN(
+    const shiftedValue = new u64(
       input.mul(new Decimal(10).pow(new Decimal(shift))).toFixed(),
     );
     return shiftedValue;
