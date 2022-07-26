@@ -44,7 +44,12 @@ export class DecimalUtil {
         `Negative decimal value ${input} cannot be converted to u64.`,
       );
     }
-
+    console.log(
+      'input',
+      input,
+      new Decimal(10).pow(new Decimal(shift)),
+      input.mul(new Decimal(10).pow(new Decimal(shift))).toFixed(),
+    );
     const shiftedValue = new u64(
       input.mul(new Decimal(10).pow(new Decimal(shift))).toFixed(),
     );
