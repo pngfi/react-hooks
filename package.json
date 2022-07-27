@@ -83,7 +83,7 @@
     "@solana/spl-token-swap": "^0.2.0",
     "@solana/wallet-adapter-react": "^0.15.5",
     "@solana/web3.js": "^1.42.0",
-    "@pngfi/swr-store": "^0.0.19",
+    "@xweb3/swr-store": "^0.0.19",
     "bignumber.js": "^9.0.2",
     "buffer": "^6.0.3",
     "decimal.js": "^10.3.1",
