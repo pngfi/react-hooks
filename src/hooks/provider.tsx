@@ -78,7 +78,7 @@ export const PngfiProvider = ({
           // connection,
           // wallet,
           cluster,
-          pngfiApi: pngfiApi || baseApi(cluster),
+          pngfiApi: pngfiApi || baseApi(),
           distributorApi,
           rpcpoolApi,
           userPublicKey,

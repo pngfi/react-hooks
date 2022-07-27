@@ -1,16 +1,22 @@
-import { IApiCluster } from '../types';
-
 export const apiUrl = {
-  'mainnet-beta': 'https://api.png.fi',
-  staging: 'https://api-staging.png.fi',
-  testnet: 'https://test-staging.png.fi',
-  devnet: 'https://test-staging.png.fi',
+  // 'mainnet-beta': 'https://api.png.fi',
+  // staging: 'https://api-staging.png.fi',
+  // testnet: 'https://test-staging.png.fi',
+  // devnet: 'https://test-staging.png.fi',
+  'mainnet-beta': 'https://chain.png.fi/api',
+  staging: 'https://chain.png.fi/api-staging',
+  testnet: 'https://chain.png.fi/api-testing',
+  devnet: 'https://chain.png.fi/api-testing',
 };
 
 /**
  * pngfi base api
  */
-export const baseApi = (key: IApiCluster = 'mainnet-beta') => {
+export const baseApi = () => {
+  const key =
+    typeof window !== 'undefined'
+      ? window.localStorage.getItem('cluster') || 'mainnet-beta'
+      : 'mainnet-beta';
   const pngfiApi =
     typeof window !== 'undefined'
       ? window.localStorage.getItem('pngfiApi')
@@ -22,11 +28,15 @@ export const baseApi = (key: IApiCluster = 'mainnet-beta') => {
  * solana jsonrpc api
  */
 export const rpcpoolApi = () => {
+  const key =
+    typeof window !== 'undefined'
+      ? window.localStorage.getItem('cluster') || 'mainnet-beta'
+      : 'mainnet-beta';
   const api =
     typeof window !== 'undefined'
       ? window.localStorage.getItem('rpcpoolApi')
       : null;
-  return api || 'https://penguin.rpcpool.com/';
+  return api || `${apiUrl[key]}/rpc`; //'https://penguin.rpcpool.com/';
 };
 
 /**
