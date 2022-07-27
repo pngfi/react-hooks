@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.5](https://github.com/pngfi/react-hooks/compare/v0.4.4...v0.4.5) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 delete peerDependencies ([546e3b6](https://github.com/pngfi/react-hooks/commit/546e3b62e1a2d6328f500e22da14157f3ba31192))
+
 ### [0.4.4](https://github.com/pngfi/react-hooks/compare/v0.4.3...v0.4.4) (2022-07-27)
 
 
