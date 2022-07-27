@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/pngfi/react-hooks/compare/v0.4.5...v0.5.0) (2022-07-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* 🧨 change api.png.fi to chain.png.fi/api
+
+✅ Closes: change api.png.fi to chain.png.fi/api
+
+### Features
+
+* 🎸 change api to chain.png.fi ([ccf3de4](https://github.com/pngfi/react-hooks/commit/ccf3de42280c64511d7123e2fde85cd26b03305e))
+
 ### [0.4.5](https://github.com/pngfi/react-hooks/compare/v0.4.4...v0.4.5) (2022-07-27)
 
 
