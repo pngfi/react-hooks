@@ -1,6 +1,6 @@
 {
   "name": "@pngfi/react-hooks",
-  "version": "0.5.50",
+  "version": "0.5.51",
   "description": "react hooks for pngfi.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
@@ -14,7 +14,7 @@
     "prepare": "husky install",
     "publish": "npm publish --access public",
     "c": "npm run build && git add . && git-cz",
-    "r": "cp -rf package-pngfi.json package.json && npm run c && nucm use pngfi-fu && standard-version && git push origin HEAD && npm run publish",
+    "r": "cp -rf package-pngfi.json package.json && nucm use pngfi-fu && standard-version && git push origin HEAD && npm run publish",
     "up": "cp -rf package-xweb3.json package.json && npm run c && nucm use xweb && standard-version && git push up HEAD && npm run publish",
     "doc": "npx typedoc --excludePrivate --includeVersion --out docs/ src/index.{ts,tsx}",
     "lint": "eslint \"{src,apps,libs,test}/**/*.{ts,tsx}\" --fix",

@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
+* 🎸 add bond & stake doc ([9ee137e](https://github.com/pngfi/react-hooks/commit/9ee137edb2378a7794619ed02169100242ddbb5a))
+
+### [0.5.51](https://github.com/pngfi/react-hooks/compare/v0.5.1...v0.5.51) (2022-07-28)
+
+
+### Features
+
 * 🎸 add bond and stake doc ([6aad8be](https://github.com/pngfi/react-hooks/commit/6aad8be742e09296f9f3f9e5db9f3391b43791e3))
 * 🎸 add bond and stake doc ([4aeae45](https://github.com/pngfi/react-hooks/commit/4aeae451cd0c9d3475d90943e823703803c49702))
 * 🎸 add bond and stake doc ([74b7c2a](https://github.com/pngfi/react-hooks/commit/74b7c2a893f87fec6cc683ad659d6ca772be2bee))
