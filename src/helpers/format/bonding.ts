@@ -1,11 +1,11 @@
-import { u64 } from '@solana/spl-token';
+import type { u64 as Iu64 } from '@solana/spl-token';
 import { PublicKey } from '@solana/web3.js';
 import { IBonding } from '../../types';
 import { DecimalUtil } from '../decimal';
 
 export type IBondingInfoWithInitSupply = IBonding & {
-  depositAmount: u64;
-  initSupply: u64;
+  depositAmount: Iu64;
+  initSupply: Iu64;
   onlyBonding: boolean;
   isHidden?: boolean;
 };

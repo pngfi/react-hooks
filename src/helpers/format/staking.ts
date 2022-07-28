@@ -39,7 +39,7 @@ export function toStakingInfo(item: IResponseStakingInfo) {
     apy,
     rewardsPerDay,
     sTokenMintSupply,
-    vestConfigInfo,
+    vestConfigInfo = {},
   } = item;
 
   return {
@@ -51,7 +51,7 @@ export function toStakingInfo(item: IResponseStakingInfo) {
       'BUD1144GGYwmMRFs4Whjfkom5UHqC9a8dZHPVvR2vfPx',
     ),
     tokenHolderAmount: DecimalUtil.toU64(
-      DecimalUtil.fromString(tokenHolderAmount),
+      DecimalUtil.fromString(tokenHolderAmount || '0'),
     ),
     rebaseEpochDuration,
     rebaseLastTime,
@@ -60,12 +60,14 @@ export function toStakingInfo(item: IResponseStakingInfo) {
     rebaseRateNumerator,
     rebaseRateDenominator,
     rewardsHolder: new PublicKey(rewardsHolder),
-    rebaseSupply: DecimalUtil.toU64(DecimalUtil.fromString(rebaseSupply)),
+    rebaseSupply: DecimalUtil.toU64(
+      DecimalUtil.fromString(rebaseSupply || '0'),
+    ),
     sTokenMintSupply: DecimalUtil.toU64(
-      DecimalUtil.fromString(sTokenMintSupply),
+      DecimalUtil.fromString(sTokenMintSupply || '0'),
     ),
     rebaseRewardsAmount: DecimalUtil.toU64(
-      DecimalUtil.fromString(rebaseRewardsAmount),
+      DecimalUtil.fromString(rebaseRewardsAmount || '0'),
     ),
     vestConfigInfo: {
       pubkey: new PublicKey(vestConfigInfo.pubkey),

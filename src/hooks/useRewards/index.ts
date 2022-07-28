@@ -1,4 +1,8 @@
-import { TOKEN_PROGRAM_ID, u64 } from '@solana/spl-token';
+const {
+  u64,
+  TOKEN_PROGRAM_ID,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 import Decimal from 'decimal.js';
 import { Idl, Program, BN } from '@project-serum/anchor';
 import { Provider, TransactionEnvelope } from '@saberhq/solana-contrib';

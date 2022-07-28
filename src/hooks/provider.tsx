@@ -75,8 +75,6 @@ export const PngfiProvider = ({
         ...options,
         fallback: {
           ...(options?.fallback || {}),
-          // connection,
-          // wallet,
           cluster,
           pngfiApi: pngfiApi || baseApi(),
           distributorApi,

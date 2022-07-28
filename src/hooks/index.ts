@@ -98,5 +98,6 @@ export const useUserPublicKey = (): IPublicKey => {
   const {
     fallback: { userPublicKey },
   } = usePngfiConfig();
+
   return userPublicKey;
 };

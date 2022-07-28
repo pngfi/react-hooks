@@ -11,8 +11,12 @@ const {
 // import { TokenSwapLayout, TokenSwap, Numberu64 } from '@solana/spl-token-swap';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
 import Decimal from 'decimal.js';
-
-import { Token as SPLToken, TOKEN_PROGRAM_ID, u64 } from '@solana/spl-token';
+const {
+  u64,
+  Token: SPLToken,
+  TOKEN_PROGRAM_ID,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 import { CurveType, IPool, IToken } from '../types';
 import {
   PNG_TOKEN_SWAP_FEE_ACCOUNT_OWNER,

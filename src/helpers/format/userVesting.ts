@@ -1,6 +1,6 @@
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { PublicKey } from '@solana/web3.js';
-import { u64 } from '@solana/spl-token';
+import type { u64 as Iu64 } from '@solana/spl-token';
 import { DecimalUtil } from '../decimal';
 
 export declare type IResponseUserVestingInfo = {
@@ -16,13 +16,13 @@ export declare type IResponseUserVestingInfo = {
 
 export declare type IUserVestingInfo = {
   pubkey: IPublicKey;
-  claimableAmount: u64;
-  lastUpdatedTime: u64;
-  lastVestTime: u64;
+  claimableAmount: Iu64;
+  lastUpdatedTime: Iu64;
+  lastVestTime: Iu64;
   owner: IPublicKey;
   vestConfig: IPublicKey;
   vestedHolder: IPublicKey;
-  vestedHolderAmount: u64;
+  vestedHolderAmount: Iu64;
 };
 
 export function toVestingInfo(item: IResponseUserVestingInfo) {

@@ -1,13 +1,14 @@
 import type { Layout } from '@solana/buffer-layout';
-import type { AccountInfo, MintInfo } from '@solana/spl-token';
+import type { AccountInfo, MintInfo, u64 as Iu64 } from '@solana/spl-token';
 import type { Provider } from '@saberhq/solana-contrib';
-import {
+const {
   AccountLayout,
   u64,
-  Token as SPLToken,
+  Token: SPLToken,
   TOKEN_PROGRAM_ID,
   ASSOCIATED_TOKEN_PROGRAM_ID,
-} from '@solana/spl-token';
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 import { Buffer } from 'buffer';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import {
@@ -58,7 +59,7 @@ export const TokenAccountLayout = AccountLayout as ITypedLayout<{
 export const createWSOLAccountInstructions = (
   owner: IPublicKey,
   solMint: IPublicKey,
-  amountIn: u64,
+  amountIn: Iu64,
   rentExemptLamports: number,
 ): ResolvedTokenAddressInstruction => {
   const tempAccount = new Keypair();
@@ -104,7 +105,7 @@ export const deserializeTokenAccount = (
   const amount = u64.fromBuffer(accountInfo.amount);
 
   let delegate: IPublicKey | null;
-  let delegatedAmount: u64;
+  let delegatedAmount: Iu64;
 
   if (accountInfo.delegateOption === 0) {
     delegate = null;
@@ -117,7 +118,7 @@ export const deserializeTokenAccount = (
   const isInitialized = accountInfo.state !== 0;
   const isFrozen = accountInfo.state === 2;
 
-  let rentExemptReserve: u64 | null;
+  let rentExemptReserve: Iu64 | null;
   let isNative: boolean;
 
   if (accountInfo.isNativeOption === 1) {
@@ -307,7 +308,7 @@ export const getTokenMintInfo = (
 export function transferToken(
   source: IPublicKey,
   destination: IPublicKey,
-  amount: u64,
+  amount: Iu64,
   payer: IPublicKey,
 ) {
   const instructions = [
@@ -330,7 +331,7 @@ export function transferToken(
 
 export const createApprovalInstruction = (
   ownerAddress: IPublicKey,
-  approveAmount: u64,
+  approveAmount: Iu64,
   tokenUserAddress: IPublicKey,
   userTransferAuthority?: Keypair,
 ): { userTransferAuthority: Keypair } & Instruction => {

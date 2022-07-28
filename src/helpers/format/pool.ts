@@ -1,5 +1,8 @@
 import { PublicKey } from '@solana/web3.js';
-import { u64 } from '@solana/spl-token';
+const {
+  u64,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 import { IPoolTokenResponse } from '../../types';
 import { DecimalUtil } from '../decimal';
 
@@ -44,12 +47,12 @@ export function toPoolInfo(item: IResponsePoolInfo) {
     tokenA: {
       ...tokenA,
       addr: new PublicKey(tokenA.addr),
-      amount: new u64(tokenA.amount),
+      amount: new u64(tokenA.amount || '0'),
     },
     tokenB: {
       ...tokenB,
       addr: new PublicKey(tokenB.addr),
-      amount: new u64(tokenB.amount),
+      amount: new u64(tokenB.amount || '0'),
     },
   };
 }

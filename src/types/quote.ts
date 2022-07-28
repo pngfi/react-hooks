@@ -1,25 +1,25 @@
-import { u64 } from '@solana/spl-token';
+import type { u64 as Iu64 } from '@solana/spl-token';
 import { IFeeStructure } from './pool';
 import { IToken } from './token';
 
 export declare interface QuotePoolParams {
   inputToken: IToken;
   outputToken: IToken;
-  inputTokenCount: u64;
-  outputTokenCount: u64;
+  inputTokenCount: Iu64;
+  outputTokenCount: Iu64;
   feeStructure: IFeeStructure;
   slippage: number;
   lamportsPerSignature: number;
-  amp?: u64;
+  amp?: Iu64;
 }
 
 export declare interface IDepositQuote {
-  minPoolTokenAmountOut: u64;
-  maxTokenAIn: u64;
-  maxTokenBIn: u64;
+  minPoolTokenAmountOut: Iu64;
+  maxTokenAIn: Iu64;
+  maxTokenBIn: Iu64;
 }
 export declare interface IWithdrawQuote {
-  maxPoolTokenAmountIn: u64;
-  minTokenAOut: u64;
-  minTokenBOut: u64;
+  maxPoolTokenAmountIn: Iu64;
+  minTokenAOut: Iu64;
+  minTokenBOut: Iu64;
 }

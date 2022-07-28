@@ -1,4 +1,4 @@
-import { u64 } from '@solana/spl-token';
+import { u64 as Iu64 } from '@solana/spl-token';
 import Decimal from 'decimal.js';
 import {
   DecimalUtil,
@@ -13,8 +13,8 @@ export interface IUtils {
   ONE_HUNDRED_DECIMAL: Decimal;
   fromStringToDecimal: (input: string, shift?: number) => Decimal;
   fromNumberToDecimal: (input: number, shift?: number) => Decimal;
-  fromU64ToDecimal: (input: u64, shift?: number) => Decimal;
-  toU64: (input: Decimal, shift?: number) => u64;
+  fromU64ToDecimal: (input: Iu64, shift?: number) => Decimal;
+  toU64: (input: Decimal, shift?: number) => Iu64;
   beautify: (input: Decimal, fixed?: number) => string;
 }
 

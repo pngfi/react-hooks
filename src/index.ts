@@ -5,6 +5,9 @@ export * from './hooks/useAnchorProvider';
 export * from './hooks/usePngfiConfig';
 export * from './hooks/useToken';
 
+export * from './hooks/useBond/bond';
+export * from './hooks/useBond/stake';
+
 export * from './hooks/index';
 export * from './hooks/useJsonRPC';
 

@@ -1,4 +1,5 @@
-import { u64 } from '@solana/spl-token';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { u64 } = require('@solana/spl-token');
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { Cluster, PublicKey } from '@solana/web3.js';
 import { IFeeStructure } from '../types';

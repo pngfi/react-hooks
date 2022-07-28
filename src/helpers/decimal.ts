@@ -1,4 +1,8 @@
-import { u64 } from '@solana/spl-token';
+import type { u64 as Iu64 } from '@solana/spl-token';
+const {
+  u64,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 import Decimal from 'decimal.js';
 
 export const ZERO_DECIMAL = new Decimal(0);
@@ -27,18 +31,18 @@ export function toFixed(value = 0, fixed = 2, force = false): string {
 
 export class DecimalUtil {
   public static fromString(input: string, shift = 0): Decimal {
-    return new Decimal(input || 0).div(new Decimal(10).pow(shift));
+    return new Decimal(input || '0').div(new Decimal(10).pow(shift));
   }
 
   public static fromNumber(input: number, shift = 0): Decimal {
     return new Decimal(input).div(new Decimal(10).pow(shift));
   }
 
-  public static fromU64(input: u64, shift = 0): Decimal {
+  public static fromU64(input: Iu64, shift = 0): Decimal {
     return new Decimal(input.toString()).div(new Decimal(10).pow(shift));
   }
 
-  public static toU64(input: Decimal, shift = 0): u64 {
+  public static toU64(input: Decimal, shift = 0): Iu64 {
     if (input.isNeg()) {
       throw new Error(
         `Negative decimal value ${input} cannot be converted to u64.`,

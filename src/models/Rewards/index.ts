@@ -1,6 +1,10 @@
 import { PublicKey, SystemProgram } from '@solana/web3.js';
 import { Buffer } from 'buffer';
-import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+const {
+  TOKEN_PROGRAM_ID,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
+
 import { BN, Idl, Program, Provider } from '@project-serum/anchor';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
 import idl from './idl.json';

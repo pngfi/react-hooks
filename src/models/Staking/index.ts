@@ -1,12 +1,13 @@
 import type { Provider } from '@saberhq/solana-contrib';
 import { Buffer } from 'buffer';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
-
-import {
+import type { u64 as Iu64 } from '@solana/spl-token';
+const {
   u64,
   TOKEN_PROGRAM_ID,
   ASSOCIATED_TOKEN_PROGRAM_ID,
-} from '@solana/spl-token';
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 
 import {
   PublicKey,
@@ -56,7 +57,7 @@ export class Staking {
     this.stakingInfo = stakingInfo;
   }
 
-  async toVToken(amount: u64): Promise<TransactionEnvelope> {
+  async toVToken(amount: Iu64): Promise<TransactionEnvelope> {
     const {
       publicKey,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -204,7 +205,7 @@ export class Staking {
     );
   }
 
-  async stake(amount: u64): Promise<TransactionEnvelope> {
+  async stake(amount: Iu64): Promise<TransactionEnvelope> {
     const [stakingPda] = await PublicKey.findProgramAddress(
       [Buffer.from(STAKING_SEED_PREFIX), this.config.address.toBuffer()],
       this.program.programId,
@@ -364,7 +365,7 @@ export class Staking {
     );
   }
 
-  async unstake(amount: u64): Promise<TransactionEnvelope> {
+  async unstake(amount: Iu64): Promise<TransactionEnvelope> {
     const [stakingPda] = await PublicKey.findProgramAddress(
       [Buffer.from(STAKING_SEED_PREFIX), this.config.address.toBuffer()],
       this.program.programId,
@@ -492,12 +493,12 @@ export class Staking {
   static estimatedVestingClaimable(
     halfLifeDuration: number,
     claimAllDuration: number,
-    vestedHolderAmount: u64,
+    vestedHolderAmount: Iu64,
     lastUpdatedTime: number,
     lastVestTime: number,
-    claimableAmount: u64,
+    claimableAmount: Iu64,
     updateTime: number, //in seconds
-  ): u64 {
+  ): Iu64 {
     //no more vested amount
     if (vestedHolderAmount.lte(ZERO_U64)) {
       return claimableAmount;

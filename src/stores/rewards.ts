@@ -5,7 +5,11 @@ import { Idl, Program, BN } from '@project-serum/anchor';
 import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
 import type { Provider } from '@saberhq/solana-contrib';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
-import { u64, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+const {
+  u64,
+  TOKEN_PROGRAM_ID,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 import { PublicKey, SystemProgram } from '@solana/web3.js';
 import create from 'zustand';
 import { IMerkleDistributorInfo, IMerkleRewardsResponse } from '../types';

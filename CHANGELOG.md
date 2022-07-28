@@ -2,6 +2,206 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.51](https://github.com/pngfi/react-hooks/compare/v0.5.1...v0.5.51) (2022-07-28)
+
+
+### Features
+
+* 🎸 add bond and stake doc ([6aad8be](https://github.com/pngfi/react-hooks/commit/6aad8be742e09296f9f3f9e5db9f3391b43791e3))
+* 🎸 add bond and stake doc ([4aeae45](https://github.com/pngfi/react-hooks/commit/4aeae451cd0c9d3475d90943e823703803c49702))
+* 🎸 add bond and stake doc ([74b7c2a](https://github.com/pngfi/react-hooks/commit/74b7c2a893f87fec6cc683ad659d6ca772be2bee))
+
+### [0.5.6](https://github.com/pngfi/react-hooks/compare/v0.5.1...v0.5.6) (2022-07-28)
+
+
+### Features
+
+* 🎸 add bond and stake doc ([4aeae45](https://github.com/pngfi/react-hooks/commit/4aeae451cd0c9d3475d90943e823703803c49702))
+* 🎸 add bond and stake doc ([74b7c2a](https://github.com/pngfi/react-hooks/commit/74b7c2a893f87fec6cc683ad659d6ca772be2bee))
+
+### [0.5.37](https://github.com/xweb3/react-hooks/compare/v0.5.36...v0.5.37) (2022-07-28)
+
+### [0.5.36](https://github.com/xweb3/react-hooks/compare/v0.5.35...v0.5.36) (2022-07-28)
+
+
+### Bug Fixes
+
+* 🐛 provider publicKey ([92c999a](https://github.com/xweb3/react-hooks/commit/92c999ae68d75c97b4e0bdbb9512f2157825b89d))
+
+### [0.5.35](https://github.com/xweb3/react-hooks/compare/v0.5.33...v0.5.35) (2022-07-28)
+
+### [0.5.33](https://github.com/xweb3/react-hooks/compare/v0.5.32...v0.5.33) (2022-07-28)
+
+### [0.5.32](https://github.com/xweb3/react-hooks/compare/v0.5.31...v0.5.32) (2022-07-28)
+
+
+### Bug Fixes
+
+* 🐛 bond & stake ([c36f470](https://github.com/xweb3/react-hooks/commit/c36f470e0a4d45b93ca3195c47080319ee257424))
+* 🐛 bond & stake doc ([1108c22](https://github.com/xweb3/react-hooks/commit/1108c22b16c6ad7c8ffdfbea61f7638640939828))
+
+### [0.5.31](https://github.com/xweb3/react-hooks/compare/v0.5.30...v0.5.31) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 useBond ([db6bc84](https://github.com/xweb3/react-hooks/commit/db6bc8453dbeafc49eb79db85639ccb737f70364))
+* 🐛 useBond ([8e55f59](https://github.com/xweb3/react-hooks/commit/8e55f593d95c73d2aced93a712fd15c0ad109429))
+
+### [0.5.30](https://github.com/xweb3/react-hooks/compare/v0.5.29...v0.5.30) (2022-07-27)
+
+### [0.5.29](https://github.com/xweb3/react-hooks/compare/v0.5.28...v0.5.29) (2022-07-27)
+
+### [0.5.28](https://github.com/xweb3/react-hooks/compare/v0.5.27...v0.5.28) (2022-07-27)
+
+### [0.5.27](https://github.com/xweb3/react-hooks/compare/v0.5.26...v0.5.27) (2022-07-27)
+
+### [0.5.26](https://github.com/xweb3/react-hooks/compare/v0.5.23...v0.5.26) (2022-07-27)
+
+### [0.5.23](https://github.com/xweb3/react-hooks/compare/v0.5.22...v0.5.23) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 token undefined ([8a1676a](https://github.com/xweb3/react-hooks/commit/8a1676af544b3595a70bf8c9388befbe49036c81))
+
+### [0.5.22](https://github.com/xweb3/react-hooks/compare/v0.5.21...v0.5.22) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 pool ([ee48f9a](https://github.com/xweb3/react-hooks/commit/ee48f9aecc1c4fa1a869fa6b63bf45d707330dff))
+
+### [0.5.21](https://github.com/xweb3/react-hooks/compare/v0.5.20...v0.5.21) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 ZERO_DECIMAL ([77e4bc9](https://github.com/xweb3/react-hooks/commit/77e4bc9aac74033476b88da584b291f124d06287))
+
+### [0.5.20](https://github.com/xweb3/react-hooks/compare/v0.5.19...v0.5.20) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 undefined ([40b22ac](https://github.com/xweb3/react-hooks/commit/40b22ac0e8f413a78cbdb64eed1e2e460b87582f))
+
+### [0.5.19](https://github.com/xweb3/react-hooks/compare/v0.5.18...v0.5.19) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 undefined ([ea97c76](https://github.com/xweb3/react-hooks/commit/ea97c76775414689a25ebf5707e7433737200d75))
+
+### [0.5.18](https://github.com/xweb3/react-hooks/compare/v0.5.17...v0.5.18) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 find token ([f836d36](https://github.com/xweb3/react-hooks/commit/f836d360d03f6be158a0a08415c194551abdf6c5))
+
+### [0.5.17](https://github.com/xweb3/react-hooks/compare/v0.5.16...v0.5.17) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 payoutHolderBalance ([023759d](https://github.com/xweb3/react-hooks/commit/023759d9b266117f5d6065564bc646367eeaee44))
+
+### [0.5.16](https://github.com/xweb3/react-hooks/compare/v0.5.15...v0.5.16) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 total value ([f265737](https://github.com/xweb3/react-hooks/commit/f2657372ab853262b62cd9a5e95c70b55c9ed941))
+
+### [0.5.15](https://github.com/xweb3/react-hooks/compare/v0.5.14...v0.5.15) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 error for undefined ([2fd0f2c](https://github.com/xweb3/react-hooks/commit/2fd0f2cbe84cfdee46f0fc48304ee6f2d3b81d48))
+
+### [0.5.14](https://github.com/xweb3/react-hooks/compare/v0.5.13...v0.5.14) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 data not find ([33e96ef](https://github.com/xweb3/react-hooks/commit/33e96ef7d7a0a51c19ec75ab1d1f7a34c0eb8d44))
+
+### [0.5.13](https://github.com/xweb3/react-hooks/compare/v0.5.12...v0.5.13) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 data not find ([5bdf798](https://github.com/xweb3/react-hooks/commit/5bdf7984196f5d8ddab2cc5c116193eb3ec5db0b))
+
+### [0.5.12](https://github.com/xweb3/react-hooks/compare/v0.5.11...v0.5.12) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 Decimal undefined ([c56ce44](https://github.com/xweb3/react-hooks/commit/c56ce44ff35fcb423495d1cfe33b2c42b323e59f))
+
+### [0.5.11](https://github.com/xweb3/react-hooks/compare/v0.5.10...v0.5.11) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 Decimal undefined ([158eb82](https://github.com/xweb3/react-hooks/commit/158eb8225e0727656c489e822094873208ddeffb))
+
+### [0.5.10](https://github.com/xweb3/react-hooks/compare/v0.5.9...v0.5.10) (2022-07-27)
+
+### [0.5.9](https://github.com/xweb3/react-hooks/compare/v0.5.8...v0.5.9) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 export stakingInfos ([d1fff5d](https://github.com/xweb3/react-hooks/commit/d1fff5d5d796fc92b999c8eaff9c186253c4eddb))
+
+### [0.5.8](https://github.com/xweb3/react-hooks/compare/v0.5.7...v0.5.8) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 react ([004e12d](https://github.com/xweb3/react-hooks/commit/004e12d685c7be47efc93a2dda81daf2cbd0afff))
+
+### [0.5.7](https://github.com/xweb3/react-hooks/compare/v0.5.6...v0.5.7) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 u64 ([5013e01](https://github.com/xweb3/react-hooks/commit/5013e01d114242b2e2ac6908600d62c8e0975e9a))
+
+### [0.5.6](https://github.com/xweb3/react-hooks/compare/v0.5.5...v0.5.6) (2022-07-27)
+
+
+### Bug Fixes
+
+* 🐛 react import ([abe4b39](https://github.com/xweb3/react-hooks/commit/abe4b39ecb2ee76c73eee76e06bb7423e3ae1162))
+
+### [0.5.5](https://github.com/xweb3/react-hooks/compare/v0.5.4...v0.5.5) (2022-07-27)
+
+### [0.5.4](https://github.com/xweb3/react-hooks/compare/v0.5.3...v0.5.4) (2022-07-27)
+
+
+### Features
+
+* 🎸 bond & stake doc ([367d82a](https://github.com/xweb3/react-hooks/commit/367d82acb822a2fc2f96da68a442073fbaaf8202))
+
+### [0.5.3](https://github.com/xweb3/react-hooks/compare/v0.5.2...v0.5.3) (2022-07-27)
+
+### [0.5.2](https://github.com/pngfi/react-hooks/compare/v0.5.1...v0.5.2) (2022-07-27)
+
+
+### Features
+
+* 🎸 staking & bonding ([d292453](https://github.com/pngfi/react-hooks/commit/d292453f76b9a6722954e87f3b7dfca5dcd5a59a))
+
+
+### Bug Fixes
+
+* 🐛 change README ([f41a50d](https://github.com/pngfi/react-hooks/commit/f41a50dfe20f7ceca411597d3499bc5c8e742ab0))
+
 ### [0.5.1](https://github.com/pngfi/react-hooks/compare/v0.5.0...v0.5.1) (2022-07-27)
 
 ## [0.5.0](https://github.com/pngfi/react-hooks/compare/v0.4.5...v0.5.0) (2022-07-27)

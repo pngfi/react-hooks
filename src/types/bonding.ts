@@ -1,5 +1,5 @@
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
-import { u64 } from '@solana/spl-token';
+import type { u64 as Iu64 } from '@solana/spl-token';
 import { IToken } from './token';
 
 export declare interface ILPInfo {
@@ -9,8 +9,8 @@ export declare interface ILPInfo {
   tokenBDecimals: number;
 }
 export declare interface IPayoutInfo {
-  payoutAmount: u64;
-  internalPrice: u64;
+  payoutAmount: Iu64;
+  internalPrice: Iu64;
 }
 export declare interface IBondingConfig {
   address: IPublicKey;
@@ -18,25 +18,27 @@ export declare interface IBondingConfig {
 export declare interface IBonding {
   initDebt?: null;
   stakingAddress?: string;
-  initSupply: u64;
+  initSupply: Iu64;
   onlyBonding: boolean;
   pubkey: IPublicKey;
   stakingPubkey: IPublicKey;
   payoutHolder: IPublicKey;
-  bondingSupply: u64;
-  depositAmount: u64;
+  bondingSupply: Iu64;
+  depositAmount: Iu64;
   depositHolder: IPublicKey;
-  depositHolderAmount: u64;
+  depositHolderAmount: Iu64;
   depositTokenMint: IPublicKey;
-  maxDebt: u64;
-  maxPayoutFactor: u64;
-  minPrice: u64;
+  maxDebt: Iu64;
+  maxPayoutFactor: Iu64;
+  minPrice: Iu64;
   payoutTokenMint: IPublicKey;
-  totalDebt: u64;
+  totalDebt: Iu64;
   controlVariable: number;
   decayFactor: number;
   lastDecay: number;
   vestConfigInfo: IVestConfigInfo;
+
+  originMint?: string;
 }
 
 export type IBondingInfoWithTokens = IBonding & {

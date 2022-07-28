@@ -1,23 +1,18 @@
-# How to claim bond
+# How to bond
 
-1. use `useBonding` to get bondings
+1. use `useBond` to get bond info
 
 ```ts
-const provider = useAnchorProvider();
-
 import {
-  useBonding,
+  useConnection, useWallet
+} from '@solana/wallet-adapter-react';
+import {
   useAnchorProvider,
-  toBondingInfo,
-  Bonding
+  useBond
 } from "@pngfi/react-hooks";
-const { data: bondings = [] } = useBonding();
-
-const bondingInfo = useMemo(() => {
-  return bondings.map(v => toBondingInfo(v));
-}, [bondingInfo]);
 
 
+const [bondingItemData, setBondingItemData] = useState({} as any);
 const { connection } = useConnection();
 const { wallet, connected } = useWallet();
 const provider = useAnchorProvider({
@@ -26,17 +21,54 @@ const provider = useAnchorProvider({
   connected
 });
 
-const bondingModel = useMemo(() => {
-  return new Bonding(provider as Provider, {
-    address: bondingInfo.pubkey
-  }, bondingInfo);
-}, [bondingInfo, provider]);
+const {
+  bondingTotalValue,
+  getBondingItemData,
+  onBond
+} = await useBond(provider);
 
-const stakingModel = useMemo(() => {
-  return new Staking(provider as Provider, {
-    address: stakingInfo?.pubkey,
-    vestConfig: stakingInfo?.vestConfigInfo.pubkey
-  }, stakingInfo);
-}, [stakingInfo, provider]);
+useEffect(() => {
+  async function fetchData() {
+    const data = await getBondingItemData(pubkey);
+    setBondingItemData(data);
+  }
+  fetchData();
+}, [getBondingItemData, pubkey]);
 
+const {
+  bondingModel,
+  stakingModel,
+  bondingInfo // IBondingInfoWithTokens,
+
+  payoutHolderBalance,
+  assetTokens,
+} = bondingItemData;
+const { publicKey: ownerAccount } = useWallet();
+const res = onBond({
+  ownerAccount,
+  bondingInfo,
+  bondingModel,
+  stakingModel,
+
+  depositToken,
+  amount,
+
+  execute: (opTx, amount, token, isSwap) => {
+    // const { signature } = await opTx.confirm();
+  },
+  swap: () => {
+    // const { execute } = await jupAg.exchange({
+    //   routeInfo: routes[0]
+    // });
+    // const swapResult = await execute({
+    //   wallet: {
+    //     sendTransaction,
+    //     publicKey,
+    //     signAllTransactions,
+    //     signTransaction
+    //   }
+    // });
+  },
+  userVestingInfo,
+});
 ```

@@ -7,7 +7,11 @@ const {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require('@solana/spl-token-swap');
 // import { TokenSwap } from '@solana/spl-token-swap';
-import { u64 } from '@solana/spl-token';
+import type { u64 as Iu64 } from '@solana/spl-token';
+const {
+  u64,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 import { Connection, PublicKey, TransactionInstruction } from '@solana/web3.js';
 import Decimal from 'decimal.js';
 import create from 'zustand';
@@ -35,7 +39,7 @@ export function pngAddLiquidityInstruction(
   ownerAccount: IPublicKey,
   userSourceTokenAccount: IPublicKey,
   userLPTokenAccount: IPublicKey,
-  amount: u64,
+  amount: Iu64,
 ) {
   return TokenSwap.depositSingleTokenTypeExactAmountInInstruction(
     poolInfo.address,
@@ -99,7 +103,7 @@ export function raydiumSwapInstruction(
   isBase: boolean,
   poolInfo: LiquidityPoolInfo,
   poolKeys: LiquidityPoolKeysV4,
-  depositAmount: u64,
+  depositAmount: Iu64,
   ownerAccount: IPublicKey,
   userLPTokenATokenAccount: IPublicKey,
   userLPTokenBTokenAccount: IPublicKey,
@@ -229,14 +233,14 @@ type ZappingStore = {
     stakingModel: Staking;
     depositToken: IToken;
     pngPools: IPoolRecords;
-    amount: u64;
+    amount: Iu64;
     execute: (
       opTx: TransactionEnvelope,
       amount: string,
       token: IToken,
       isSwap: boolean,
     ) => Promise<string>;
-    jupSwap?: (amount: u64, token: IToken) => Promise<any>;
+    jupSwap?: (amount: Iu64, token: IToken) => Promise<any>;
     userVestingInfo?: any;
   }) => Promise<string>;
 };

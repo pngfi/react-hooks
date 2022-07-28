@@ -1,8 +1,11 @@
 import { PublicKey } from '@solana/web3.js';
 import { Buffer } from 'buffer';
-
-import { u64, TOKEN_PROGRAM_ID } from '@solana/spl-token';
-
+import type { u64 as Iu64 } from '@solana/spl-token';
+const {
+  u64,
+  TOKEN_PROGRAM_ID,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 import idl from './idl.json';
 
 import { Idl, Program, Provider } from '@project-serum/anchor';
@@ -33,7 +36,7 @@ export class Bonding {
     this.program = new Program(idl as Idl, PNG_BONDING_ID, provider as any);
   }
 
-  private decay(bondingInfo: IBonding): u64 {
+  private decay(bondingInfo: IBonding): Iu64 {
     const { lastDecay, totalDebt, decayFactor } = bondingInfo;
 
     const duration = Math.floor(new Date().getTime() / 1000 - lastDecay);
@@ -43,28 +46,28 @@ export class Bonding {
   }
 
   private valueOf(
-    amount: u64,
+    amount: Iu64,
     payoutTokenDecimals: number,
     depositTokenDecimals: number,
-  ): u64 {
+  ): Iu64 {
     return amount
       .mul(new u64(Math.pow(10, payoutTokenDecimals)))
       .div(new u64(Math.pow(10, depositTokenDecimals)));
   }
 
   private debtRatio(
-    totalDebt: u64,
-    tokenSupply: u64,
+    totalDebt: Iu64,
+    tokenSupply: Iu64,
     payoutTokenDecimals: number,
     bondingInfo: IBonding,
-  ): u64 {
+  ): Iu64 {
     return totalDebt
       .sub(this.decay(bondingInfo))
       .mul(new u64(Math.pow(10, payoutTokenDecimals)))
       .div(tokenSupply);
   }
 
-  private price(bondingInfo: IBonding, payoutTokenDecimals: number): u64 {
+  private price(bondingInfo: IBonding, payoutTokenDecimals: number): Iu64 {
     const { totalDebt, bondingSupply, controlVariable, minPrice } = bondingInfo;
     const debtRatio = this.debtRatio(
       totalDebt,
@@ -101,7 +104,7 @@ export class Bonding {
     };
   }
 
-  async bond(amount: u64): Promise<TransactionEnvelope> {
+  async bond(amount: Iu64): Promise<TransactionEnvelope> {
     const {
       publicKey,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -1,11 +1,12 @@
 import { Connection, PublicKey } from '@solana/web3.js';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
-import {
+const {
   AccountLayout,
   u64,
   TOKEN_PROGRAM_ID,
   ASSOCIATED_TOKEN_PROGRAM_ID,
-} from '@solana/spl-token';
+  /* eslint-disable @typescript-eslint/no-var-requires */
+} = require('@solana/spl-token');
 import {
   emptyInstruction,
   ResolvedTokenAddressInstruction,

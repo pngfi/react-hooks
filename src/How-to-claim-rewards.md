@@ -4,10 +4,9 @@
 
 ```ts
 import {
-  useMerkleRewards,
-  useUserPublicKey
+  useMerkleRewards
 } from "@pngfi/react-hooks";
-const userPublicKey = useUserPublicKey() || ''
+const { publicKey: userPublicKey } = useWallet();
 const { data = [] } = useMerkleRewards(userPublicKey.toString());
 ```
 
@@ -19,8 +18,7 @@ import {
 } from '@solana/wallet-adapter-react';
 import {
   useAnchorProvider,
-  useRewards,
-  useUserPublicKey
+  useRewards
 } from "@pngfi/react-hooks";
 
 const { connection } = useConnection();
@@ -32,11 +30,11 @@ const provider = useAnchorProvider({
   wallet,
   connected
 });
-const publicKey = useUserPublicKey();
+const { publicKey: userPublicKey } = useWallet();
 
 const onClaim = async (data) => {
   try {
-    const claimTx = await claimRewards(provider, publicKey, {
+    const claimTx = await claimRewards(provider, userPublicKey, {
       distributor: data.distributor,
       amount: data.amount.toString(),
       claimAddress: data.claimAddress || '',

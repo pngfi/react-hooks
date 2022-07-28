@@ -23,9 +23,9 @@ npm i @pngfi/react-hooks --save
 
 ## Api Host
 
-- Dev Version https://api-dev.png.fi
-- Staging Version https://api-staging.png.fi
-- Online Version https://api.png.fi
+- Dev Version https://chain.png.fi/api-testing
+- Staging Version https://chain.png.fi/api-staging
+- Online Version https://chain.png.fi/api
 
 ## react hooks base api
 
@@ -67,7 +67,11 @@ const {
 
 ```ts
 import { useAnchorProvider } from '@pngfi/react-hooks';
-const provider = useAnchorProvider()
+const provider = useAnchorProvider({
+  connection,
+  wallet,
+  connected
+});
 ```
 
 ## Distributors
@@ -166,5 +170,12 @@ const { data, error, loading } = useUserVesting(owner, vestConfig);
 ### [[useRewards]]
 
 [[include:How-to-claim-rewards.md]]
+
 [[include:How-to-create-distributor.md]]
+
+### [[useBond]]
+[[include:How-to-bond.md]]
+
+### [[useStake]]
+[[include:How-to-stake.md]]
 
