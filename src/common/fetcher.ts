@@ -1,5 +1,6 @@
-import useSWR from 'swr';
 import axios, { AxiosRequestConfig } from 'axios';
+import useSWR from 'swr';
+
 import { baseApi } from './base';
 
 export enum EHttpMethods {

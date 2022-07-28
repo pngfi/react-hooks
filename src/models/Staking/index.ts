@@ -1,27 +1,16 @@
+import { Idl, Program } from '@project-serum/anchor';
 import type { Provider } from '@saberhq/solana-contrib';
-import { Buffer } from 'buffer';
-import type { PublicKey as IPublicKey } from '@solana/web3.js';
+import { TransactionEnvelope } from '@saberhq/solana-contrib';
 import type { u64 as Iu64 } from '@solana/spl-token';
-const {
-  u64,
-  TOKEN_PROGRAM_ID,
-  ASSOCIATED_TOKEN_PROGRAM_ID,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require('@solana/spl-token');
-
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import {
   PublicKey,
-  SYSVAR_RENT_PUBKEY,
-  SYSVAR_CLOCK_PUBKEY,
   SystemProgram,
+  SYSVAR_CLOCK_PUBKEY,
+  SYSVAR_RENT_PUBKEY,
 } from '@solana/web3.js';
+import { Buffer } from 'buffer';
 
-import idl from './idl.json';
-import vestingIdl from './vesting.json';
-
-import { Idl, Program } from '@project-serum/anchor';
-import { TransactionEnvelope } from '@saberhq/solana-contrib';
-import { IStakingConfig } from '../../types';
 import {
   PNG_STAKING_ID,
   PNG_VESTING_ID,
@@ -32,6 +21,16 @@ import {
   resolveOrCreateAssociatedTokenAddress,
 } from '../../helpers/ata';
 import { DecimalUtil } from '../../helpers/decimal';
+import { IStakingConfig } from '../../types';
+import idl from './idl.json';
+import vestingIdl from './vesting.json';
+
+const {
+  u64,
+  TOKEN_PROGRAM_ID,
+  ASSOCIATED_TOKEN_PROGRAM_ID,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 
 const STAKING_SEED_PREFIX = 'staking_authority';
 

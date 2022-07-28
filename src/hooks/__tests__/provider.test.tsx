@@ -1,8 +1,10 @@
-import * as React from 'react';
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import { PngfiProvider } from '../provider';
+
 import { PublicKey } from '@solana/web3.js';
+import { render } from '@testing-library/react';
+import * as React from 'react';
+
+import { PngfiProvider } from '../provider';
 
 function TestChild({ children }: { children: React.ReactNode }) {
   return <div>{children || 'TestChild'}</div>;

@@ -1,4 +1,5 @@
 import { PublicKey } from '@solana/web3.js';
+
 import { DecimalUtil } from '../decimal';
 
 export type IResponseStakingInfo = {

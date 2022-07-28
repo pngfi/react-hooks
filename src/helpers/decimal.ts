@@ -1,9 +1,10 @@
 import type { u64 as Iu64 } from '@solana/spl-token';
+import Decimal from 'decimal.js';
+
 const {
   u64,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require('@solana/spl-token');
-import Decimal from 'decimal.js';
 
 export const ZERO_DECIMAL = new Decimal(0);
 export const ONE_DECIMAL = new Decimal(1);

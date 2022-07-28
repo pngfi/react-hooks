@@ -1,5 +1,6 @@
-import { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useCallback, useState } from 'react';
+
 import { validateInitialValue } from '../../helpers/validateInitialValue';
 
 declare interface IUseCounter {

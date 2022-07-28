@@ -1,7 +1,8 @@
 import create from 'zustand';
-import { IPool } from '../types';
+
 import { getPools } from '../common/pngfi-api';
 import { toPoolInfo } from '../helpers/format';
+import { IPool } from '../types';
 
 type PoolStore = {
   pools: Record<string, IPool>;

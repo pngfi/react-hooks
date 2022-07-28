@@ -1,18 +1,18 @@
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
-import { useFetcher } from '../common/fetcher';
 
+import { useFetcher } from '../common/fetcher';
 import {
   balancesApi,
   bondingApi,
+  distributorEpochsApi,
+  distributorRewardsEpochApi,
   marketsApi,
+  merkleRewardsDistributorApi,
   poolsApi,
+  priceApi,
   pricesApi,
   stakingApi,
   userVestingApi,
-  distributorEpochsApi,
-  merkleRewardsDistributorApi,
-  distributorRewardsEpochApi,
-  priceApi,
 } from '../common/pngfi-api';
 import {
   IResponseBondingInfo,
@@ -20,10 +20,10 @@ import {
   IResponseStakingInfo,
 } from '../helpers/format';
 import {
+  IMarket,
   IMerkleRewardsDistributor,
   IResponse,
   IRewards,
-  IMarket,
 } from '../types';
 import { usePngfiConfig } from './usePngfiConfig';
 

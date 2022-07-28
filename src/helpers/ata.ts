@@ -1,5 +1,17 @@
-import { Connection, PublicKey } from '@solana/web3.js';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
+import { Connection, PublicKey } from '@solana/web3.js';
+
+import { SOL_TOKEN_MINT } from '../common/constant';
+import {
+  emptyInstruction,
+  ResolvedTokenAddressInstruction,
+} from '../types/instruction';
+import {
+  createAssociatedTokenAccountInstruction,
+  createWSOLAccountInstructions,
+  deserializeTokenAccount,
+} from './account';
+
 const {
   AccountLayout,
   u64,
@@ -7,16 +19,6 @@ const {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   /* eslint-disable @typescript-eslint/no-var-requires */
 } = require('@solana/spl-token');
-import {
-  emptyInstruction,
-  ResolvedTokenAddressInstruction,
-} from '../types/instruction';
-import { SOL_TOKEN_MINT } from '../common/constant';
-import {
-  deserializeTokenAccount,
-  createAssociatedTokenAccountInstruction,
-  createWSOLAccountInstructions,
-} from './account';
 
 export async function deriveAssociatedTokenAddress(
   walletAddress: IPublicKey,

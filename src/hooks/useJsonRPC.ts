@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+
 import { rpcpoolApi } from '../common/base';
 import fetcher from '../common/fetcher';
 import { IRPCRequest } from '../types/solana-rpc';

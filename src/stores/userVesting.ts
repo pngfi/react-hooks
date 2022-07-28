@@ -1,5 +1,6 @@
-import create from 'zustand';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
+import create from 'zustand';
+
 import { getUserVesting } from '../common/pngfi-api';
 import { IUserVestingInfo, toVestingInfo } from '../helpers/format';
 

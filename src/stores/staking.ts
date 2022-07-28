@@ -1,7 +1,8 @@
 import create from 'zustand';
-import { IStaking } from '../types';
+
 import { getStaking } from '../common/pngfi-api';
 import { toStakingInfo } from '../helpers/format';
+import { IStaking } from '../types';
 
 type StakingStore = {
   stakingList: IStaking[];

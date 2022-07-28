@@ -1,6 +1,7 @@
+import type { u64 as Iu64 } from '@solana/spl-token';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import Decimal from 'decimal.js';
-import type { u64 as Iu64 } from '@solana/spl-token';
+
 import { IToken } from './token';
 
 export enum CurveType {

@@ -1,5 +1,6 @@
-import create from 'zustand';
 import Decimal from 'decimal.js';
+import create from 'zustand';
+
 import { getBalances } from '../common/pngfi-api';
 
 export type IBalancesRecord = Record<string, Decimal>;

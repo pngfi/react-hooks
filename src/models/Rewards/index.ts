@@ -1,18 +1,19 @@
-import { PublicKey, SystemProgram } from '@solana/web3.js';
-import { Buffer } from 'buffer';
-const {
-  TOKEN_PROGRAM_ID,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require('@solana/spl-token');
-
 import { BN, Idl, Program, Provider } from '@project-serum/anchor';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
-import idl from './idl.json';
+import { PublicKey, SystemProgram } from '@solana/web3.js';
+import { Buffer } from 'buffer';
+
 import { BUD_REWARD_ID } from '../../common/constant';
 import {
   deriveAssociatedTokenAddress,
   resolveOrCreateAssociatedTokenAddress,
 } from '../../helpers/ata';
+import idl from './idl.json';
+
+const {
+  TOKEN_PROGRAM_ID,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 
 export class Rewards {
   public rewardsInfo: any;

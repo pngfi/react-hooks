@@ -1,10 +1,12 @@
 import { PublicKey } from '@solana/web3.js';
+
+import { IPoolTokenResponse } from '../../types';
+import { DecimalUtil } from '../decimal';
+
 const {
   u64,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require('@solana/spl-token');
-import { IPoolTokenResponse } from '../../types';
-import { DecimalUtil } from '../decimal';
 
 export declare type IResponsePoolInfo = {
   pubkey: string;

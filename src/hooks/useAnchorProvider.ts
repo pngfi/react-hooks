@@ -1,14 +1,15 @@
-import { useMemo } from 'react';
 import {
   DEFAULT_PROVIDER_OPTIONS,
+  Provider,
   SolanaAugmentedProvider,
   SolanaProvider,
   SolanaReadonlyProvider,
-  Provider,
 } from '@saberhq/solana-contrib';
 import { Wallet } from '@solana/wallet-adapter-react';
-import { SOLANA_COMMITMENT } from '../common/constant';
 import { Connection } from '@solana/web3.js';
+import { useMemo } from 'react';
+
+import { SOLANA_COMMITMENT } from '../common/constant';
 
 export interface IAnchorProvider {
   connection: Connection;

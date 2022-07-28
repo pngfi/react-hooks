@@ -1,6 +1,6 @@
-import fetcher from './fetcher';
-import { baseApi } from './base';
 import { IMerkleRewardsInsertRequest } from '../types/distributor';
+import { baseApi } from './base';
+import fetcher from './fetcher';
 
 // List Distributors of User
 // GET /distributors/:user

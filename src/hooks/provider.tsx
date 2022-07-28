@@ -1,16 +1,17 @@
-import React from 'react';
-import { SWRConfig } from 'swr';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { Cluster } from '@solana/web3.js';
+import React from 'react';
+import { SWRConfig } from 'swr';
 // import { Wallet } from "@solana/wallet-adapter-react";
 import {
   BareFetcher,
-  PublicConfiguration,
   Cache,
   ProviderConfiguration,
+  PublicConfiguration,
 } from 'swr/dist/types';
-import fetcher from '../common/fetcher';
+
 import { baseApi } from '../common/base';
+import fetcher from '../common/fetcher';
 
 export declare type IProviderOptionsValue =
   | (Partial<PublicConfiguration<any, any, BareFetcher<any>>> &

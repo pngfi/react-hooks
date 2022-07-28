@@ -1,12 +1,6 @@
-const {
-  u64,
-  TOKEN_PROGRAM_ID,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require('@solana/spl-token');
-import Decimal from 'decimal.js';
-import { Idl, Program, BN } from '@project-serum/anchor';
+import { BN, Idl, Program } from '@project-serum/anchor';
+import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
 import { Provider, TransactionEnvelope } from '@saberhq/solana-contrib';
-import { Buffer } from 'buffer';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import {
   Keypair,
@@ -15,25 +9,32 @@ import {
   SystemProgram,
   Transaction,
 } from '@solana/web3.js';
-import { MerkleDistributorSDK } from '@saberhq/merkle-distributor';
+import { Buffer } from 'buffer';
+import Decimal from 'decimal.js';
 
+import fetcher from '../../common/fetcher';
+import { distributorMerkleRewardsApi } from '../../common/pngfi-api';
+import {
+  deriveAssociatedTokenAddress,
+  resolveOrCreateAssociatedTokenAddress,
+} from '../../helpers/ata';
+import { DecimalUtil } from '../../helpers/decimal';
+import { TransactionBuilder } from '../../helpers/transactionBuilder';
 import {
   distributorProgramIdl,
   PNG_DISTRIBUTOR_PROGRAM_ID,
 } from '../../models/Rewards/distributor';
 import {
-  deriveAssociatedTokenAddress,
-  resolveOrCreateAssociatedTokenAddress,
-} from '../../helpers/ata';
-import { TransactionBuilder } from '../../helpers/transactionBuilder';
-import {
   IMerkleRewardsInsertRequest,
   IMerkleRewardsInsertResponse,
   IToken,
 } from '../../types';
-import { distributorMerkleRewardsApi } from '../../common/pngfi-api';
-import fetcher from '../../common/fetcher';
-import { DecimalUtil } from '../../helpers/decimal';
+
+const {
+  u64,
+  TOKEN_PROGRAM_ID,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('@solana/spl-token');
 
 export interface IRewardsInfo {
   proof: string[];

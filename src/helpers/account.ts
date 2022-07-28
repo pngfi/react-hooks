@@ -1,6 +1,25 @@
+import type { Provider } from '@saberhq/solana-contrib';
 import type { Layout } from '@solana/buffer-layout';
 import type { AccountInfo, MintInfo, u64 as Iu64 } from '@solana/spl-token';
-import type { Provider } from '@saberhq/solana-contrib';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  Signer,
+  SystemProgram,
+  SYSVAR_RENT_PUBKEY,
+  Transaction,
+  TransactionInstruction,
+} from '@solana/web3.js';
+import { Buffer } from 'buffer';
+
+import { SYSTEM_PROGRAM_ID } from '../common/constant';
+import {
+  Instruction,
+  ResolvedTokenAddressInstruction,
+} from '../types/instruction';
+
 const {
   AccountLayout,
   u64,
@@ -9,23 +28,6 @@ const {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require('@solana/spl-token');
-import { Buffer } from 'buffer';
-import type { PublicKey as IPublicKey } from '@solana/web3.js';
-import {
-  PublicKey,
-  Keypair,
-  Signer,
-  SystemProgram,
-  SYSVAR_RENT_PUBKEY,
-  TransactionInstruction,
-  Connection,
-  Transaction,
-} from '@solana/web3.js';
-import {
-  Instruction,
-  ResolvedTokenAddressInstruction,
-} from '../types/instruction';
-import { SYSTEM_PROGRAM_ID } from '../common/constant';
 
 /**
  * Layout with decode/encode types.

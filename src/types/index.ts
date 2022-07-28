@@ -4,11 +4,11 @@ export declare type IApiCluster =
   | 'testnet'
   | 'mainnet-beta';
 
-export * from './response';
+export * from './bonding';
 export * from './distributor';
-export * from './token';
 export * from './market';
 export * from './pool';
-export * from './bonding';
-export * from './staking';
+export * from './response';
 export * from './solana-rpc';
+export * from './staking';
+export * from './token';

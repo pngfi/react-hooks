@@ -1,5 +1,5 @@
-import fetcher from './fetcher';
 import { baseApi } from './base';
+import fetcher from './fetcher';
 
 export * from './pngfi-merkle-rewards-api';
 

@@ -1,23 +1,24 @@
+import { Idl, Program, Provider } from '@project-serum/anchor';
+import { TransactionEnvelope } from '@saberhq/solana-contrib';
+import type { u64 as Iu64 } from '@solana/spl-token';
 import { PublicKey } from '@solana/web3.js';
 import { Buffer } from 'buffer';
-import type { u64 as Iu64 } from '@solana/spl-token';
+import Decimal from 'decimal.js';
+
+import { PNG_BONDING_ID } from '../../common/constant';
+import {
+  deriveAssociatedTokenAddress,
+  resolveOrCreateAssociatedTokenAddress,
+} from '../../helpers/ata';
+import { DecimalUtil } from '../../helpers/decimal';
+import { IBonding, IBondingConfig, IPayoutInfo } from '../../types';
+import idl from './idl.json';
+
 const {
   u64,
   TOKEN_PROGRAM_ID,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require('@solana/spl-token');
-import idl from './idl.json';
-
-import { Idl, Program, Provider } from '@project-serum/anchor';
-import { TransactionEnvelope } from '@saberhq/solana-contrib';
-import Decimal from 'decimal.js';
-import { IBondingConfig, IBonding, IPayoutInfo } from '../../types';
-import { PNG_BONDING_ID } from '../../common/constant';
-import { DecimalUtil } from '../../helpers/decimal';
-import {
-  deriveAssociatedTokenAddress,
-  resolveOrCreateAssociatedTokenAddress,
-} from '../../helpers/ata';
 
 const BONDING_SEED_PREFIX = 'bonding_authority';
 

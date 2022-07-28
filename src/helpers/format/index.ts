@@ -1,4 +1,4 @@
 export * from './bonding';
-export * from './staking';
 export * from './pool';
+export * from './staking';
 export * from './userVesting';

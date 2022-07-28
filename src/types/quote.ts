@@ -1,4 +1,5 @@
 import type { u64 as Iu64 } from '@solana/spl-token';
+
 import { IFeeStructure } from './pool';
 import { IToken } from './token';
 

@@ -1,10 +1,10 @@
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import {
   Signer,
   Transaction,
   TransactionInstruction,
   TransactionSignature,
 } from '@solana/web3.js';
-import type { PublicKey as IPublicKey } from '@solana/web3.js';
 
 export declare interface Instruction {
   instructions: TransactionInstruction[];

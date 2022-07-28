@@ -1,4 +1,5 @@
 import qs from 'query-string';
+
 import fetcher from './fetcher';
 
 // https://www.coingecko.com/zh/api/documentation

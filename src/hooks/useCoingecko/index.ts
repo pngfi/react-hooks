@@ -1,4 +1,5 @@
 import qs from 'query-string';
+
 import {
   coinsIdMarketChartApi,
   coinsMarketsApi,

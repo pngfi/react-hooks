@@ -1,5 +1,5 @@
-import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import type { u64 as Iu64 } from '@solana/spl-token';
+import type { PublicKey as IPublicKey } from '@solana/web3.js';
 
 export declare interface IStakingConfig {
   address: IPublicKey;

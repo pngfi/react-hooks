@@ -1,8 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const { u64 } = require('@solana/spl-token');
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { Cluster, PublicKey } from '@solana/web3.js';
+
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { IFeeStructure } from '../types';
+
+const { u64 } = require('@solana/spl-token');
 
 export const solanaCluster = (): Cluster => {
   const cluster =
