@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.52](https://github.com/pngfi/react-hooks/compare/v0.5.1...v0.5.52) (2022-07-28)
+
+
+### Features
+
+* 🎸 add bond & stake doc ([9ee137e](https://github.com/pngfi/react-hooks/commit/9ee137edb2378a7794619ed02169100242ddbb5a))
+
 ### [0.5.51](https://github.com/pngfi/react-hooks/compare/v0.5.1...v0.5.51) (2022-07-28)
 
 
