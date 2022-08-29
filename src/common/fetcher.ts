@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import useSWR from 'swr';
 
-import { baseApi } from './base';
+import { appId, baseApi } from './base';
 
 export enum EHttpMethods {
   GET = 'GET',
@@ -18,7 +18,13 @@ export default async function fetcher(
   },
 ): Promise<any> {
   url = url ? (/^http/.test(url) ? url : `${baseApi()}${url}`) : '';
-  const res = await axios(url, options);
+  const res = await axios(url, {
+    ...options,
+    headers: {
+      ...options.headers,
+      'X-API-Key': appId() || '',
+    },
+  });
   return res.data;
 }
 

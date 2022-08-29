@@ -2,7 +2,6 @@ import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { Cluster } from '@solana/web3.js';
 import React from 'react';
 import { SWRConfig } from 'swr';
-// import { Wallet } from "@solana/wallet-adapter-react";
 import {
   BareFetcher,
   Cache,
@@ -21,9 +20,8 @@ export declare type IProviderOptionsValue =
   | undefined;
 
 export declare interface IPngfiProvider {
-  // connection: Connection;
-  // wallet: Wallet;
   cluster: Cluster;
+  appId?: string;
   pngfiApi?: string;
   distributorApi?: string;
   rpcpoolApi?: string;
@@ -43,6 +41,7 @@ export declare interface IPngfiProvider {
  * const wallet = useWallet();
  *
  * <PngfiProvider
+ *  appId="xkwFOD8LDi1nA2yl1Mc6F6ehone6MwsPhdHU1euAj3Mx"
  *  cluster='mainnet-beta'
  *  userPublicKey={wallet.publicKey}>
  *  {children}
@@ -52,6 +51,7 @@ export declare interface IPngfiProvider {
 export const PngfiProvider = ({
   // connection,
   // wallet,
+  appId,
   cluster = 'mainnet-beta',
   pngfiApi,
   distributorApi,
@@ -64,6 +64,7 @@ export const PngfiProvider = ({
 }: IPngfiProvider) => {
   if (typeof window !== 'undefined') {
     cluster && window.localStorage.setItem('cluster', cluster);
+    appId && window.localStorage.setItem('appId', appId);
     pngfiApi && window.localStorage.setItem('pngfiApi', pngfiApi || '');
     distributorApi &&
       window.localStorage.setItem('distributorApi', distributorApi || '');
@@ -76,6 +77,7 @@ export const PngfiProvider = ({
         ...options,
         fallback: {
           ...(options?.fallback || {}),
+          appId,
           cluster,
           pngfiApi: pngfiApi || baseApi(),
           distributorApi,

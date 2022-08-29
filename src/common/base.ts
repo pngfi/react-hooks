@@ -49,3 +49,12 @@ export const distributorApi = () => {
       : null;
   return api || 'https://api.bunnyducky.com';
 };
+
+/**
+ * Appid provided by pngfi
+ */
+export const appId = () => {
+  return typeof window !== 'undefined'
+    ? window.localStorage.getItem('appId')
+    : '';
+};

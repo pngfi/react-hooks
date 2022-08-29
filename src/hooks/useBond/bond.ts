@@ -162,15 +162,7 @@ export const useBond = (provider: Provider): IBondResponse => {
       });
 
       const depositTokenPrice = prices[depositToken?.symbol] || 0;
-      console.log(
-        'depositToken.symbol',
-        prices,
-        bonding,
-        bonding?.originMint?.toString(),
-        bonding?.depositTokenMint?.toString(),
-        depositToken?.symbol,
-        depositTokenPrice,
-      );
+
       let amount = DecimalUtil.fromU64(
         bonding?.depositAmount || ZERO_DECIMAL,
         payoutToken?.decimals || 0,
