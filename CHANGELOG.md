@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.54](https://github.com/xweb3/react-hooks/compare/v0.5.53...v0.5.54) (2022-08-29)
+
+
+### Features
+
+* 🎸 add appId ([f2fa4e8](https://github.com/xweb3/react-hooks/commit/f2fa4e88d7abe37e0f4d6fbf927b397b49ecc961))
+* 🎸 add appId ([2e10a0c](https://github.com/xweb3/react-hooks/commit/2e10a0cca317c9f33b20e7a1193a073434416c4a))
+
+
+### Bug Fixes
+
+* 🐛 add appId ([b7333ee](https://github.com/xweb3/react-hooks/commit/b7333ee330f9542ab02b5b972f6109b9a53a8dc8))
 
 ### [0.5.53](https://github.com/pngfi/react-hooks/compare/v0.5.52...v0.5.53) (2022-07-28)
 
