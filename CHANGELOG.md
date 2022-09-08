@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.57](https://github.com/pngfi/react-hooks/compare/v0.5.55...v0.5.57) (2022-09-08)
+
+
+### Features
+
+* 🎸 add How to get distributors ([d9cfbfc](https://github.com/pngfi/react-hooks/commit/d9cfbfc058b8b1e88a465f2079f13f5297c62327))
+
 ### [0.5.55](https://github.com/pngfi/react-hooks/compare/v0.5.54...v0.5.55) (2022-09-08)
 
 
