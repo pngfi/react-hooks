@@ -9,6 +9,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 * 🐛 api change ([53e81d8](https://github.com/pngfi/react-hooks/commit/53e81d8abc7eb8d29b500d1d6f2de7db011f8493))
 
+### [0.5.53](https://github.com/pngfi/react-hooks/compare/v0.5.54...v0.5.53) (2022-09-08)
+
+
+### Bug Fixes
+
+* 🐛 api change ([53e81d8](https://github.com/pngfi/react-hooks/commit/53e81d8abc7eb8d29b500d1d6f2de7db011f8493))
+
 ### [0.5.54](https://github.com/xweb3/react-hooks/compare/v0.5.53...v0.5.54) (2022-08-29)
 
 
