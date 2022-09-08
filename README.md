@@ -25,9 +25,8 @@ npm i @pngfi/react-hooks --save
 
 ## Api Host
 
-- Dev Version https://chain.png.fi/api-testing
-- Staging Version https://chain.png.fi/api-staging
-- Online Version https://chain.png.fi/api
+- Staging Version https://api-staging.png.fi
+- Online Version https://api.png.fi
 
 ## react hooks base api
 

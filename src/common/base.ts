@@ -3,10 +3,8 @@ export const apiUrl = {
   // staging: 'https://api-staging.png.fi',
   // testnet: 'https://test-staging.png.fi',
   // devnet: 'https://test-staging.png.fi',
-  'mainnet-beta': 'https://chain.png.fi/api',
-  staging: 'https://chain.png.fi/api-staging',
-  testnet: 'https://chain.png.fi/api-testing',
-  devnet: 'https://chain.png.fi/api-testing',
+  'mainnet-beta': 'https://api.png.fi',
+  staging: 'https://api-staging.png.fi',
 };
 
 /**
