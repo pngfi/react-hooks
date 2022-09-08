@@ -25,6 +25,7 @@ import {
   PNG_DISTRIBUTOR_PROGRAM_ID,
 } from '../../models/Rewards/distributor';
 import {
+  IDistributorResponse,
   IMerkleRewardsInsertRequest,
   IMerkleRewardsInsertResponse,
   IToken,
@@ -95,6 +96,18 @@ export interface IRewardsResponse {
   insertDistributor: (
     options: IInsertDistributor,
   ) => Promise<TransactionEnvelope>;
+
+  /**
+   * Insert distributor
+   *
+   * @param account
+   *
+   * @example
+   * ```typescript
+   * const distributors = await getDistributors(account);
+   * ```
+   */
+  getDistributors: (account: string) => Promise<IDistributorResponse[]>;
 
   /**
    * only insert distributor data
@@ -290,12 +303,19 @@ const insertDistributor = async (options: IInsertDistributor) => {
   return txe as TransactionEnvelope;
 };
 
+const getDistributors = async (
+  account: string,
+): Promise<IDistributorResponse[]> => {
+  return await getDistributors(account);
+};
+
 export const useRewards = (): IRewardsResponse => {
   return {
     // claimOne,
     // claimCommon,
     claimRewards,
     insertDistributor,
+    getDistributors,
     insertDistributorMerkleRewards,
   } as IRewardsResponse;
 };
