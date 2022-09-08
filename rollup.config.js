@@ -1,5 +1,5 @@
 import sass from 'rollup-plugin-sass'
-import { uglify } from 'rollup-plugin-uglify'
+import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
 import json from '@rollup/plugin-json'
 
@@ -43,6 +43,6 @@ export default {
     {
       exclude: 'node_modules/**',
     }
-  ), uglify(), json()],
+  ), terser(), json()],
   external: ['react', 'react-dom', 'swr', 'axios', 'prop-types'],
 }
