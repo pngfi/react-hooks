@@ -20,6 +20,7 @@ npm i @pngfi/react-hooks --save
 
 - [How to claim rewards](#how-to-claim-rewards)
 - [How to create distributors](#how-to-create-distributors)
+- [How to get distributors](#how-to-get-distributors)
 - [How to bond](#how-to-bond)
 - [How to stake](#how-to-stake)
 
