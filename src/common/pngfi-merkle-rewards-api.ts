@@ -48,6 +48,18 @@ export const getDistributorRewardsEpoch = async (
   return await fetcher(distributorRewardsEpochApi(distributor, epoch));
 };
 
+// Reture reward by distributor and user
+// GET /:distributor/:user
+export const amountsForUserApi = (distributor: string, user: string) =>
+  distributor && user ? `${baseApi()}/${distributor}/user/${user}` : null;
+export const getAmountsForUser = async (
+  distributor: string,
+  user: string,
+): Promise<string> => {
+  const result = await fetcher(amountsForUserApi(distributor, user));
+  return result?.amount;
+};
+
 // Insert Distributor
 // POST /merkleRewards
 // https://github.com/pngfi/png-api-workers/blob/main/merkle-rewards-api.md

@@ -55,13 +55,13 @@
     "transform": {
       ".(ts|tsx)": "ts-jest"
     },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testRegex": "(/__tests__/.*|\\.(spec))\\.(ts|js)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
       "js"
     ],
-    "testEnvironment": "jsdom",
+    "testEnvironment": "node",
     "modulePathIgnorePatterns": [
       "<rootDir>/dist/"
     ]
