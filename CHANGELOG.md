@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.60](https://github.com/pngfi/react-hooks/compare/v0.5.57...v0.5.60) (2022-10-07)
+
+
+### Features
+
+* 🎸 add getAmountsForUser ([a3b8be0](https://github.com/pngfi/react-hooks/commit/a3b8be07db7edea18c6ba62fae8a258ee919f6ba))
+* 🎸 getAmountsForUser ([96f7fb9](https://github.com/pngfi/react-hooks/commit/96f7fb9d2b057212d4096bc8b8bb157b50a72219))
+
+
+### Bug Fixes
+
+* 🐛 change uglify to terser ([7e920c6](https://github.com/pngfi/react-hooks/commit/7e920c67142a9704f390c4426812836b8f8b8294))
+
 ### [0.5.59](https://github.com/xweb3/react-hooks/compare/v0.5.58...v0.5.59) (2022-10-07)
 
 
