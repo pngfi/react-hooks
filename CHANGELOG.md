@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.59](https://github.com/xweb3/react-hooks/compare/v0.5.58...v0.5.59) (2022-10-07)
+
+
+### Bug Fixes
+
+* 🐛 getAmountsForUser return ([f67465f](https://github.com/xweb3/react-hooks/commit/f67465f33c5c5ed17594e349673d0c8ffa5d1b6d))
+
+### [0.5.58](https://github.com/xweb3/react-hooks/compare/v0.5.57...v0.5.58) (2022-10-07)
+
+
+### Features
+
+* 🎸 add getAmountsForUser ([d2aed66](https://github.com/xweb3/react-hooks/commit/d2aed6699a2325ced98c07f8d6deef5152c8558d))
+* 🎸 add getAmountsForUser ([a3b8be0](https://github.com/xweb3/react-hooks/commit/a3b8be07db7edea18c6ba62fae8a258ee919f6ba))
+
+
+### Bug Fixes
+
+* 🐛 change uglify to terser ([7e920c6](https://github.com/xweb3/react-hooks/commit/7e920c67142a9704f390c4426812836b8f8b8294))
+
 ### [0.5.57](https://github.com/pngfi/react-hooks/compare/v0.5.55...v0.5.57) (2022-09-08)
 
 
