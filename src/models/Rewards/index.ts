@@ -117,4 +117,21 @@ export class Rewards {
       [...resolveUserHolderInstrucitons.signers],
     );
   }
+
+  async getRoot(distributor: string) {
+    return await this.program.account.merkleDistributor
+      .fetch(new PublicKey(distributor))
+      .then((info) => {
+        return {
+          root: Array.from(info.root as any, function (byte: any) {
+            return ('0' + (byte & 0xff).toString(16)).slice(-2);
+          }).join(''),
+          totalAmount: (info.maxTotalClaim as BN).toNumber(),
+          totalAmountClaimed: (info.totalAmountClaimed as BN).toNumber(),
+          numNodes: (info.maxNumNodes as BN).toNumber(),
+          adminAuth: (info.adminAuth as PublicKey).toString(),
+          numNodesClaimed: (info.numNodesClaimed as BN).toNumber(),
+        };
+      });
+  }
 }
