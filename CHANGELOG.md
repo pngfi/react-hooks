@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.62](https://github.com/xweb3/react-hooks/compare/v0.5.61...v0.5.62) (2022-10-10)
+
+
+### Features
+
+* 🎸 build doc ([84aef62](https://github.com/xweb3/react-hooks/commit/84aef621614be4b4ca7bff8df848a81701745129))
+* 🎸 deploy ([4010e04](https://github.com/xweb3/react-hooks/commit/4010e043ded03b6a30ee89959c7d0bff02231cf5))
+* 🎸 Rewards add getRoot ([b2390b8](https://github.com/xweb3/react-hooks/commit/b2390b8ff63711dcd77d8841d1fcbe30c6c90f72))
+* 🎸 upload ([2b36a3e](https://github.com/xweb3/react-hooks/commit/2b36a3ee3b9440b049c6e399689cbe119eec3662))
+
 ### [0.5.61](https://github.com/xweb3/react-hooks/compare/v0.5.60...v0.5.61) (2022-10-10)
 
 
