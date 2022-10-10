@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.61](https://github.com/xweb3/react-hooks/compare/v0.5.60...v0.5.61) (2022-10-10)
+
+
+### Features
+
+* 🎸 add getRoot & distributor info ([4053976](https://github.com/xweb3/react-hooks/commit/4053976a4c83c273148f92b49ccfeed56c4cb487))
+* 🎸 getRoot ([e273e5b](https://github.com/xweb3/react-hooks/commit/e273e5b22db15eb57ec1a5a411f5f9750d875a47))
+
 ### [0.5.60](https://github.com/pngfi/react-hooks/compare/v0.5.57...v0.5.60) (2022-10-07)
 
 
