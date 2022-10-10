@@ -8,6 +8,7 @@ import {
   deriveAssociatedTokenAddress,
   resolveOrCreateAssociatedTokenAddress,
 } from '../../helpers/ata';
+import { IRewardsInfo } from '../../hooks/useRewards';
 import idl from './idl.json';
 
 const {
@@ -16,15 +17,15 @@ const {
 } = require('@solana/spl-token');
 
 export class Rewards {
-  public rewardsInfo: any;
+  public rewardsInfo: IRewardsInfo;
   private program: Program;
 
-  constructor(provider: Provider, rewardsInfo: any) {
-    this.rewardsInfo = rewardsInfo;
+  constructor(provider: Provider, rewardsInfo: IRewardsInfo | undefined) {
+    this.rewardsInfo = rewardsInfo as IRewardsInfo;
     this.program = new Program(idl as Idl, BUD_REWARD_ID, provider as any);
   }
 
-  async getClaimStatusInfo() {
+  getClaimStatusInfo = async () => {
     const { distributor } = this.rewardsInfo;
 
     const {
@@ -56,8 +57,8 @@ export class Rewards {
     return claimStatusAcc;
   }
 
-  async claim(): Promise<TransactionEnvelope> {
-    const { distributor, amount, index, proof } = this.rewardsInfo;
+  claim = async (): Promise<TransactionEnvelope> => {
+    const { distributor, amount = 0, index = 0, proof = [] } = this.rewardsInfo;
 
     const {
       publicKey,
@@ -116,9 +117,9 @@ export class Rewards {
       [...resolveUserHolderInstrucitons.instructions, rewardsInstruction],
       [...resolveUserHolderInstrucitons.signers],
     );
-  }
+  };
 
-  async getRoot(distributor: string) {
+  getRoot = async (distributor: string) => {
     return await this.program.account.merkleDistributor
       .fetch(new PublicKey(distributor))
       .then((info) => {
