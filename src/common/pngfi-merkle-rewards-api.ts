@@ -18,6 +18,14 @@ export const getDistributorEpochs = async (distributor: string) => {
   return await fetcher(distributorEpochsApi(distributor));
 };
 
+// Distributor info
+// GET /:distributor/info
+export const distributorInfoApi = (distributor: string) =>
+  distributor ? `${baseApi()}/${distributor}/info` : null;
+export const getDistributorInfo = async (distributor: string) => {
+  return await fetcher(distributorInfoApi(distributor));
+};
+
 // List Rewards of Distributor
 // GET /merkleRewards/:distributor
 export const merkleRewardsDistributorApi = (distributor: string) =>
