@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.63](https://github.com/xweb3/react-hooks/compare/v0.5.62...v0.5.63) (2022-10-11)
+
+
+### Features
+
+* 🎸 add BalanceTree ([ac87736](https://github.com/xweb3/react-hooks/commit/ac87736ca27a4e8fd34c8ea5911272a453063caf))
+
 ### [0.5.62](https://github.com/xweb3/react-hooks/compare/v0.5.61...v0.5.62) (2022-10-10)
 
 
