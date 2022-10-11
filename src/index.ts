@@ -51,7 +51,7 @@ export {
  * tools
  */
 export * from './helpers/account';
-export { BalanceTree } from './helpers/balance-tree';
+export { BalanceTree, getBalanceTree } from './helpers/balance-tree';
 export * from './helpers/decimal';
 export * from './helpers/format';
 

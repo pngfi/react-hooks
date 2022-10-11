@@ -1,4 +1,4 @@
-import type { PublicKey } from '@solana/web3.js';
+import { PublicKey } from '@solana/web3.js';
 import BN from 'bn.js';
 import { Buffer } from 'buffer';
 import { keccak_256 } from 'js-sha3';
@@ -57,3 +57,17 @@ export class BalanceTree {
     return this._tree.getProof(BalanceTree.toNode(index, account, amount));
   }
 }
+
+export const getBalanceTree = (
+  rewards: {
+    dest: string;
+    amount: string;
+  }[],
+) => {
+  return new BalanceTree(
+    rewards.map(({ dest, amount }) => ({
+      account: new PublicKey(dest),
+      amount: new BN(amount),
+    })),
+  );
+};
