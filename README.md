@@ -41,7 +41,7 @@ const App = ({ children }) => {
   return (
     <PngfiProvider
       cluster="mainnet-beta"
-      publicKey={wallet.publicKey}
+      userPublicKey={wallet.publicKey}
       >
       {/* You can use useBonding in children now */}
       {children}
