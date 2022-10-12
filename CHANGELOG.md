@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.66](https://github.com/xweb3/react-hooks/compare/v0.5.65...v0.5.66) (2022-10-12)
+
+
+### Features
+
+* 🎸 merge tools ([8a30b0d](https://github.com/xweb3/react-hooks/commit/8a30b0d231649b737c7e3d6b6a8475b60f1268e3))
+* 🎸 update doc ([46d2f2c](https://github.com/xweb3/react-hooks/commit/46d2f2c39a3f4d7f482e74260e36c3af35d8eb99))
+
 ### [0.5.65](https://github.com/pngfi/react-hooks/compare/v0.5.64...v0.5.65) (2022-10-12)
 
 
