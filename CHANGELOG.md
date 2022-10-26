@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.69](https://github.com/xweb3/react-hooks/compare/v0.5.68...v0.5.69) (2022-10-26)
+
+
+### Features
+
+* 🎸 spl-token-swap ([3f5cff7](https://github.com/xweb3/react-hooks/commit/3f5cff7470546a185fa3c8888d07cf5793bc924a))
+* 🎸 token swap 0.1.2 ([1ae8094](https://github.com/xweb3/react-hooks/commit/1ae80943b21b03c52e2de5b8dfa215b2fa085849))
+
+
+### Bug Fixes
+
+* 🐛 spl-token-swap ([e128539](https://github.com/xweb3/react-hooks/commit/e128539a47d390280c3cc5e1599d010113d00062))
+* 🐛 spl-token-swap ([ad2a24e](https://github.com/xweb3/react-hooks/commit/ad2a24e4ab9bcdaad9e1369e9b0dc987acc0b8ed))
+* 🐛 spl-token-swap ([d0df587](https://github.com/xweb3/react-hooks/commit/d0df5877478c645cfd99fbd68fd2df8466cc7d32))
+
 ### [0.5.68](https://github.com/xweb3/react-hooks/compare/v0.5.67...v0.5.68) (2022-10-26)
 
 
