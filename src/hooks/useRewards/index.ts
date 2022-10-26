@@ -113,6 +113,28 @@ export interface IRewardsResponse {
   ) => Promise<TransactionEnvelope>;
 
   /**
+   * Confirm insert distributor
+   *
+   * @param {IConfirmDistributor} options
+   * @param {IConfirmHeader} headers
+   *
+   * @example
+   * ```ts
+   * await confirmInsertDistributor({
+   *   distributor: newDistributor,
+   *   status: 'SUCCESS', // 'CANCEL', 'ERROR'
+   * }, {
+   *   'X-PNG-SIGNATURE': signAuth(wallet, 'Create Distributor'),
+   *   'X-PNG-ADDRESS': publicKey.toString()
+   * });
+   * ```
+   */
+  confirmInsertDistributor: (
+    options: IConfirmDistributor,
+    headers: IConfirmHeader,
+  ) => Promise<any>;
+
+  /**
    * update distributor
    *
    * @param {IUpdateDistributor} options
@@ -140,6 +162,48 @@ export interface IRewardsResponse {
   updateDistributor: (
     options: IUpdateDistributor,
   ) => Promise<TransactionEnvelope>;
+
+  /**
+   * Confirm update distributor
+   *
+   * @param {IConfirmUpdateDistributor} options
+   * @param {IConfirmHeader} headers
+   *
+   * @example
+   * ```ts
+   * await confirmUpdateDistributor({
+   *   distributor: distributorAddress,
+   *   previousEpochID: distributor.epochID,
+   *   status: 'SUCCESS', // 'CANCEL', 'ERROR'
+   * }, {
+   *   'X-PNG-SIGNATURE': signAuth(wallet, 'Update Distributor'),
+   *   'X-PNG-ADDRESS': publicKey.toString()
+   * });
+   * ```
+   */
+  confirmUpdateDistributor: (
+    options: IConfirmUpdateDistributor,
+    headers: IConfirmHeader,
+  ) => Promise<any>;
+
+  /**
+   * Delete distributor
+   *
+   * @param {IConfirmUpdateDistributor} options
+   * @param {IConfirmHeader} headers
+   *
+   * @example
+   * ```ts
+   * const result = await deleteDistributor((
+   *    address,
+   *    {
+   *      'X-PNG-SIGNATURE': signAuth(wallet, 'Delete Distributor'),
+   *      'X-PNG-ADDRESS': publicKey.toString()
+   *    }
+   * ));
+   * ```
+   */
+  deleteDistributor: (address: string, headers: IConfirmHeader) => Promise<any>;
 
   /**
    * get distributors

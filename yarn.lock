@@ -1755,7 +1755,7 @@
   dependencies:
     buffer "~6.0.3"
 
-"@solana/spl-token-swap@0.1.2":
+"@solana/spl-token-swap@^0.1.2":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@solana/spl-token-swap/-/spl-token-swap-0.1.2.tgz#804019513b72b15a384a78dcaee705c87d8d97cc"
   integrity sha512-jAQXPPK+kpXYPNGHhmE1Z/wEPbxRd1WTlWsXU6z7MRbpU4spImQ5+UeULtLM6UitoRLtL3GpnL2RqAtanOe0Hw==
