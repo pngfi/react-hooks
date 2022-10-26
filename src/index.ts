@@ -44,6 +44,7 @@ export {
   getStaking,
   getTokens,
   getUserVesting,
+  postConfirmDistributor,
   postDistributorMerkleRewards,
 } from './common/pngfi-api';
 
@@ -54,6 +55,7 @@ export * from './helpers/account';
 export { BalanceTree, getBalanceTree } from './helpers/balance-tree';
 export * from './helpers/decimal';
 export * from './helpers/format';
+export * from './helpers/sign';
 
 /**
  * modles

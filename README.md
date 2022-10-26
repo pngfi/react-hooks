@@ -19,8 +19,10 @@ npm i @pngfi/react-hooks --save
 ## Usage
 
 - [How to claim rewards](#how-to-claim-rewards)
-- [How to create distributors](#how-to-create-distributors)
-- [How to get distributors](#how-to-get-distributors)
+- [How to create distributor](#how-to-create-distributor)
+- [How to get distributor](#how-to-get-distributor)
+- [How to update distributor](#how-to-update-distributor)
+- [How to delete distributor](#how-to-delete-distributor)
 - [How to bond](#how-to-bond)
 - [How to stake](#how-to-stake)
 
@@ -176,6 +178,10 @@ const { data, error, loading } = useUserVesting(owner, vestConfig);
 [[include:How-to-create-distributor.md]]
 
 [[include:How-to-get-distributors.md]]
+
+[[include:How-to-update-distributor.md]]
+
+[[include:How-to-delete-distributor.md]]
 
 ### [[useBond]]
 [[include:How-to-bond.md]]

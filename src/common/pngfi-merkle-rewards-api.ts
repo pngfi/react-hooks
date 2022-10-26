@@ -1,4 +1,9 @@
-import { IMerkleRewardsInsertRequest } from '../types/distributor';
+import { AxiosRequestHeaders } from 'axios';
+
+import {
+  IDistributorConfirm,
+  IMerkleRewardsInsertRequest,
+} from '../types/distributor';
 import { baseApi } from './base';
 import fetcher from './fetcher';
 
@@ -78,5 +83,33 @@ export const postDistributorMerkleRewards = async (
   return await fetcher(distributorMerkleRewardsApi, {
     method: 'POST',
     data: options,
+  });
+};
+
+// Confirm Distributor
+// POST /distributor/confirm
+export const confirmDistributorApi = `${baseApi()}/distributor/confirm`;
+export const postConfirmDistributor = async (
+  options: IDistributorConfirm,
+  headers: AxiosRequestHeaders,
+) => {
+  return await fetcher(confirmDistributorApi, {
+    method: 'POST',
+    data: options,
+    headers,
+  });
+};
+
+// Delete Distributor
+// DELETE /distributor/confirm
+export const deleteDistributorApi = (address: string) =>
+  `${baseApi()}/distributor/reward/${address}`;
+export const deleteDistributor = async (
+  address: string,
+  headers: AxiosRequestHeaders,
+) => {
+  return await fetcher(deleteDistributorApi(address), {
+    method: 'DELETE',
+    headers,
   });
 };

@@ -34,11 +34,50 @@ export interface IRewards {
   amount: string;
 }
 
+export interface IConfirmHeader {
+  'X-PNG-SIGNATURE': string;
+  'X-PNG-ADDRESS': string;
+}
+
+export const IConfirmStatus = {
+  CANCEL: -3,
+  ERROR: -2,
+  SUCCESS: 1,
+};
+
+export interface IDistributorConfirm {
+  distributor: string;
+  // address: string;
+  epochID?: string;
+  status: number;
+}
+
+export interface IConfirmDistributor {
+  /**
+   * distributor address
+   */
+  distributor: string;
+  /**
+   * 'CANCEL' -3 cancel
+   * 'ERROR' -2 error
+   * 'SUCCESS' 1 success
+   * 'CHAIN_SUCCESS' 2 online confirm success
+   */
+  status: 'CANCEL' | 'ERROR' | 'SUCCESS';
+}
+
+export type IConfirmUpdateDistributor = {
+  /**
+   * Previous epochID
+   */
+  previousEpochID: string;
+} & IConfirmDistributor;
+
 export interface IMerkleRewardsInsertRequest {
   /**
    * A string to identify the project using this. For now, use your token symbol.
    */
-  projectID: IToken['symbol'];
+  projectID?: IToken['symbol'];
   /**
    * Describes what the rewards. Display in the rewards caiming UI.
    */
@@ -51,7 +90,12 @@ export interface IMerkleRewardsInsertRequest {
    * PublicKey;
    * (base58 pubkey) An account key for storing the merkle tree rewards state. You need to have this secert key to initialize the on-chain sate.
    */
-  base: string;
+  base?: string;
+  /**
+   * PublicKey;
+   * distributor address
+   */
+  distributor?: string;
   /**
    * A unique ID to indicate a particular merkle tree update. Repeated POST using the same epochID is idempotent.
    * await connection.getEpochInfo()
@@ -61,11 +105,11 @@ export interface IMerkleRewardsInsertRequest {
    * PublicKey;
    * (base58 pubkey) The account key that should sign the merkle tree insert
    */
-  adminAuth: string;
+  adminAuth?: string;
   /**
    * The reward type for this merkle tree.
    */
-  mint: IToken['mint'];
+  mint?: IToken['mint'];
 }
 
 export interface IMerkleRewardsInsertResponse {

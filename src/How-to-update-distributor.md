@@ -1,22 +1,21 @@
-# How to create distributor
+# How to update distributor
 
-1. use `insertDistributor` to insert distributor
+1. use `updateDistributor` to update distributor
 
 ```ts
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { useAnchorProvider, useRewards, signAuth } from '@pngfi/react-hooks';
-import { Keypair } from '@solana/web3.js';
-
 const { publicKey, wallet, connected } = useWallet();
 const { connection } = useConnection();
 const provider = useAnchorProvider({ connection, wallet, connected });
 
-const { insertDistributor, confirmInsertDistributor } = useRewards();
+const { updateDistributor, confirmUpdateDistributor } = useRewards();
 
-const txe = await insertDistributor({
+const distributor = useDistributor(address);
+
+const txe = await updateDistributor({
   provider,
-  base: Keypair.generate().publicKey.toString(),
-  adminAuth: publicKey.toString(),
+  distributor: distributor.address,
   data: {
     "title": title,
     token,
@@ -36,14 +35,15 @@ const txe = await insertDistributor({
 const { signature, response } = await txe.confirm();
 ```
 
-3. use `confirmInsertDistributor` to update distributor status.
+3. use `confirmUpdateDistributor` to update distributor status.
 
 ```ts
-await confirmInsertDistributor({
-    distributor: newDistributor,
+await confirmUpdateDistributor({
+    distributor: distributorAddress,
+    previousEpochID: distributor.epochID,
     status: 'SUCCESS', // 'CANCEL', 'ERROR'
 }, {
-    'X-PNG-SIGNATURE': signAuth(wallet, 'Create Distributor'),
+    'X-PNG-SIGNATURE': signAuth(wallet, 'Update Distributor'),
     'X-PNG-ADDRESS': publicKey.toString()
 });
 ```

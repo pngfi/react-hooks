@@ -9,11 +9,18 @@ import {
   SystemProgram,
   Transaction,
 } from '@solana/web3.js';
+import { AxiosRequestHeaders } from 'axios';
 import { Buffer } from 'buffer';
 import Decimal from 'decimal.js';
 
 import fetcher from '../../common/fetcher';
-import { distributorMerkleRewardsApi } from '../../common/pngfi-api';
+import {
+  deleteDistributor,
+  distributorMerkleRewardsApi,
+  getDistributorInfo,
+  getDistributors,
+  postConfirmDistributor,
+} from '../../common/pngfi-api';
 import {
   deriveAssociatedTokenAddress,
   resolveOrCreateAssociatedTokenAddress,
@@ -25,10 +32,13 @@ import {
   PNG_DISTRIBUTOR_PROGRAM_ID,
 } from '../../models/Rewards/distributor';
 import {
+  IConfirmDistributor,
+  IConfirmHeader,
+  IConfirmStatus,
+  IConfirmUpdateDistributor,
   IDistributorResponse,
   IMerkleRewardsInsertRequest,
   IMerkleRewardsInsertResponse,
-  IToken,
 } from '../../types';
 
 const {
@@ -85,6 +95,11 @@ export interface IRewardsResponse {
    *  adminAuth,
    *  data: {
    *   "title": "coinId-Airdrop-22-05-21",
+   *   "token": {
+   *      symbol: '',
+   *      mint: '',
+   *      decimals: 9
+   *    },
    *   "rewards": [{
    *     "dest": "x39AvmSeyFFbxuKWJhSG53rTK9bQ69Sv9nZ8e6zCCPw1",
    *     "amount": "10000000000000"
@@ -98,7 +113,36 @@ export interface IRewardsResponse {
   ) => Promise<TransactionEnvelope>;
 
   /**
-   * Insert distributor
+   * update distributor
+   *
+   * @param {IUpdateDistributor} options
+   *
+   * @example
+   * ```typescript
+   * const  = updateDistributor({
+   *  provider,
+   *  distributor,
+   *  data: {
+   *   "title": "coinId-Airdrop-22-05-21",
+   *   "token": {
+   *      symbol: '',
+   *      mint: '',
+   *      decimals: 9
+   *    },
+   *   "rewards": [{
+   *     "dest": "x39AvmSeyFFbxuKWJhSG53rTK9bQ69Sv9nZ8e6zCCPw1",
+   *     "amount": "10000000000000"
+   *   }]
+   *  }
+   * });
+   * ```
+   */
+  updateDistributor: (
+    options: IUpdateDistributor,
+  ) => Promise<TransactionEnvelope>;
+
+  /**
+   * get distributors
    *
    * @param account
    *
@@ -108,6 +152,18 @@ export interface IRewardsResponse {
    * ```
    */
   getDistributors: (account: string) => Promise<IDistributorResponse[]>;
+
+  /**
+   * get distributor
+   *
+   * @param address
+   *
+   * @example
+   * ```typescript
+   * const distributor = await getDistributors(address);
+   * ```
+   */
+  getDistributor: (address: string) => Promise<IDistributorResponse>;
 
   /**
    * only insert distributor data
@@ -237,7 +293,7 @@ const claimOne = async (
     signers: [],
   });
 
-  return txBuilder.build() as TransactionEnvelope;
+  return txBuilder.build();
 };
 
 const claimRewards = async (
@@ -261,13 +317,32 @@ const insertDistributorMerkleRewards = async (
   });
 };
 
+export interface IDistributorToken {
+  symbol: string;
+  mint: string;
+  decimals: number;
+}
 export interface IInsertDistributor {
   provider: Provider;
   base?: string;
   adminAuth: IPublicKey;
   data: {
     title: string;
-    token: IToken;
+    token: IDistributorToken;
+    rewards: {
+      dest: string;
+      amount: string;
+    }[];
+  };
+}
+
+export interface IUpdateDistributor {
+  provider: Provider;
+  distributor: string;
+  // adminAuth: IPublicKey;
+  data: {
+    title: string;
+    token: IDistributorToken;
     rewards: {
       dest: string;
       amount: string;
@@ -295,18 +370,56 @@ const insertDistributor = async (options: IInsertDistributor) => {
 
   const trans = Transaction.from(Buffer.from(tx, 'hex'));
 
-  const txe = new TransactionEnvelope(
-    provider as Provider,
-    trans.instructions,
-    [baseKP],
-  );
-  return txe as TransactionEnvelope;
+  const txe = new TransactionEnvelope(provider, trans.instructions, [baseKP]);
+  return txe;
 };
 
-const getDistributors = async (
-  account: string,
-): Promise<IDistributorResponse[]> => {
-  return await getDistributors(account);
+const updateDistributor = async (options: IUpdateDistributor) => {
+  const { provider, data, distributor } = options;
+  const { title, token, rewards } = data;
+  const baseKP = Keypair.generate();
+  const { absoluteSlot } = await provider.connection.getEpochInfo();
+  const { tx } = await insertDistributorMerkleRewards({
+    title: title,
+    distributor,
+    epochID: Number(absoluteSlot || 0),
+    rewards: rewards.map(({ dest, amount }) => ({
+      dest,
+      amount: DecimalUtil.toU64(new Decimal(amount), token.decimals).toString(),
+    })),
+  });
+
+  const trans = Transaction.from(Buffer.from(tx, 'hex'));
+
+  const txe = new TransactionEnvelope(provider, trans.instructions, [baseKP]);
+  return txe;
+};
+
+const confirmInsertDistributor = async (
+  options: IConfirmDistributor,
+  headers: IConfirmHeader,
+) => {
+  return await postConfirmDistributor(
+    {
+      distributor: options.distributor,
+      status: IConfirmStatus[options.status],
+    },
+    headers as unknown as AxiosRequestHeaders,
+  );
+};
+
+const confirmUpdateDistributor = async (
+  options: IConfirmUpdateDistributor,
+  headers: IConfirmHeader,
+) => {
+  return await postConfirmDistributor(
+    {
+      distributor: options.distributor,
+      epochID: options.previousEpochID,
+      status: IConfirmStatus[options.status],
+    },
+    headers as unknown as AxiosRequestHeaders,
+  );
 };
 
 export const useRewards = (): IRewardsResponse => {
@@ -314,8 +427,24 @@ export const useRewards = (): IRewardsResponse => {
     // claimOne,
     // claimCommon,
     claimRewards,
+    getDistributors: async (
+      account: string,
+    ): Promise<IDistributorResponse[]> => {
+      return await getDistributors(account);
+    },
+    getDistributor: async (address: string): Promise<IDistributorResponse> => {
+      return await getDistributorInfo(address);
+    },
+    deleteDistributor: async (address: string, headers: IConfirmHeader) => {
+      return await deleteDistributor(
+        address,
+        headers as unknown as AxiosRequestHeaders,
+      );
+    },
     insertDistributor,
-    getDistributors,
+    confirmInsertDistributor,
+    updateDistributor,
+    confirmUpdateDistributor,
     insertDistributorMerkleRewards,
   } as IRewardsResponse;
 };
