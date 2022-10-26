@@ -13,7 +13,7 @@ const provider = useAnchorProvider({ connection, wallet, connected });
 
 const { insertDistributor, confirmInsertDistributor } = useRewards();
 
-const txe = await insertDistributor({
+const { txe, distributor } = await insertDistributor({
   provider,
   base: Keypair.generate().publicKey.toString(),
   adminAuth: publicKey.toString(),
@@ -40,7 +40,7 @@ const { signature, response } = await txe.confirm();
 
 ```ts
 await confirmInsertDistributor({
-    distributor: newDistributor,
+    distributor: distributor.address,
     status: 'SUCCESS', // 'CANCEL', 'ERROR'
 }, {
     'X-PNG-SIGNATURE': signAuth(wallet, 'Create Distributor'),

@@ -108,9 +108,10 @@ export interface IRewardsResponse {
    * });
    * ```
    */
-  insertDistributor: (
-    options: IInsertDistributor,
-  ) => Promise<TransactionEnvelope>;
+  insertDistributor: (options: IInsertDistributor) => Promise<{
+    distributor: IMerkleRewardsInsertResponse;
+    txe: TransactionEnvelope;
+  }>;
 
   /**
    * Confirm insert distributor
@@ -159,9 +160,10 @@ export interface IRewardsResponse {
    * });
    * ```
    */
-  updateDistributor: (
-    options: IUpdateDistributor,
-  ) => Promise<TransactionEnvelope>;
+  updateDistributor: (options: IUpdateDistributor) => Promise<{
+    distributor: IMerkleRewardsInsertResponse;
+    txe: TransactionEnvelope;
+  }>;
 
   /**
    * Confirm update distributor
@@ -419,7 +421,7 @@ const insertDistributor = async (options: IInsertDistributor) => {
   const { title, token, rewards } = data;
   const baseKP = Keypair.generate();
   const { absoluteSlot } = await provider.connection.getEpochInfo();
-  const { tx } = await insertDistributorMerkleRewards({
+  const distributorInfo = await insertDistributorMerkleRewards({
     title: title,
     base: base || baseKP.publicKey.toString(),
     projectID: token.symbol,
@@ -432,10 +434,13 @@ const insertDistributor = async (options: IInsertDistributor) => {
     })),
   });
 
-  const trans = Transaction.from(Buffer.from(tx, 'hex'));
+  const trans = Transaction.from(Buffer.from(distributorInfo?.tx, 'hex'));
 
   const txe = new TransactionEnvelope(provider, trans.instructions, [baseKP]);
-  return txe;
+  return {
+    txe,
+    distributor: distributorInfo,
+  };
 };
 
 const updateDistributor = async (options: IUpdateDistributor) => {
@@ -443,7 +448,7 @@ const updateDistributor = async (options: IUpdateDistributor) => {
   const { title, token, rewards } = data;
   const baseKP = Keypair.generate();
   const { absoluteSlot } = await provider.connection.getEpochInfo();
-  const { tx } = await insertDistributorMerkleRewards({
+  const distributorInfo = await insertDistributorMerkleRewards({
     title: title,
     distributor,
     epochID: Number(absoluteSlot || 0),
@@ -453,10 +458,13 @@ const updateDistributor = async (options: IUpdateDistributor) => {
     })),
   });
 
-  const trans = Transaction.from(Buffer.from(tx, 'hex'));
+  const trans = Transaction.from(Buffer.from(distributorInfo.tx, 'hex'));
 
   const txe = new TransactionEnvelope(provider, trans.instructions, [baseKP]);
-  return txe;
+  return {
+    txe,
+    distributor: distributorInfo,
+  };
 };
 
 const confirmInsertDistributor = async (

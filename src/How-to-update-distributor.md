@@ -13,7 +13,7 @@ const { updateDistributor, confirmUpdateDistributor } = useRewards();
 
 const distributor = useDistributor(address);
 
-const txe = await updateDistributor({
+const { txe, distributor } = await updateDistributor({
   provider,
   distributor: distributor.address,
   data: {
@@ -39,7 +39,7 @@ const { signature, response } = await txe.confirm();
 
 ```ts
 await confirmUpdateDistributor({
-    distributor: distributorAddress,
+    distributor: distributor.address,
     previousEpochID: distributor.epochID,
     status: 'SUCCESS', // 'CANCEL', 'ERROR'
 }, {

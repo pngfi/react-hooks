@@ -118,9 +118,15 @@ export interface IMerkleRewardsInsertResponse {
    */
   merkleRoot: string;
   /**
+   * A unique ID to indicate a particular merkle tree update. Repeated POST using the same epochID is idempotent.
+   * await connection.getEpochInfo()
+   */
+  epochID: number;
+  /**
    * (base58 pubkey) Distributor state PDA derived from the `base` pubkey.
    */
   distributor: string;
+  totalAmount: string;
   /**
    * The transaction you should sign & submit
    * serialized hex string of transaction
@@ -147,17 +153,17 @@ export declare interface IMerkleDistributorItem {
 
 export declare type IDistributorResponse = {
   title: string;
-  projectID: string;
+  projectID?: string;
   epochID: string;
   address: string;
-  base: string;
+  base?: string;
   owner: string;
   tokenMint: string;
   tokenHolder: string;
   totalAmount: string;
-  createdAt: number;
-  updatedAt: number;
-  beneficiaries: string[];
+  createdAt?: number;
+  updatedAt?: number;
+  beneficiaries?: string[];
 };
 
 export declare type IMerkleDistributorInfo = IMerkleDistributorItem & {
