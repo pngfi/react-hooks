@@ -9,8 +9,8 @@ import {
 } from '@raydium-io/raydium-sdk';
 import { Provider, TransactionEnvelope } from '@saberhq/solana-contrib';
 import { TOKEN_PROGRAM_ID } from '@saberhq/token-utils';
-// import { TokenSwap } from '@solana/spl-token-swap';
 import type { u64 as Iu64 } from '@solana/spl-token';
+import { TokenSwap } from '@solana/spl-token-swap';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { Connection, PublicKey, TransactionInstruction } from '@solana/web3.js';
 import { Buffer } from 'buffer';
@@ -27,10 +27,6 @@ import { DecimalUtil } from '../helpers/decimal';
 import { Bonding, Staking } from '../models';
 import { IBondingInfoWithTokens, IPool, IPoolRecords, IToken } from '../types';
 
-const {
-  TokenSwap,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require('@solana/spl-token-swap');
 const {
   u64,
   // eslint-disable-next-line @typescript-eslint/no-var-requires

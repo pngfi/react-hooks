@@ -177,7 +177,7 @@ const { data, error, loading } = useUserVesting(owner, vestConfig);
 
 [[include:How-to-create-distributor.md]]
 
-[[include:How-to-get-distributors.md]]
+[[include:How-to-get-distributor.md]]
 
 [[include:How-to-update-distributor.md]]
 

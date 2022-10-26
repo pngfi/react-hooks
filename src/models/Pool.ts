@@ -1,6 +1,6 @@
 import type { Provider } from '@saberhq/solana-contrib';
-// import { TokenSwapLayout, TokenSwap, Numberu64 } from '@solana/spl-token-swap';
 import { TransactionEnvelope } from '@saberhq/solana-contrib';
+import { Numberu64, TokenSwap, TokenSwapLayout } from '@solana/spl-token-swap';
 import type { PublicKey as IPublicKey } from '@solana/web3.js';
 import { Keypair, PublicKey, SystemProgram } from '@solana/web3.js';
 import Decimal from 'decimal.js';
@@ -24,12 +24,6 @@ import { TransactionBuilder } from '../helpers/transactionBuilder';
 import { CurveType, IPool, IToken } from '../types';
 import { IDepositQuote, IWithdrawQuote } from '../types/quote';
 
-const {
-  TokenSwapLayout,
-  TokenSwap,
-  Numberu64,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require('@solana/spl-token-swap');
 const {
   u64,
   Token: SPLToken,
