@@ -145,6 +145,7 @@ export interface IRewardsResponse {
    * const  = updateDistributor({
    *  provider,
    *  distributor,
+   *  adminAuth,
    *  data: {
    *   "title": "coinId-Airdrop-22-05-21",
    *   "token": {

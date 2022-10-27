@@ -2,6 +2,12 @@ import Decimal from 'decimal.js';
 
 import { IToken } from './token';
 
+export enum ISignMessage {
+  confirmDistributor = 'Confirm Distributor',
+  createDistributor = 'Create Distributor',
+  updateDistributor = 'Update Distributor',
+  deleteDistributor = 'Delete Distributor',
+}
 export interface IMerkleRewardsResponse {
   distributor: string;
   dest: string;

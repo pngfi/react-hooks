@@ -5,7 +5,7 @@
 ```ts
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { useAnchorProvider, useRewards, useTokenByMint, signAuth } from '@pngfi/react-hooks';
-const { publicKey, wallet, connected } = useWallet();
+const { publicKey, wallet, connected, signMessage, ISignMessage } = useWallet();
 const { connection } = useConnection();
 const provider = useAnchorProvider({ connection, wallet, connected });
 
@@ -46,7 +46,7 @@ await confirmUpdateDistributor({
     previousEpochID: distributor.epochID,
     status: 'SUCCESS', // 'CANCEL', 'ERROR'
 }, {
-    'X-PNG-SIGNATURE': await signAuth(wallet, 'Update Distributor'),
+    'X-PNG-SIGNATURE': await signAuth(signMessage, ISignMessage.confirmDistributor),
     'X-PNG-ADDRESS': String(publicKey)
 });
 ```

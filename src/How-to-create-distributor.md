@@ -4,7 +4,7 @@
 
 ```ts
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { useAnchorProvider, useRewards, useTokenByMint, signAuth } from '@pngfi/react-hooks';
+import { useAnchorProvider, useRewards, useTokenByMint, signAuth, ISignMessage } from '@pngfi/react-hooks';
 import { Keypair } from '@solana/web3.js';
 
 const { publicKey, wallet, connected, signMessage } = useWallet();
@@ -45,7 +45,7 @@ await confirmInsertDistributor({
     distributor: distributor.distributor,
     status: 'SUCCESS', // 'CANCEL', 'ERROR'
 }, {
-    'X-PNG-SIGNATURE': await signAuth(signMessage, 'Create Distributor'),
+    'X-PNG-SIGNATURE': await signAuth(signMessage, ISignMessage.confirmDistributor),
     'X-PNG-ADDRESS': publicKey.toString()
 });
 ```
