@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.72](https://github.com/xweb3/react-hooks/compare/v0.5.73...v0.5.72) (2022-10-27)
+
+
+### Features
+
+* 🎸 update & delete distributor ([5511f24](https://github.com/xweb3/react-hooks/commit/5511f24f2c5fa5734a8bd0adf1b7e27314943f88))
+* 🎸 updateDistributor adminAuth ([ad1d707](https://github.com/xweb3/react-hooks/commit/ad1d707935e818f1a7510c39fe0e7723e1362df3))
+* 🎸 updateDistributor adminAuth ([92a0e79](https://github.com/xweb3/react-hooks/commit/92a0e79401b80a1a68aab6032d1529b3f161f2c7))
+
 ### [0.5.72](https://github.com/pngfi/react-hooks/compare/v0.5.73...v0.5.72) (2022-10-27)
 
 
