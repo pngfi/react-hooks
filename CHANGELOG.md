@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.72](https://github.com/pngfi/react-hooks/compare/v0.5.73...v0.5.72) (2022-10-27)
+
+
+### Features
+
+* 🎸 update & delete distributor ([5511f24](https://github.com/pngfi/react-hooks/commit/5511f24f2c5fa5734a8bd0adf1b7e27314943f88))
+
 ### [0.5.73](https://github.com/xweb3/react-hooks/compare/v0.5.72...v0.5.73) (2022-10-26)
 
 
