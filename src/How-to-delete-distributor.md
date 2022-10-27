@@ -5,12 +5,12 @@
 ```ts
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useRewards, signAuth } from '@pngfi/react-hooks';
-const { publicKey, wallet } = useWallet();
+const { publicKey, signMessage } = useWallet();
 
 const { deleteDistributor } = useRewards();
 
 const result = await deleteDistributor((distributor.address, {
-    'X-PNG-SIGNATURE': await signAuth(wallet, 'Delete Distributor'),
+    'X-PNG-SIGNATURE': await signAuth(signMessage, 'Delete Distributor'),
     'X-PNG-ADDRESS': String(publicKey)
 }));
 ```

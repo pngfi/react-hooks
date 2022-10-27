@@ -7,7 +7,7 @@ import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { useAnchorProvider, useRewards, useTokenByMint, signAuth } from '@pngfi/react-hooks';
 import { Keypair } from '@solana/web3.js';
 
-const { publicKey, wallet, connected } = useWallet();
+const { publicKey, wallet, connected, signMessage } = useWallet();
 const { connection } = useConnection();
 const provider = useAnchorProvider({ connection, wallet, connected });
 
@@ -45,7 +45,7 @@ await confirmInsertDistributor({
     distributor: distributor.distributor,
     status: 'SUCCESS', // 'CANCEL', 'ERROR'
 }, {
-    'X-PNG-SIGNATURE': signAuth(wallet, 'Create Distributor'),
+    'X-PNG-SIGNATURE': await signAuth(signMessage, 'Create Distributor'),
     'X-PNG-ADDRESS': publicKey.toString()
 });
 ```

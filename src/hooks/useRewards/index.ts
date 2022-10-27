@@ -125,7 +125,7 @@ export interface IRewardsResponse {
    *   distributor: newDistributor,
    *   status: 'SUCCESS', // 'CANCEL', 'ERROR'
    * }, {
-   *   'X-PNG-SIGNATURE': signAuth(wallet, 'Create Distributor'),
+   *   'X-PNG-SIGNATURE': await signAuth(signMessage, 'Create Distributor'),
    *   'X-PNG-ADDRESS': publicKey.toString()
    * });
    * ```
@@ -178,7 +178,7 @@ export interface IRewardsResponse {
    *   previousEpochID: distributor.epochID,
    *   status: 'SUCCESS', // 'CANCEL', 'ERROR'
    * }, {
-   *   'X-PNG-SIGNATURE': signAuth(wallet, 'Update Distributor'),
+   *   'X-PNG-SIGNATURE': await signAuth(signMessage, 'Update Distributor'),
    *   'X-PNG-ADDRESS': publicKey.toString()
    * });
    * ```
@@ -199,7 +199,7 @@ export interface IRewardsResponse {
    * const result = await deleteDistributor((
    *    address,
    *    {
-   *      'X-PNG-SIGNATURE': signAuth(wallet, 'Delete Distributor'),
+   *      'X-PNG-SIGNATURE': await signAuth(signMessage, 'Delete Distributor'),
    *      'X-PNG-ADDRESS': publicKey.toString()
    *    }
    * ));
