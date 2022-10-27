@@ -13,11 +13,12 @@ const { updateDistributor, confirmUpdateDistributor } = useRewards();
 
 const distributor = useDistributor(address);
 
-const token = useTokenByMint(distributor.mint);
+const token = useTokenByMint(distributor.tokenMint);
 
 const { txe, distributor } = await updateDistributor({
   provider,
   distributor: distributor.address,
+  adminAuth: String(publicKey),
   data: {
     "title": title,
     token,

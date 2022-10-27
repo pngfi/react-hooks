@@ -13,7 +13,7 @@ const provider = useAnchorProvider({ connection, wallet, connected });
 
 const { insertDistributor, confirmInsertDistributor } = useRewards();
 
-const token = useTokenByMint(mint);
+const token = useTokenByMint(tokenMint);
 
 const { txe, distributor } = await insertDistributor({
   provider,

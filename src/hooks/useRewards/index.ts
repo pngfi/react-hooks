@@ -405,7 +405,7 @@ export interface IInsertDistributor {
 export interface IUpdateDistributor {
   provider: Provider;
   distributor: string;
-  // adminAuth: IPublicKey;
+  adminAuth: IPublicKey | string;
   data: {
     title: string;
     token: IDistributorToken;
@@ -444,13 +444,14 @@ const insertDistributor = async (options: IInsertDistributor) => {
 };
 
 const updateDistributor = async (options: IUpdateDistributor) => {
-  const { provider, data, distributor } = options;
+  const { provider, data, distributor, adminAuth } = options;
   const { title, token, rewards } = data;
   const baseKP = Keypair.generate();
   const { absoluteSlot } = await provider.connection.getEpochInfo();
   const distributorInfo = await insertDistributorMerkleRewards({
     title: title,
     distributor,
+    adminAuth: String(adminAuth),
     epochID: Number(absoluteSlot || 0),
     rewards: rewards.map(({ dest, amount }) => ({
       dest,
