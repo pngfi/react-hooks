@@ -10,7 +10,7 @@ const { publicKey, wallet } = useWallet();
 const { deleteDistributor } = useRewards();
 
 const result = await deleteDistributor((distributor.address, {
-    'X-PNG-SIGNATURE': signAuth(wallet, 'Delete Distributor'),
-    'X-PNG-ADDRESS': publicKey.toString()
+    'X-PNG-SIGNATURE': await signAuth(wallet, 'Delete Distributor'),
+    'X-PNG-ADDRESS': String(publicKey)
 }));
 ```
