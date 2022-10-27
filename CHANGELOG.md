@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.77](https://github.com/xweb3/react-hooks/compare/v0.5.76...v0.5.77) (2022-10-27)
+
+
+### Features
+
+* 🎸 signAuth ([9c134c6](https://github.com/xweb3/react-hooks/commit/9c134c66329794e2a5732b2b5ae028bcbf46a47b))
+
 ### [0.5.76](https://github.com/xweb3/react-hooks/compare/v0.5.74...v0.5.76) (2022-10-27)
 
 
