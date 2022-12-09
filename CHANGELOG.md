@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/pngfi/react-hooks/compare/v0.6.0...v0.6.1) (2022-12-09)
+
+
+### Features
+
+* add config account to claim common ([174c6f1](https://github.com/pngfi/react-hooks/commit/174c6f19a6cbbed67d215ce311119537e09b90b1))
+
 ## [0.6.0](https://github.com/pngfi/react-hooks/compare/v0.5.77...v0.6.0) (2022-10-27)
 
 
