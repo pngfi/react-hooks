@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.3](https://github.com/pngfi/react-hooks/compare/v0.6.2...v0.6.3) (2022-12-09)
+
+
+### Bug Fixes
+
+* 🐛 update @solana/spl-token-swap to 0.1.2 ([23cf202](https://github.com/pngfi/react-hooks/commit/23cf2029fbcb7c0d5aa597af92bd8adb34b434d9))
+
 ### [0.6.2](https://github.com/pngfi/react-hooks/compare/v0.6.1...v0.6.2) (2022-12-09)
 
 ### [0.6.1](https://github.com/pngfi/react-hooks/compare/v0.6.0...v0.6.1) (2022-12-09)
