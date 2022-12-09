@@ -103,6 +103,11 @@
           "isSigner": false
         },
         {
+          "name": "config",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "claimStatus",
           "isMut": true,
           "isSigner": false
@@ -184,6 +189,75 @@
         }
       ],
       "args": []
+    },
+    {
+      "name": "updateConfig",
+      "accounts": [
+        {
+          "name": "adminAuth",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "distributor",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "claimDeadline",
+          "type": {
+            "option": "i64"
+          }
+        }
+      ]
+    },
+    {
+      "name": "adminWithdraw",
+      "accounts": [
+        {
+          "name": "distributor",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "adminAuth",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "from",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "to",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
     }
   ],
   "accounts": [
@@ -232,6 +306,24 @@
           {
             "name": "numNodesClaimed",
             "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "distributor",
+            "type": "publicKey"
+          },
+          {
+            "name": "claimDeadline",
+            "type": {
+              "option": "i64"
+            }
           }
         ]
       }
@@ -329,9 +421,21 @@
       "code": 6007,
       "name": "NoClaimableAmount",
       "msg": "no claimable amount"
+    },
+    {
+      "code": 6008,
+      "name": "UpdateRootNoChange",
+      "msg": "update root no change"
+    },
+    {
+      "code": 6009,
+      "name": "InvalidParams",
+      "msg": "Invalid params"
+    },
+    {
+      "code": 6010,
+      "name": "ExceededDeadline",
+      "msg": "Exceeded deadline"
     }
-  ],
-  "metadata": {
-    "address": "PMRKTWvK9f1cPkQuXvvyDPmyCSoq8FdedCimXrXJp8M"
-  }
+  ]
 }

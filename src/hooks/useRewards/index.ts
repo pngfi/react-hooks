@@ -281,6 +281,14 @@ const claimCommon = async (
     program.programId,
   );
 
+  const [config] = await PublicKey.findProgramAddress(
+    [
+      Buffer.from('distributor_config', 'utf8'),
+      new PublicKey(distributor).toBytes(),
+    ],
+    program.programId,
+  );
+
   const distributorHolder = await deriveAssociatedTokenAddress(
     new PublicKey(distributor),
     new PublicKey(mint),
@@ -301,6 +309,7 @@ const claimCommon = async (
     {
       accounts: {
         distributor: new PublicKey(distributor),
+        config,
         claimStatus,
         from: distributorHolder,
         to: userHolder,
